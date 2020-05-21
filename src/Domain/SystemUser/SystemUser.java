@@ -1,4 +1,4 @@
-package Domain;
+package Domain.SystemUser;
 
 public class SystemUser {
 }
