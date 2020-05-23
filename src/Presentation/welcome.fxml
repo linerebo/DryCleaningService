@@ -26,17 +26,17 @@
                </image>
             </ImageView>
             <Label layoutX="2.0" layoutY="1.0" prefHeight="71.0" prefWidth="1300.0" style="-fx-background-color: lightgray;" />
-            <Button layoutX="407.0" layoutY="8.0" mnemonicParsing="false" text="Delivery Point" textFill="WHITE">
+            <Button layoutX="407.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleButtonDeliveryPoint" text="Delivery Point" textFill="WHITE">
                <font>
                   <Font name="Cambria" size="30.0" />
                </font>
             </Button>
-            <Button layoutX="1081.0" layoutY="8.0" mnemonicParsing="false" text="Central" textFill="WHITE">
+            <Button layoutX="1081.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleButtonCentral" text="Central" textFill="WHITE">
                <font>
                   <Font name="Cambria" size="30.0" />
                </font>
             </Button>
-            <Button layoutX="798.0" layoutY="8.0" mnemonicParsing="false" text="Driver" textFill="WHITE">
+            <Button layoutX="798.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleButtonDriver" text="Driver" textFill="WHITE">
                <font>
                   <Font name="Cambria" size="30.0" />
                </font>
