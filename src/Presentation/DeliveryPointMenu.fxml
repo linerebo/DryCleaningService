@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.ControllerDeliveryPointLogin">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.ControllerDeliveryPointMenu">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -23,7 +22,7 @@
    <children>
       <AnchorPane minHeight="-Infinity" prefHeight="800.0" prefWidth="1300.0">
          <children>
-            <ImageView fitWidth="1300.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitWidth="1300.0" layoutX="2.0" layoutY="-7.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Resources/laundry-services.jpg" />
                </image>
@@ -34,38 +33,33 @@
                   <Font name="Cambria" size="30.0" />
                </font>
             </Button>
-            <Label layoutX="399.0" layoutY="175.0" text="LOGIN">
+            <Label layoutX="399.0" layoutY="175.0" text="MENU">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <TextField layoutX="399.0" layoutY="306.0" prefHeight="53.0" prefWidth="324.0" />
-            <TextField layoutX="399.0" layoutY="419.0" prefHeight="53.0" prefWidth="324.0" />
-            <Label layoutX="399.0" layoutY="268.0" text="Delivery Point ID:">
-               <font>
-                  <Font size="26.0" />
-               </font>
-            </Label>
-            <Label layoutX="399.0" layoutY="381.0" text="Password:">
-               <font>
-                  <Font size="26.0" />
-               </font>
-            </Label>
             <MenuButton fx:id="menuButton1" layoutX="38.0" layoutY="5.0" mnemonicParsing="false" text="MENU" textFill="WHITE">
               <items>
-                <MenuItem mnemonicParsing="false" style="-fx-font-size: 25;" />
-                <MenuItem mnemonicParsing="false" style="-fx-font-size: 25;" />
+                <MenuItem mnemonicParsing="false" style="-fx-font-size: 25; -fx-background-color: peru;" text="MENU" />
+                <MenuItem mnemonicParsing="false" style="-fx-font-size: 25; -fx-background-color: peru;" text="LOGOUT" />
                   <MenuItem fx:id="menuItem3" mnemonicParsing="false" onAction="#handleButtonHome" style="-fx-font-size: 25; -fx-background-color: peru;" text="HOME" />
               </items>
                <font>
                   <Font size="30.0" />
                </font>
             </MenuButton>
-            <Button layoutX="652.0" layoutY="499.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="72.0" style="-fx-background-color: gray;" text="GO" textFill="WHITE">
+            <Button layoutX="399.0" layoutY="273.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="380.0" style="-fx-background-color: gray;" text="Hand-In" textFill="#fffbfb">
                <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
+                  <Font size="26.0" />
+               </font></Button>
+            <Button layoutX="399.0" layoutY="372.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="380.0" style="-fx-background-color: gray;" text="Pick-Up" textFill="WHITE">
+               <font>
+                  <Font size="26.0" />
+               </font></Button>
+            <Button layoutX="399.0" layoutY="470.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="380.0" style="-fx-background-color: gray;" text="Routes &amp; Time" textFill="WHITE">
+               <font>
+                  <Font size="26.0" />
+               </font></Button>
          </children>
       </AnchorPane>
    </children>

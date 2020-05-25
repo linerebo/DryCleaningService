@@ -61,6 +61,11 @@
                   <Font size="30.0" />
                </font>
             </MenuButton>
+            <Button layoutX="652.0" layoutY="504.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="72.0" style="-fx-background-color: gray;" text="GO" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>
