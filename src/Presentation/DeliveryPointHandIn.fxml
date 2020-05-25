@@ -6,7 +6,6 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -51,7 +50,6 @@
                   <Font size="30.0" />
                </font>
             </MenuButton>
-            <TextField layoutX="383.0" layoutY="107.0" prefHeight="46.0" prefWidth="151.0" />
             <Label layoutX="233.0" layoutY="166.0" prefHeight="35.0" prefWidth="122.0" text="New Order:">
                <font>
                   <Font size="21.0" />
@@ -127,6 +125,11 @@
                   <Image url="@Resources/edit.png" />
                </image>
             </ImageView>
+            <Label layoutX="383.0" layoutY="108.0" prefHeight="44.0" prefWidth="512.0" text="customer info">
+               <font>
+                  <Font name="System Italic" size="22.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
