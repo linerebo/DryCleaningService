@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.ControllerDeliveryPointFindCustomer">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.ControllerDeliveryPointEditCustomer">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -23,7 +23,6 @@
    <children>
       <AnchorPane minHeight="-Infinity" prefHeight="800.0" prefWidth="1300.0">
          <children>
-            <Button layoutX="920.0" layoutY="322.0" mnemonicParsing="false" onAction="#handleButtonEdit" prefHeight="45.0" prefWidth="70.0" />
             <ImageView fitWidth="1300.0" layoutX="2.0" layoutY="-7.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Resources/laundry-services.jpg" />
@@ -35,7 +34,7 @@
                   <Font name="Cambria" size="30.0" />
                </font>
             </Button>
-            <Label layoutX="237.0" layoutY="130.0" prefHeight="38.0" prefWidth="207.0" text="Find customer:">
+            <Label layoutX="237.0" layoutY="185.0" prefHeight="51.0" prefWidth="364.0" text="Edit customer information:">
                <font>
                   <Font size="29.0" />
                </font>
@@ -50,25 +49,37 @@
                   <Font size="30.0" />
                </font>
             </MenuButton>
-            <TextField layoutX="444.0" layoutY="130.0" prefHeight="43.0" prefWidth="361.0" promptText="input customer name">
+            <Label layoutX="237.0" layoutY="252.0" prefHeight="280.0" prefWidth="636.0" style="-fx-background-color: white;" />
+            <TextField layoutX="258.0" layoutY="278.0" prefHeight="45.0" prefWidth="353.0" promptText="name">
                <font>
-                  <Font name="System Italic" size="21.0" />
-               </font></TextField>
-            <Button layoutX="920.0" layoutY="130.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="309.0" style="-fx-background-color: gray;" text="Create new customer" textFill="#fffbfb">
+                  <Font name="System Italic" size="20.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="258.0" layoutY="340.0" prefHeight="45.0" prefWidth="353.0" promptText="lastname">
                <font>
-                  <Font size="22.0" />
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="258.0" layoutY="402.0" prefHeight="45.0" prefWidth="353.0" promptText="phone">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="258.0" layoutY="459.0" prefHeight="45.0" prefWidth="353.0" promptText="email">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <Button layoutX="697.0" layoutY="311.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="139.0" style="-fx-background-color: gray;" text="save" textFill="#fffdfd">
+               <font>
+                  <Font size="30.0" />
                </font>
             </Button>
-            <Label layoutX="237.0" layoutY="323.0" text="Customer Card:">
+            <Button layoutX="697.0" layoutY="435.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="139.0" style="-fx-background-color: gray;" text="cancel" textFill="WHITE">
                <font>
-                  <Font size="29.0" />
+                  <Font size="19.0" />
                </font>
-            </Label>
-            <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="940.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Resources/edit.png" />
-               </image>
-            </ImageView>
+            </Button>
          </children>
       </AnchorPane>
    </children>
