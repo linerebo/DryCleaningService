@@ -1,5 +1,6 @@
 package Application;
 
+import Domain.Adapter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,6 +14,8 @@ import java.io.IOException;
 public class ControllerWelcome {
 
     public void handleButtonDeliveryPoint(ActionEvent event) throws IOException {
+        Adapter.DBInstance().getDataFromDB("SELECT * FROM tblOrder"); // test, works
+
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/DeliveryPointLogin.fxml"));
         Scene balanceScene = new Scene(menuScreen);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

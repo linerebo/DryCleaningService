@@ -1,6 +1,7 @@
 package Domain;
 
 import Domain.CleaningCentral;
+import Persistance.DB;
 
 public class Adapter {
     private static CleaningCentral cleaningCentralSingleton;
@@ -11,5 +12,14 @@ public class Adapter {
             cleaningCentralSingleton = new CleaningCentral();
         }
         return cleaningCentralSingleton;
+    }
+
+    private static DB DBSingleton;
+
+    public static DB DBInstance(){
+        if(DBSingleton == null) {
+            DBSingleton = new DB();
+        }
+        return DBSingleton;
     }
 }
