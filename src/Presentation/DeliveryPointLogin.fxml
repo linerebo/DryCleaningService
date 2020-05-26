@@ -41,7 +41,7 @@
                </font>
             </Label>
             <TextField layoutX="399.0" layoutY="306.0" prefHeight="53.0" prefWidth="324.0" />
-            <TextField layoutX="399.0" layoutY="419.0" prefHeight="53.0" prefWidth="324.0" />
+            <TextField fx:id="txtFieldInputDeliveryPointPassword" layoutX="399.0" layoutY="419.0" prefHeight="53.0" prefWidth="324.0" />
             <Label layoutX="399.0" layoutY="268.0" text="User:">
                <font>
                   <Font size="26.0" />
@@ -62,12 +62,12 @@
                   <Font size="30.0" />
                </font>
             </MenuButton>
-            <Button layoutX="652.0" layoutY="499.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="72.0" style="-fx-background-color: gray;" text="GO" textFill="WHITE">
+            <Button fx:id="buttonGoDeliveryPointLogin" layoutX="652.0" layoutY="499.0" mnemonicParsing="false" onAction="#handleButtonGoDeliveryPointLogin" prefHeight="53.0" prefWidth="72.0" style="-fx-background-color: gray;" text="GO" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <ComboBox layoutX="399.0" layoutY="113.0" prefHeight="53.0" prefWidth="324.0" promptText="Delivery Point" style="-fx-font-size: 22;" />
+            <ComboBox fx:id="deliveryPointCombobox" layoutX="399.0" layoutY="113.0" prefHeight="53.0" prefWidth="324.0" promptText="Delivery Point" style="-fx-font-size: 22;" />
          </children>
       </AnchorPane>
    </children>

@@ -103,7 +103,7 @@
                   <Font size="22.0" />
                </font>
             </Button>
-            <Label layoutX="725.0" layoutY="400.0" prefHeight="44.0" prefWidth="151.0" style="-fx-background-color: pale;" text="Order details:" textFill="#000000d5">
+            <Label layoutX="725.0" layoutY="400.0" prefHeight="44.0" prefWidth="151.0" text="Order details:" textFill="#000000d5">
                <font>
                   <Font size="23.0" />
                </font>
