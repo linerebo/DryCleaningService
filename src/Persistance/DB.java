@@ -8,11 +8,15 @@
 
 package Persistance;
 
+import Domain.Customer;
+import Domain.Order;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class DB {
@@ -108,6 +112,20 @@ public class DB {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Customer> getCustomersFromDB(){
+        ArrayList<Customer> customers = new ArrayList<>();
+        customers.add(new Customer(1,"Bo", "Jensen", "12345678", "bj@mail.dk")); //insert SQL statement here
+        customers.add(new Customer(2,"Ib", "Jensen", "12345679", "ij@mail.dk"));
+        return customers;
+    }
+
+    public ArrayList<Order> getOrdersFromDB(){
+        ArrayList<Order> orders = new ArrayList<>();
+        orders.add(new Order(1, 3));
+        orders.add(new Order(2, 5));    //insert SQL statement here
+        return orders;
     }
 
 }

@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class CleaningCentral {
 
-    public ArrayList<Customer> customers = new ArrayList<>();
+    public ArrayList<DeliveryPoint> deliveryPoints = new ArrayList<>();
+    public ArrayList<Customer> customers;
     public ArrayList<Order> orders = new ArrayList<>();
 
 
@@ -12,6 +13,13 @@ public class CleaningCentral {
 
     public CleaningCentral(){
         //getDataFromDB();
+
+    }
+
+    public void updateDataFromDB(){
+        customers = Adapter.DBInstance().getCustomersFromDB();
+        orders = Adapter.DBInstance().getOrdersFromDB();
+
     }
 
 }
