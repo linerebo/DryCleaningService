@@ -20,7 +20,8 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        Adapter.cleaningCentralInstance().updateDataFromDB();
+        Adapter.cleaningCentralInstance().getDataFromDB();
+        //Adapter.cleaningCentralInstance().updateDataFromDB();
         launch(args);
     }
 }

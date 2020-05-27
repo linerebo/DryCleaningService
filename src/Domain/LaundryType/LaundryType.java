@@ -2,12 +2,15 @@ package Domain.LaundryType;
 
 public class LaundryType {
     public int laundryType;
-    public String LaundryTypeName;
+    public String laundryTypeName;
     public int laundryTypePrice;
     public int laundryTypeTimeToClean;
 
 
-    public LaundryType(){
-
-    }
+//    public LaundryType(int laundryTp, String laundryTpName, int laundryTpPrice, int laundryTpTimeToClean){
+//        laundryType = laundryTp;
+//        laundryTypeName = laundryTpName;
+//        laundryTypePrice = laundryTpPrice;
+//        laundryTypeTimeToClean = laundryTpTimeToClean;
+//    }
 }

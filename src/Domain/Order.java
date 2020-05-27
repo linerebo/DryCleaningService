@@ -5,11 +5,16 @@ package Domain;
 public class Order {
     public ArrayList<LaundryItem> items = new ArrayList<>();
     public int orderID;
+    public int customerID;
     public int orderAmount;
+    public int deliveryPointID;
 
-    public Order(int id, int amount){
+
+    public Order(int id, int customerId, int amount, int deliveryPointId){
         orderID = id;
+        customerID = customerId;
         orderAmount = amount;
+        deliveryPointID = deliveryPointId;
     }
 
 //    public int customerID;
