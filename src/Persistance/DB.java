@@ -22,9 +22,34 @@ import java.util.Properties;
 public class DB {
 
     public Connection connection;
+    public int numberOfColumns;
+
+    public ArrayList<Object> objectArrayListOrder = new ArrayList<>();
+    public ArrayList<Object> objectArrayListCustomer = new ArrayList<>();
+    public ArrayList<Object> objectArrayListEventHistory = new ArrayList<>();
+    public ArrayList<Object> objectArrayListLaundryItem = new ArrayList<>();
+    // TODO continue for all tables of which we need the data.
 
     /**
-     * This method will establish a connection wit the database called DryLeaningServiceDB.
+     * The method calls the getDataFromDB method for every table of which we need the data.
+     */
+    public void tabledataToFetch() {
+
+        getDataFromDB("SELECT * FROM tblOrder", objectArrayListOrder);
+        getDataFromDB("SELECT * FROM tblCustomer", objectArrayListCustomer);
+        getDataFromDB("SELECT * FROM tblEventHistory", objectArrayListEventHistory);
+        getDataFromDB("SELECT * FROM tblLaundryItem", objectArrayListLaundryItem);
+        // TODO continue for all tables of which we need the data.
+
+        // only print out checks
+        System.out.println("Arraylist of order data objects: " + objectArrayListOrder);
+        System.out.println("Arraylist of customer data objects: " + objectArrayListCustomer);
+        System.out.println("Arraylist of eventHistory data objects: " + objectArrayListEventHistory);
+        System.out.println("Arraylist of laundryItem data objects: " + objectArrayListLaundryItem);
+    }
+
+    /**
+     * This method will establish a connection wit the database called "DryLeaningServiceDB".
      * @return an object of connection
      */
     public Connection establishConnection(){
@@ -75,10 +100,13 @@ public class DB {
     }
 
     /**
-     * The method takes an sql String and prints the corresponding resultset in a formatted way to the console.
-     * @param sqlString a String of a sql statement
+     * This method checks which kind of datatype the chosen table holds and stores the data as objects in an arraylist.
+     * As it is unknown beforehand which data typ the table holds, the data fetched is stored in an arraylist of objects,
+     * so that there can be different data types in the array list.
+     * @param sqlString the SQL statement which chooses the table from which the data shall be fetched.
+     * @param arrayList the arrayList in which the data shall be stored.
      */
-    public void getDataFromDB(String sqlString) {
+    public void getDataFromDB(String sqlString, ArrayList<Object> arrayList) {
 
         Statement st;
         ResultSet resultSet;
@@ -90,18 +118,33 @@ public class DB {
 
             // as the number of columns is unknown, it will get the amount of columns by the metadata and loop over all columns
             ResultSetMetaData rsmd = resultSet.getMetaData();
-            int numberOfColumns = rsmd.getColumnCount();
+            numberOfColumns = rsmd.getColumnCount();
 
-            System.out.println("Result from DB: ");
             while (resultSet.next()) {
 
-                for (int num = 1; num <= numberOfColumns; num++) {
+                // As long as num is smaller than number of columns, for every column in the table do:
+                // 1) print the name of the datatype
+                // 2)  check which datatype it is and get the corresponding object
+                // 3) add the new object to the temporary arraylist
+                for (int num = 1; num <= (numberOfColumns); num++) {
 
-                    System.out.print(resultSet.getString(num)); //other way, here  you need to know the indexNumber of the columns: System.out.println("result from DB: "+ resultSet.getString(1));
-                    System.out.print(" | ");
+                    // print out check : what kind of data type name gets returned.
+                    String checkColumnTypeName = rsmd.getColumnTypeName(num);
+                    System.out.println("Column datatype: " + checkColumnTypeName);
 
-                    if (num == numberOfColumns) {
-                        System.out.println("");
+                    if(rsmd.getColumnTypeName(num).equals("int")) {
+                        int newInt = resultSet.getInt(num);
+                        arrayList.add(newInt);
+                    } else if (rsmd.getColumnTypeName(num).equals("varchar")) { //getColumnTypeName returns a String value representing the name of the SQL data type. https://www.tutorialspoint.com/java-resultsetmetadata-getcolumntypename-method-with-example
+                        String newString = resultSet.getString(num);
+                        arrayList.add(newString);
+                    } else if (rsmd.getColumnTypeName(num).equals("datetime")) {
+                        Timestamp newTimeStamp = resultSet.getTimestamp(num); // returns a TimeStamp object https://docs.microsoft.com/de-de/sql/connect/jdbc/reference/gettimestamp-method-java-lang-string-java-util-calendar?view=sql-server-ver15
+                        arrayList.add(newTimeStamp);
+                    } else if (rsmd.getColumnTypeName(num).equals("bit")){
+                        boolean newBoolean = resultSet.getBoolean(num);
+                        arrayList.add(newBoolean);
+                    } else {System.out.print("No matching datatype");
                     }
                 }
             }

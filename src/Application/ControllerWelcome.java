@@ -14,7 +14,9 @@ import java.io.IOException;
 public class ControllerWelcome {
 
     public void handleButtonDeliveryPoint(ActionEvent event) throws IOException {
-        Adapter.DBInstance().getDataFromDB("SELECT * FROM tblOrder"); // test, works
+        Adapter.DBInstance().tabledataToFetch(); // test
+        System.out.println("ArrayList of order data objects from cleaningCentral class: " + Adapter.cleaningCentralInstance().orderDataObjects); // test print
+        //System.out.println("arraylist of orders from the cleaning central class: " + Adapter.cleaningCentralInstance().orders); //test print
 
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/DeliveryPointLogin.fxml"));
         Scene balanceScene = new Scene(menuScreen);
