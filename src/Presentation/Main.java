@@ -23,6 +23,4 @@ public class Main extends Application {
         Adapter.cleaningCentralInstance().updateDataFromDB();
         launch(args);
     }
-
-
 }

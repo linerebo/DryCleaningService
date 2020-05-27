@@ -1,6 +1,6 @@
 package Domain;
 
-import java.util.ArrayList;
+        import java.util.ArrayList;
 
 public class Order {
     public ArrayList<LaundryItem> items = new ArrayList<>();

@@ -28,7 +28,7 @@ public class ControllerDeliveryPointMenu {
     }
 
     public void handleButtonHandIn(ActionEvent event) throws IOException {
-        Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/DeliveryPointHandIn.fxml"));
+        Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/DeliveryPointFindCustomer.fxml"));
         Scene Scene = new Scene(menuScreen);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(Scene);
