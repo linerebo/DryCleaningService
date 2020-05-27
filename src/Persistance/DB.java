@@ -8,6 +8,8 @@
 
 package Persistance;
 
+import Domain.*;
+import Domain.LaundryType.LaundryType;
 import Domain.Customer;
 import Domain.DeliveryPoint;
 import Domain.Order;
@@ -23,31 +25,6 @@ import java.util.Properties;
 public class DB {
 
     public Connection connection;
-    public int numberOfColumns;
-
-    public ArrayList<Object> objectArrayListOrder = new ArrayList<>();
-    public ArrayList<Object> objectArrayListCustomer = new ArrayList<>();
-    public ArrayList<Object> objectArrayListEventHistory = new ArrayList<>();
-    public ArrayList<Object> objectArrayListLaundryItem = new ArrayList<>();
-    // TODO continue for all tables of which we need the data.
-
-    /**
-     * The method calls the getDataFromDB method for every table of which we need the data.
-     */
-    public void tabledataToFetch() {
-
-        getDataFromDB("SELECT * FROM tblOrder", objectArrayListOrder);
-        getDataFromDB("SELECT * FROM tblCustomer", objectArrayListCustomer);
-        getDataFromDB("SELECT * FROM tblEventHistory", objectArrayListEventHistory);
-        getDataFromDB("SELECT * FROM tblLaundryItem", objectArrayListLaundryItem);
-        // TODO continue for all tables of which we need the data.
-
-        // only print out checks
-        System.out.println("Arraylist of order data objects: " + objectArrayListOrder);
-        System.out.println("Arraylist of customer data objects: " + objectArrayListCustomer);
-        System.out.println("Arraylist of eventHistory data objects: " + objectArrayListEventHistory);
-        System.out.println("Arraylist of laundryItem data objects: " + objectArrayListLaundryItem);
-    }
 
     /**
      * This method will establish a connection wit the database called "DryLeaningServiceDB".
@@ -100,75 +77,42 @@ public class DB {
         }
     }
 
-    /**
-     * This method checks which kind of datatype the chosen table holds and stores the data as objects in an arraylist.
-     * As it is unknown beforehand which data typ the table holds, the data fetched is stored in an arraylist of objects,
-     * so that there can be different data types in the array list.
-     * @param sqlString the SQL statement which chooses the table from which the data shall be fetched.
-     * @param arrayList the arrayList in which the data shall be stored.
-     */
-    public void getDataFromDB(String sqlString, ArrayList<Object> arrayList) {
-
+    // a method for each table to get the data from the database
+    public ArrayList<Customer> getCustomersFromDB(){
+        ArrayList<Customer> customers = new ArrayList<>();
         Statement st;
         ResultSet resultSet;
-
         try {
             establishConnection();
             st = connection.createStatement();
-            resultSet = st.executeQuery(sqlString);
-
-            // as the number of columns is unknown, it will get the amount of columns by the metadata and loop over all columns
-            ResultSetMetaData rsmd = resultSet.getMetaData();
-            numberOfColumns = rsmd.getColumnCount();
-
-            while (resultSet.next()) {
-
-                // As long as num is smaller than number of columns, for every column in the table do:
-                // 1) print the name of the datatype
-                // 2)  check which datatype it is and get the corresponding object
-                // 3) add the new object to the temporary arraylist
-                for (int num = 1; num <= (numberOfColumns); num++) {
-
-                    // print out check : what kind of data type name gets returned.
-                    String checkColumnTypeName = rsmd.getColumnTypeName(num);
-                    System.out.println("Column datatype: " + checkColumnTypeName);
-
-                    if(rsmd.getColumnTypeName(num).equals("int")) {
-                        int newInt = resultSet.getInt(num);
-                        arrayList.add(newInt);
-                    } else if (rsmd.getColumnTypeName(num).equals("varchar")) { //getColumnTypeName returns a String value representing the name of the SQL data type. https://www.tutorialspoint.com/java-resultsetmetadata-getcolumntypename-method-with-example
-                        String newString = resultSet.getString(num);
-                        arrayList.add(newString);
-                    } else if (rsmd.getColumnTypeName(num).equals("datetime")) {
-                        Timestamp newTimeStamp = resultSet.getTimestamp(num); // returns a TimeStamp object https://docs.microsoft.com/de-de/sql/connect/jdbc/reference/gettimestamp-method-java-lang-string-java-util-calendar?view=sql-server-ver15
-                        arrayList.add(newTimeStamp);
-                    } else if (rsmd.getColumnTypeName(num).equals("bit")){
-                        boolean newBoolean = resultSet.getBoolean(num);
-                        arrayList.add(newBoolean);
-                    } else {System.out.print("No matching datatype");
-                    }
-                }
+            resultSet = st.executeQuery("SELECT * FROM tblCustomer");
+            while(resultSet.next()) {
+                customers.add(new Customer(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5))); //insert SQL statement here ??
             }
-
             st.close();
             closeConnection();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+        } catch (SQLException e) {}
 
-    public ArrayList<Customer> getCustomersFromDB(){
-        ArrayList<Customer> customers = new ArrayList<>();
-        customers.add(new Customer(1,"Bo", "Jensen", "12345678", "bj@mail.dk")); //insert SQL statement here
-        customers.add(new Customer(2,"Ib", "Jensen", "12345679", "ij@mail.dk"));
         return customers;
     }
 
     public ArrayList<Order> getOrdersFromDB(){
         ArrayList<Order> orders = new ArrayList<>();
-        orders.add(new Order(1, 3));
-        orders.add(new Order(2, 5));    //insert SQL statement here
+        Statement st;
+        ResultSet resultSet;
+        try {
+            establishConnection();
+            st = connection.createStatement();
+            resultSet = st.executeQuery("SELECT * FROM tblOrder");
+            while(resultSet.next()) {
+                orders.add(new Order(resultSet.getInt(1), resultSet.getInt(2), resultSet.getInt(3), resultSet.getInt(4)));
+            }
+            st.close();
+            closeConnection();
+
+        } catch (SQLException e) {}
+
         return orders;
     }
 
@@ -177,6 +121,140 @@ public class DB {
         deliveryPoints.add(new DeliveryPoint(1,"Kirkevej"));
         deliveryPoints.add(new DeliveryPoint(2,"SuperBrugsen"));
         return deliveryPoints;
+    }
+
+    public ArrayList<LaundryItem> getLaundryItemsFromDB() {
+        ArrayList<LaundryItem> laundryItems = new ArrayList<>();
+        Statement st;
+        ResultSet resultSet;
+        try {
+            establishConnection();
+            st = connection.createStatement();
+            resultSet = st.executeQuery("SELECT * FROM tblLaundryItem");
+            while(resultSet.next()) {
+                laundryItems.add(new LaundryItem(resultSet.getInt(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getBoolean(4)));
+            }
+            st.close();
+            closeConnection();
+
+        } catch (SQLException e) {}
+
+        return laundryItems;
+    }
+
+    public ArrayList<DeliveryPoint> getDeliveryPointsFromDB() {
+        ArrayList<DeliveryPoint> deliveryPoints = new ArrayList<>();
+        Statement st;
+        ResultSet resultSet;
+        try {
+            establishConnection();
+            st = connection.createStatement();
+            resultSet = st.executeQuery("SELECT * FROM tblDeliveryPoint");
+            while(resultSet.next()) {
+                deliveryPoints.add(new DeliveryPoint(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4)));
+            }
+            st.close();
+            closeConnection();
+
+        } catch (SQLException e) {}
+
+        return deliveryPoints;
+    }
+
+    public ArrayList<Department> getDepartmentsFromDB() {
+        ArrayList<Department> departments = new ArrayList<>();
+        Statement st;
+        ResultSet resultSet;
+        try {
+            establishConnection();
+            st = connection.createStatement();
+            resultSet = st.executeQuery("SELECT * FROM tblDepartment");
+            while(resultSet.next()) {
+                departments.add(new Department(resultSet.getInt(1), resultSet.getString(2)));
+            }
+            st.close();
+            closeConnection();
+
+        } catch (SQLException e) {}
+
+        return departments;
+    }
+
+    public ArrayList<EventHistory> getEventHistoriesFromDB() {
+        ArrayList<EventHistory> eventHistories = new ArrayList<>();
+        Statement st;
+        ResultSet resultSet;
+        try {
+            establishConnection();
+            st = connection.createStatement();
+            resultSet = st.executeQuery("SELECT * FROM tblEventHistory");
+            while(resultSet.next()) {
+                eventHistories.add(new EventHistory(resultSet.getInt(1), resultSet.getInt(2), resultSet.getTimestamp(3), resultSet.getInt(4), resultSet.getInt(5)));
+            }
+            st.close();
+            closeConnection();
+
+        } catch (SQLException e) {}
+
+        return eventHistories;
+    }
+
+    public ArrayList<EventType> getEventTypesFromDB() {
+        ArrayList<EventType> eventTypes = new ArrayList<>();
+        Statement st;
+        ResultSet resultSet;
+        try {
+            establishConnection();
+            st = connection.createStatement();
+            resultSet = st.executeQuery("SELECT * FROM tblEventType");
+            while(resultSet.next()) {
+                eventTypes.add(new EventType(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3)));
+            }
+            st.close();
+            closeConnection();
+
+        } catch (SQLException e) {}
+
+        return eventTypes;
+    }
+
+    // TODO
+//    public ArrayList<LaundryType> getLaundryTypesFromDB() {
+//        ArrayList<LaundryType> laundryTypes = new ArrayList<>();
+//        Statement st;
+//        ResultSet resultSet;
+//        try {
+//            establishConnection();
+//            st = connection.createStatement();
+//            resultSet = st.executeQuery("SELECT * FROM tblLaundryType");
+//            while(resultSet.next()) {
+//                laundryTypes.add(new LaundryType(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4)));
+//            }
+//            st.close();
+//            closeConnection();
+//
+//        } catch (SQLException e) {}
+//
+//        return laundryTypes;
+//    }
+
+    public ArrayList<Payment> getPaymentsFromDB() {
+        ArrayList<Payment> payments = new ArrayList<>();
+        Statement st;
+        ResultSet resultSet;
+        try {
+            establishConnection();
+            st = connection.createStatement();
+            resultSet = st.executeQuery("SELECT * FROM tblPayment");
+            while(resultSet.next()) {
+                payments.add(new Payment(resultSet.getInt(1), resultSet.getInt(2), resultSet.getTimestamp(3), resultSet.getBoolean(4), resultSet.getInt(5)));
+            }
+            st.close();
+            closeConnection();
+
+        } catch (SQLException e) {}
+
+        return payments;
     }
 
 }

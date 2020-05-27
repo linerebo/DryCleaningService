@@ -10,9 +10,13 @@ public class DeliveryPoint {
     public int deliveryPointID;
     public String address;
     public ObservableList<LaundryItem> basket;
+    public String zipCode;
+    public String route;
 
-    public DeliveryPoint(int id, String deliveryAddress){
-        deliveryPointID = id;
-        address = deliveryAddress;
+    public DeliveryPoint(int deliveryPointId, String addressDP, String zipCodeDP, String routeDP){
+        deliveryPointID = deliveryPointId;
+        address = addressDP;
+        zipCode = zipCodeDP;
+        route = routeDP;
     }
 }

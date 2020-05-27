@@ -4,38 +4,37 @@ import java.util.ArrayList;
 
 public class CleaningCentral {
 
-    public ArrayList<DeliveryPoint> deliveryPoints = new ArrayList<>();
     public ArrayList<Customer> customers;
-    public ArrayList<Order> orders = new ArrayList<>();
+    public ArrayList<DeliveryPoint> deliveryPoints;
+    public ArrayList<Department> departments;
+    public ArrayList<EventHistory> eventHistories;
+    public ArrayList<EventType> eventTypes;
+    //laundry_Order // TODO same for combination tables?
+    public ArrayList<LaundryItem> laundryItems;
+    //public ArrayList<LaundryType> laundryTypes; // TODO find solution for class LaundryType and its subclasses
+    //public ArrayList<NotAssignableLaundryItem> notAssignableLaundryItems; // TODO decide whether it is an own class or a subclass of LaundryItem
+    public ArrayList<Order> orders;
+    public ArrayList<Payment> payments;
+    //public ArrayList<PostalCode> postalCodes; // TODO do we need this?
+    //public ArrayList<SystemUser> systemUsers; // TODO find solution for class SystemUser and its subclasses
 
-    // arrayLists of data objects:
-    public ArrayList<Object> orderDataObjects;
-
-    //Order newOrder;
-
-
-    public CleaningCentral(){
-        //getDataFromDB();
-        orderDataObjects = Adapter.DBInstance().objectArrayListOrder;
-
-        // TODO make order objects out of every set of four (numberOfColumns) data objects in the objectArrayListOrder
-//        while (!Adapter.DBInstance().objectArrayListOrder.isEmpty()) {
-//            for (int num = 0; num <= Adapter.DBInstance().numberOfColumns; num++) {
-//                newOrder = new Order();
-//
-//                newOrder.orderID = (int) Adapter.DBInstance().objectArrayListOrder.get(0);
-//                newOrder.customerID = (int) Adapter.DBInstance().objectArrayListOrder.get(1);
-//                newOrder.orderAmount = (int) Adapter.DBInstance().objectArrayListOrder.get(2);
-//                newOrder.deliveryPointID = (int) Adapter.DBInstance().objectArrayListOrder.get(3);
-//                orders.add(newOrder); // TODO solve problem. "out of memory error: java heap space"
-//            }
-//        }
-
-        // TODO repeat this for every "object - type" neede (e.g. customers, orders,...)
+    public CleaningCentral() {
     }
 
-    public void updateDataFromDB(){
+    public void getDataFromDB(){
+
         customers = Adapter.DBInstance().getCustomersFromDB();
+        System.out.println("amount of customers: " + customers.size()); // test print
+        deliveryPoints = Adapter.DBInstance().getDeliveryPointsFromDB();
+        System.out.println("amount of deliveryPoints: " + deliveryPoints.size()); // test print
+        departments = Adapter.DBInstance().getDepartmentsFromDB();
+        eventHistories = Adapter.DBInstance().getEventHistoriesFromDB();
+        System.out.println("amount of eventHistories: " + eventHistories.size()); // test print
+        eventTypes = Adapter.DBInstance().getEventTypesFromDB();
+        // laundry_orders
+        laundryItems = Adapter.DBInstance().getLaundryItemsFromDB();
+        //laundryTypes = Adapter.DBInstance().getLaundryTypesFromDB();
+        //NotAssignableLaundryItems
         orders = Adapter.DBInstance().getOrdersFromDB();
         deliveryPoints = Adapter.DBInstance().getDeliveryPointsFromDB();
     }
@@ -43,6 +42,9 @@ public class CleaningCentral {
     public DeliveryPoint getDeliveryPointFromID(int id){
         return new DeliveryPoint(1, "XY");
 
+        payments = Adapter.DBInstance().getPaymentsFromDB();
+        //postalCode
+        //systemUser
     }
 
 }

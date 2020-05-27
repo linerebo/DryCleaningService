@@ -6,7 +6,10 @@ public class LaundryItem {
     public String itemColor;
     public boolean itemStatus;
 
-    public LaundryItem(){
-
+    public LaundryItem(int itemId, int laundryTypeId, String itemCol, boolean itemStat){
+        itemID = itemId;
+        laundryTypeID = laundryTypeId;
+        itemColor = itemCol;
+        itemStatus = itemStat;
     }
 }
