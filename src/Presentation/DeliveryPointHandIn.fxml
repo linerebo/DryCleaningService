@@ -6,6 +6,7 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -55,18 +56,21 @@
                   <Font size="21.0" />
                </font>
             </Label>
-            <RadioButton layoutX="229.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" />
+            <RadioButton fx:id="radiobuttonShirt" layoutX="229.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Group1" />
+               </toggleGroup></RadioButton>
             <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="259.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Resources/shirt.png" />
                </image>
             </ImageView>
-            <RadioButton layoutX="383.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" />
-            <RadioButton layoutX="534.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" />
-            <RadioButton layoutX="693.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" />
-            <RadioButton layoutX="846.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" />
-            <RadioButton layoutX="1004.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" />
-            <RadioButton layoutX="1156.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" />
+            <RadioButton fx:id="radiobuttonJacket" layoutX="383.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$Group1" />
+            <RadioButton fx:id="radiobuttonTrousers" layoutX="534.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$Group1" />
+            <RadioButton fx:id="radiobuttonTshirt" layoutX="693.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$Group1" />
+            <RadioButton fx:id="radiobuttonCoat" layoutX="846.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$Group1" />
+            <RadioButton fx:id="radiobuttonDress" layoutX="1004.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$Group1" />
+            <RadioButton fx:id="radiobuttonCarpet" layoutX="1156.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$Group1" />
             <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="414.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Resources/blazer.png" />

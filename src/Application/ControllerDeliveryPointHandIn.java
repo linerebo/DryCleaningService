@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,6 +18,8 @@ public class ControllerDeliveryPointHandIn {
     MenuButton menuButton1;
     @FXML
     MenuItem menuItem3;
+    @FXML
+    RadioButton radiobuttonShirt, radiobuttonJacket, radiobuttonTrousers, radiobuttonTshirt, radiobuttonCoat, radiobuttonDress, radiobuttonCarpet;
 
     public void handleButtonHome(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));
@@ -28,4 +31,6 @@ public class ControllerDeliveryPointHandIn {
 
     public void handleButtonEdit(){
     }
+
+
 }
