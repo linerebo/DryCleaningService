@@ -1,5 +1,7 @@
 package Application;
 
+import Domain.Adapter;
+import Domain.DeliveryPoint;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,7 +24,7 @@ public class ControllerDeliveryPointLogin {
     @FXML
     ComboBox deliveryPointCombobox;
     @FXML
-    TextField txtFieldInputDeliveryPointPassword;
+    TextField txtFieldInputDeliveryPointPassword, txtFieldInputDeliveryPointID;
     @FXML
     Button buttonGoDeliveryPointLogin;
 
@@ -30,9 +32,9 @@ public class ControllerDeliveryPointLogin {
 
     public void handleButtonHome(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));
-        Scene Scene = new Scene(menuScreen);
+        Scene scene = new Scene(menuScreen);
         Stage window = (Stage) menuButton1.getScene().getWindow();
-        window.setScene(Scene);
+        window.setScene(scene);
         window.show();
     }
 
@@ -50,11 +52,14 @@ public class ControllerDeliveryPointLogin {
 
         // compare password, change scene if true
         if (properPassword.equals(inPassword)) {
-
-            Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/DeliveryPointMenu.fxml"));
-            Scene canteenStaffAccessScene = new Scene(menuScreen);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DeliveryPointMenu.fxml"));
+            Parent menuScreen = loader.load();
+            ControllerDeliveryPointMenu controller = (ControllerDeliveryPointMenu) loader.getController();
+            controller.dp = Adapter.cleaningCentralInstance().getDeliveryPointFromID(Integer.parseInt(txtFieldInputDeliveryPointID.getText()));
+            controller.labelDeliveryPointID.setText(txtFieldInputDeliveryPointID.getText());
+            Scene scene = new Scene(menuScreen);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(canteenStaffAccessScene);
+            window.setScene(scene);
             window.show();
 
         } else {

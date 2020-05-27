@@ -1,11 +1,13 @@
 package Application;
 
+import Domain.DeliveryPoint;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
@@ -14,10 +16,14 @@ import java.io.IOException;
 
 public class ControllerDeliveryPointMenu {
 
+    DeliveryPoint dp;
+
     @FXML
     MenuButton menuButton1;
     @FXML
     MenuItem menuItem3;
+    @FXML
+    Label labelDeliveryPointID, labelDeliveryPointAddress;
 
     public void handleButtonHome(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));

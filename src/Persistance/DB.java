@@ -9,6 +9,7 @@
 package Persistance;
 
 import Domain.Customer;
+import Domain.DeliveryPoint;
 import Domain.Order;
 
 import java.io.FileInputStream;
@@ -169,6 +170,13 @@ public class DB {
         orders.add(new Order(1, 3));
         orders.add(new Order(2, 5));    //insert SQL statement here
         return orders;
+    }
+
+    public ArrayList<DeliveryPoint> getDeliveryPointsFromDB(){
+        ArrayList<DeliveryPoint> deliveryPoints = new ArrayList<>();
+        deliveryPoints.add(new DeliveryPoint(1,"Kirkevej"));
+        deliveryPoints.add(new DeliveryPoint(2,"SuperBrugsen"));
+        return deliveryPoints;
     }
 
 }

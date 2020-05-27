@@ -37,6 +37,12 @@ public class CleaningCentral {
     public void updateDataFromDB(){
         customers = Adapter.DBInstance().getCustomersFromDB();
         orders = Adapter.DBInstance().getOrdersFromDB();
+        deliveryPoints = Adapter.DBInstance().getDeliveryPointsFromDB();
+    }
+
+    public DeliveryPoint getDeliveryPointFromID(int id){
+        return new DeliveryPoint(1, "XY");
+
     }
 
 }
