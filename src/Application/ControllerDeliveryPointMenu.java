@@ -1,5 +1,6 @@
 package Application;
 
+import Domain.Adapter;
 import Domain.DeliveryPoint;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,7 +35,10 @@ public class ControllerDeliveryPointMenu {
     }
 
     public void handleButtonHandIn(ActionEvent event) throws IOException {
-        Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/DeliveryPointFindCustomer.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DeliveryPointFindCustomer.fxml"));
+        Parent menuScreen = loader.load();
+        ControllerDeliveryPointFindCustomer controller = (ControllerDeliveryPointFindCustomer) loader.getController();
+        controller.dp = dp;
         Scene Scene = new Scene(menuScreen);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(Scene);

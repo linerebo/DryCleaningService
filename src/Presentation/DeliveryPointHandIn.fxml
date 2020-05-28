@@ -103,12 +103,12 @@
                </image>
             </ImageView>
             <ComboBox layoutX="229.0" layoutY="400.0" prefHeight="35.0" prefWidth="166.0" promptText="Color" style="-fx-background-color: white; -fx-font-size: 20;" />
-            <Button layoutX="448.0" layoutY="398.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="142.0" style="-fx-background-color: gray;" text="add item" textFill="WHITE">
+            <Button layoutX="414.0" layoutY="398.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="142.0" style="-fx-background-color: gray;" text="add item" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
             </Button>
-            <Label layoutX="725.0" layoutY="400.0" prefHeight="44.0" prefWidth="151.0" text="Order details:" textFill="#000000d5">
+            <Label layoutX="576.0" layoutY="444.0" prefHeight="44.0" prefWidth="151.0" text="Order details:" textFill="#000000d5">
                <font>
                   <Font size="23.0" />
                </font>
@@ -118,23 +118,41 @@
                   <Font size="22.0" />
                </font>
             </Button>
-            <Button layoutX="1161.0" layoutY="722.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="122.0" style="-fx-background-color: gray;" text="save">
+            <Button layoutX="1151.0" layoutY="722.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="122.0" style="-fx-background-color: gray;" text="save">
                <font>
                   <Font size="22.0" />
                </font>
             </Button>
-            <Button layoutX="1222.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleButtonEdit" prefHeight="45.0" prefWidth="51.0" />
-            <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="1232.0" layoutY="454.0" pickOnBounds="true" preserveRatio="true">
+            <Button layoutX="1222.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleButtonEdit" prefHeight="45.0" prefWidth="51.0" />
+            <ImageView fitHeight="36.0" fitWidth="27.0" layoutX="1232.0" layoutY="396.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Resources/edit.png" />
+                  <Image url="@Resources/delete2.png" />
                </image>
             </ImageView>
-            <Label layoutX="383.0" layoutY="108.0" prefHeight="44.0" prefWidth="512.0" text="customer info">
+            <Label fx:id="labelCustomerInfo" layoutX="383.0" layoutY="108.0" prefHeight="44.0" prefWidth="512.0" text="customer info">
                <font>
                   <Font name="System Italic" size="22.0" />
                </font>
             </Label>
-            <ListView layoutX="725.0" layoutY="444.0" prefHeight="269.0" prefWidth="494.0" />
+            <ListView fx:id="listViewType" layoutX="725.0" layoutY="444.0" prefHeight="269.0" prefWidth="151.0" />
+            <ListView fx:id="listViewColor" layoutX="876.0" layoutY="444.0" prefHeight="269.0" prefWidth="151.0" />
+            <ListView fx:id="listViewPrice" layoutX="1023.0" layoutY="444.0" prefHeight="269.0" prefWidth="151.0" />
+            <ListView layoutX="1173.0" layoutY="444.0" prefHeight="269.0" prefWidth="101.0" />
+            <Label layoutX="725.0" layoutY="409.0" prefHeight="36.0" prefWidth="70.0" text="Type">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="876.0" layoutY="409.0" prefHeight="31.0" prefWidth="90.0" text="Color">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="1023.0" layoutY="409.0" text="Price">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

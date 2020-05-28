@@ -1,6 +1,11 @@
 package Domain;
 
-import java.util.ArrayList;
+import javafx.beans.InvalidationListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+
+import java.util.*;
 
 public class CleaningCentral {
 
@@ -50,5 +55,16 @@ public class CleaningCentral {
         }
         return dp;
     }
+
+    public ObservableList<Customer> getCustomersFromName(String inputName){
+        ObservableList<Customer> resultListCustomers = FXCollections.observableArrayList();
+        for(int i=0; i<customers.size(); i++){
+            if(customers.get(i).customerLastName.startsWith(inputName)){
+                resultListCustomers.add(customers.get(i));
+            }
+        }
+        return resultListCustomers;
+    }
+
 
 }

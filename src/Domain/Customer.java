@@ -15,4 +15,8 @@ public class Customer {
         customerPhoneNumber = phoneNo;
         customerEmail = email;
     }
+
+    public String toString(){
+        return customerFirstName + " " + customerLastName;
+    }
 }
