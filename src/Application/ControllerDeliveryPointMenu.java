@@ -23,7 +23,7 @@ public class ControllerDeliveryPointMenu {
     @FXML
     MenuItem menuItem3;
     @FXML
-    Label labelDeliveryPointID, labelDeliveryPointAddress;
+    Label labelDeliveryPointID, labelDeliveryPointAddress, labelDeliveryPointZipCode, labelDeliveryPointRoute;
 
     public void handleButtonHome(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));

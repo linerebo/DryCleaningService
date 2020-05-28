@@ -116,12 +116,12 @@ public class DB {
         return orders;
     }
 
-    public ArrayList<DeliveryPoint> getDeliveryPointsFromDB(){
+    /*public ArrayList<DeliveryPoint> getDeliveryPointsFromDB(){
         ArrayList<DeliveryPoint> deliveryPoints = new ArrayList<>();
         deliveryPoints.add(new DeliveryPoint(1,"Kirkevej"));
         deliveryPoints.add(new DeliveryPoint(2,"SuperBrugsen"));
         return deliveryPoints;
-    }
+    }*/
 
     public ArrayList<LaundryItem> getLaundryItemsFromDB() {
         ArrayList<LaundryItem> laundryItems = new ArrayList<>();

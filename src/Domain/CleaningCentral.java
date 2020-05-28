@@ -36,15 +36,19 @@ public class CleaningCentral {
         //laundryTypes = Adapter.DBInstance().getLaundryTypesFromDB();
         //NotAssignableLaundryItems
         orders = Adapter.DBInstance().getOrdersFromDB();
-        deliveryPoints = Adapter.DBInstance().getDeliveryPointsFromDB();
-    }
-
-    public DeliveryPoint getDeliveryPointFromID(int id){
-        return new DeliveryPoint(1, "XY");
-
         payments = Adapter.DBInstance().getPaymentsFromDB();
         //postalCode
         //systemUser
+    }
+
+    public DeliveryPoint getDeliveryPointFromID(int id){
+        DeliveryPoint dp = new DeliveryPoint(0, "", "", "");
+        for(int i=0; i<deliveryPoints.size(); i++){
+            if(id == deliveryPoints.get(i).deliveryPointID){
+                dp = deliveryPoints.get(i);
+            }
+        }
+        return dp;
     }
 
 }

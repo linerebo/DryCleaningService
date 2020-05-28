@@ -2,8 +2,6 @@ package Application;
 
 import Domain.Adapter;
 import Domain.DeliveryPoint;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -22,13 +20,10 @@ public class ControllerDeliveryPointLogin {
     @FXML
     MenuItem menuItem3;
     @FXML
-    ComboBox deliveryPointCombobox;
-    @FXML
     TextField txtFieldInputDeliveryPointPassword, txtFieldInputDeliveryPointID;
     @FXML
     Button buttonGoDeliveryPointLogin;
 
-    public ObservableList<String> deliveryPoints = FXCollections.observableArrayList();
 
     public void handleButtonHome(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));
@@ -56,14 +51,21 @@ public class ControllerDeliveryPointLogin {
             Parent menuScreen = loader.load();
             ControllerDeliveryPointMenu controller = (ControllerDeliveryPointMenu) loader.getController();
             controller.dp = Adapter.cleaningCentralInstance().getDeliveryPointFromID(Integer.parseInt(txtFieldInputDeliveryPointID.getText()));
-            controller.labelDeliveryPointID.setText(txtFieldInputDeliveryPointID.getText());
-            Scene scene = new Scene(menuScreen);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(scene);
-            window.show();
-
-        } else {
+            if (controller.dp.deliveryPointID == 0) {
+                txtFieldInputDeliveryPointID.setText("wrong Delivery Point ID");
+            } else {
+                controller.labelDeliveryPointID.setText(txtFieldInputDeliveryPointID.getText());
+                controller.labelDeliveryPointAddress.setText(controller.dp.address);
+                controller.labelDeliveryPointZipCode.setText(controller.dp.zipCode);
+                controller.labelDeliveryPointRoute.setText(controller.dp.route);
+                Scene scene = new Scene(menuScreen);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(scene);
+                window.show();
+            }
+        }
+        else{
             txtFieldInputDeliveryPointPassword.setText("wrong password");
+            }
         }
     }
-}
