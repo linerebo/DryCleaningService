@@ -16,7 +16,7 @@ public class CleaningCentral {
     public ArrayList<Order> orders;
     public ArrayList<Payment> payments;
     //public ArrayList<PostalCode> postalCodes; // TODO do we need this?
-    //public ArrayList<SystemUser> systemUsers; // TODO find solution for class SystemUser and its subclasses
+    //public ArrayList<SystemUser> systemUsers; // TODO find solution for class SystemUser and its subclasses AND do we want all user information loaded into the program including the passwords?!
 
     public CleaningCentral() {
     }

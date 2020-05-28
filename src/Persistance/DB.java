@@ -257,4 +257,32 @@ public class DB {
         return payments;
     }
 
+    // methods to fetch data from tables, which are not loaded at the very start up of the program
+
+    /**
+     * The method takes in an user ID and returns the corresponding password from the table of system users.
+     * @param inputUserID int
+     * @return the password of the given system user as a String
+     */
+    public String getPasswordSystemUser(int inputUserID) {
+        String passwordString = null;
+        try {
+            establishConnection();
+            PreparedStatement ps = connection.prepareStatement("SELECT fldSystemUserPassword FROM tblSystemUser WHERE fldSystemUserID = (?)");
+            ps.setInt(1, inputUserID);
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                passwordString = resultSet.getString(1);
+            }
+
+            ps.close();
+            closeConnection();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        return passwordString;
+    }
+
 }

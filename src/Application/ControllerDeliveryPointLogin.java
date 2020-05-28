@@ -1,6 +1,7 @@
 package Application;
 
 import Domain.Adapter;
+import Domain.Adapter;
 import Domain.DeliveryPoint;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +21,9 @@ public class ControllerDeliveryPointLogin {
     @FXML
     MenuItem menuItem3;
     @FXML
-    TextField txtFieldInputDeliveryPointPassword, txtFieldInputDeliveryPointID;
+    ComboBox deliveryPointCombobox;
+    @FXML
+    TextField txtFieldInputDeliveryPointPassword, txtFieldInputDeliveryPointUserID, txtFieldInputDeliveryPointID;
     @FXML
     Button buttonGoDeliveryPointLogin;
 
@@ -37,12 +40,17 @@ public class ControllerDeliveryPointLogin {
 
         // "security" step check password first
 
+        // getText from text field txtFieldInputDeliveryPointUserID
+        String inputUserIDString = txtFieldInputDeliveryPointUserID.getText();
+        int inputUserIDInt = Integer.parseInt(inputUserIDString);
+
         // getText from text field txtFieldInputCanteenPassword
         String inPassword = txtFieldInputDeliveryPointPassword.getText();
         System.out.println("input: " + inPassword); // test -gets the right input? yes
 
         // get Password from DB (string)
-        String properPassword = "ab";    //.getPasswordDeliveryPoint();
+        //String properPassword = "ab";    //.getPasswordDeliveryPoint();
+        String properPassword = Adapter.DBInstance().getPasswordSystemUser(inputUserIDInt); // takes in systemUserID as variable from the textfield, see above.
         System.out.println("password from DB: " + properPassword); // test - gets the right password from DB? yes
 
         // compare password, change scene if true
@@ -66,6 +74,6 @@ public class ControllerDeliveryPointLogin {
         }
         else{
             txtFieldInputDeliveryPointPassword.setText("wrong password");
-            }
         }
     }
+}
