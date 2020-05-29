@@ -13,6 +13,7 @@ import Domain.LaundryItemTypes.LaundryItem;
 import Domain.Customer;
 import Domain.DeliveryPoint;
 import Domain.Order;
+import Domain.SystemUser.SystemUser;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -218,7 +219,6 @@ public class DB {
         return eventTypes;
     }
 
-    // TODO
 //    public ArrayList<LaundryType> getLaundryTypesFromDB() {
 //        ArrayList<LaundryType> laundryTypes = new ArrayList<>();
 //        Statement st;
@@ -257,7 +257,30 @@ public class DB {
         return payments;
     }
 
-    // methods to fetch data from tables, which are not loaded at the very start up of the program
+    /**
+     * The method will get all data from the table tblSystemuser in the database except from the passwords.
+     * @return an arraylist of SystemUser objects.
+     */
+    public ArrayList<SystemUser> getSystemUsersFromDB() {
+        ArrayList<SystemUser> systemUsers = new ArrayList<>();
+        Statement st;
+        ResultSet resultSet;
+        try {
+            establishConnection();
+            st = connection.createStatement();
+            resultSet = st.executeQuery("SELECT fldSystemUserID, fldSystemUserFirstName, fldSystemUserLastName, fldDepartmentID FROM tblSystemUser");
+            while(resultSet.next()) {
+                systemUsers.add(new SystemUser(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4)));
+            }
+            st.close();
+            closeConnection();
+
+        } catch (SQLException e) {}
+
+        return systemUsers;
+    }
+
+    // methods to fetch data, which are not loaded in at program start, directly from the database.
 
     /**
      * The method takes in an user ID and returns the corresponding password from the table of system users.
@@ -284,5 +307,60 @@ public class DB {
 
         return passwordString;
     }
+
+    // TODO decide if it can be deleted, since there is a list for system users now?
+    /**
+     * The method checks if the user exists in the database.
+     * @return a boolean value
+     */
+    public boolean checkUserExistence(int inputUserID) {
+        boolean exists = false;
+
+        try {
+            establishConnection();
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM tblSystemUser WHERE fldSystemUserID = (?)");
+            ps.setInt(1, inputUserID);
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                exists = true;
+            }
+
+            ps.close();
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return exists;
+    }
+
+    // TODO decide if it can be deleted, since there is a list for system users now?
+    public int checkUserDepartment(int inputUserID) {
+        int userDep = 0;
+
+        try {
+            establishConnection();
+            PreparedStatement ps = connection.prepareStatement("SELECT fldDepartmentID FROM tblSystemUser WHERE fldSystemUserID = (?)");
+            ps.setInt(1, inputUserID);
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                userDep = resultSet.getInt(1);
+                System.out.println("found user department in the DB: " + userDep);
+            }
+
+            ps.close();
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return userDep;
+    }
+
+
+    // TODO: create a new event for tblEventHistory: SP with all parameters to insert.
 
 }
