@@ -363,4 +363,16 @@ public class DB {
 
     // TODO: create a new event for tblEventHistory: SP with all parameters to insert.
 
+
+    //TODO SQL for insert of new item, return generated keys (ItemID)
+    //https://www.codejava.net/java-se/jdbc/get-id-of-inserted-record-in-database
+    public int insertNewLaundryItem(LaundryItem itemToInsert){
+        return 0;
+    }
+
+    //TODO new table (laundryItemID and laundrySize) to store item size :)
+    //TODO method to insert item size: int
+    public void insertNewSize(int laundryItemID, int size){
+    }
+
 }

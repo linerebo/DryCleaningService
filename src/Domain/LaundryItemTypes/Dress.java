@@ -4,8 +4,8 @@ public class Dress extends LaundryItem {
     private int itemPrice;
     private int itemTimeToClean;
 
-    public Dress(int itemId, String itemCol, boolean itemStat, int price, int timeToClean) {
-        super(itemId, itemCol, itemStat);
+    public Dress(String itemCol, boolean itemStat, int price, int timeToClean) {
+        super(itemCol, itemStat);
         itemPrice = price;
         itemTimeToClean = timeToClean;
     }

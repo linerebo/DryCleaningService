@@ -4,8 +4,8 @@ public class Blazer extends LaundryItem {
     private int itemPrice;
     private int itemTimeToClean;
 
-    public Blazer(int itemId, String itemCol, boolean itemStat, int price, int timeToClean) {
-        super(itemId, itemCol, itemStat);
+    public Blazer(String itemCol, boolean itemStat, int price, int timeToClean) {
+        super(itemCol, itemStat);
         itemPrice = price;
         itemTimeToClean = timeToClean;
     }
