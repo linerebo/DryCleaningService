@@ -9,7 +9,6 @@ public class DeliveryPoint {
     public ShopAssistant shopAssistant;
     public int deliveryPointID;
     public String address;
-    public ObservableList<LaundryItem> basket;
     public String zipCode;
     public String route;
 

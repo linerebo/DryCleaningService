@@ -33,7 +33,7 @@ public class ControllerDeliveryPointFindCustomer {
     @FXML
     TextField txtFieldInputCustomerName;
     @FXML
-    ListView listViewShowCustomers;
+    ListView listViewShowCustomers, listViewCustomerCard;
 
     public void handleButtonHome(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));
@@ -51,7 +51,6 @@ public class ControllerDeliveryPointFindCustomer {
         controller.dp = dp;
         controller.selectedCustomer = (Customer) listViewShowCustomers.getSelectionModel().getSelectedItem();
         controller.labelCustomerInfo.setText(String.valueOf(controller.selectedCustomer));
-        System.out.println("hej" + controller.selectedCustomer);
         Scene Scene = new Scene(menuScreen);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(Scene);

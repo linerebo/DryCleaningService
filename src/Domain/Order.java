@@ -1,5 +1,7 @@
 package Domain;
 
+        import Domain.LaundryItemTypes.LaundryItem;
+
         import java.util.ArrayList;
 
 public class Order {

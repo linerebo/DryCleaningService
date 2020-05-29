@@ -9,7 +9,7 @@
 package Persistance;
 
 import Domain.*;
-import Domain.LaundryType.LaundryType;
+import Domain.LaundryItemTypes.LaundryItem;
 import Domain.Customer;
 import Domain.DeliveryPoint;
 import Domain.Order;
@@ -132,7 +132,7 @@ public class DB {
             st = connection.createStatement();
             resultSet = st.executeQuery("SELECT * FROM tblLaundryItem");
             while(resultSet.next()) {
-                laundryItems.add(new LaundryItem(resultSet.getInt(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getBoolean(4)));
+                //laundryItems.add(new LaundryItem(resultSet.getInt(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getBoolean(4)));
             }
             st.close();
             closeConnection();

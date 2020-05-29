@@ -1,8 +1,7 @@
 package Domain;
 
-import javafx.beans.InvalidationListener;
+import Domain.LaundryItemTypes.LaundryItem;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 import java.util.*;

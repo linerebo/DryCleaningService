@@ -52,26 +52,26 @@
                   <Font size="30.0" />
                </font>
             </MenuButton>
-            <Label layoutX="233.0" layoutY="166.0" prefHeight="48.0" prefWidth="132.0" text="New Order:">
+            <Label layoutX="233.0" layoutY="166.0" prefHeight="48.0" prefWidth="216.0" text="Create New Order:">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
             <RadioButton fx:id="radiobuttonShirt" layoutX="229.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;">
                <toggleGroup>
-                  <ToggleGroup fx:id="Group1" />
+                  <ToggleGroup fx:id="groupItems" />
                </toggleGroup></RadioButton>
             <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="259.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Resources/shirt.png" />
                </image>
             </ImageView>
-            <RadioButton fx:id="radiobuttonJacket" layoutX="383.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$Group1" />
-            <RadioButton fx:id="radiobuttonTrousers" layoutX="534.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$Group1" />
-            <RadioButton fx:id="radiobuttonTshirt" layoutX="693.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$Group1" />
-            <RadioButton fx:id="radiobuttonCoat" layoutX="846.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$Group1" />
-            <RadioButton fx:id="radiobuttonDress" layoutX="1004.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$Group1" />
-            <RadioButton fx:id="radiobuttonCarpet" layoutX="1156.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$Group1" />
+            <RadioButton fx:id="radiobuttonJacket" layoutX="383.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$groupItems" />
+            <RadioButton fx:id="radiobuttonTrousers" layoutX="534.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$groupItems" />
+            <RadioButton fx:id="radiobuttonTshirt" layoutX="693.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$groupItems" />
+            <RadioButton fx:id="radiobuttonCoat" layoutX="846.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$groupItems" />
+            <RadioButton fx:id="radiobuttonDress" layoutX="1004.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$groupItems" />
+            <RadioButton fx:id="radiobuttonCarpet" layoutX="1156.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$groupItems" />
             <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="414.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Resources/blazer.png" />
@@ -102,8 +102,8 @@
                   <Image url="@Resources/carpet.png" />
                </image>
             </ImageView>
-            <ComboBox layoutX="229.0" layoutY="400.0" prefHeight="35.0" prefWidth="166.0" promptText="Color" style="-fx-background-color: white; -fx-font-size: 20;" />
-            <Button layoutX="414.0" layoutY="398.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="142.0" style="-fx-background-color: gray;" text="add item" textFill="WHITE">
+            <ComboBox fx:id="comboBoxColors" layoutX="229.0" layoutY="400.0" prefHeight="35.0" prefWidth="166.0" promptText="Color" style="-fx-background-color: white; -fx-font-size: 23;" />
+            <Button layoutX="414.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleButtonAddItem" prefHeight="50.0" prefWidth="142.0" style="-fx-background-color: gray;" text="add item" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
@@ -113,12 +113,12 @@
                   <Font size="23.0" />
                </font>
             </Label>
-            <Button layoutX="1017.0" layoutY="722.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="122.0" style="-fx-background-color: gray;" text="cancel">
+            <Button layoutX="1017.0" layoutY="722.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="122.0" style="-fx-background-color: gray;" text="cancel" textFill="#fffdfd">
                <font>
                   <Font size="22.0" />
                </font>
             </Button>
-            <Button layoutX="1151.0" layoutY="722.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="122.0" style="-fx-background-color: gray;" text="save">
+            <Button layoutX="1151.0" layoutY="722.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="122.0" style="-fx-background-color: gray;" text="save" textFill="#fffdfd">
                <font>
                   <Font size="22.0" />
                </font>
@@ -131,7 +131,7 @@
             </ImageView>
             <Label fx:id="labelCustomerInfo" layoutX="383.0" layoutY="108.0" prefHeight="44.0" prefWidth="512.0" text="customer info">
                <font>
-                  <Font name="System Italic" size="22.0" />
+                  <Font name="System Italic" size="24.0" />
                </font>
             </Label>
             <ListView fx:id="listViewType" layoutX="725.0" layoutY="444.0" prefHeight="269.0" prefWidth="151.0" />

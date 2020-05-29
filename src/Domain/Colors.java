@@ -1,12 +1,12 @@
 package Domain;
 
 public enum Colors {
-    blue,
-    red,
-    yellow,
     black,
-    white,
-    green,
+    blue,
     brown,
+    green,
     purple,
+    red,
+    white,
+    yellow,
 }
