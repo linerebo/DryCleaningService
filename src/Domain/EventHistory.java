@@ -10,12 +10,14 @@ public class EventHistory {
 
     public int eventTypeID;
     public int systemUserID;
+    public boolean eventCurrentStatus;
 
-    public EventHistory(int eventId, int orderId, Timestamp eventDateTimeStmp, int eventTypeId, int systemUserId) {
+    public EventHistory(int eventId, int orderId, Timestamp eventDateTimeStmp, int eventTypeId, int systemUserId, boolean eventCurrentStat) {
         eventID = eventId;
         orderID = orderId;
         eventDateTimeStamp = eventDateTimeStmp;
         eventTypeID = eventTypeId;
         systemUserID = systemUserId;
+        eventCurrentStatus = eventCurrentStat;
     }
 }

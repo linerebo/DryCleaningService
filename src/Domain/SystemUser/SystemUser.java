@@ -14,4 +14,8 @@ public class SystemUser {
         this.systemUserLastName = systemUserLastName;
         this.departmentID = departmentID;
     }
+
+    // fincionality for all different system users here in superclass, only specific stuff in the subclass
+    // do we have specific stuff?
+
 }

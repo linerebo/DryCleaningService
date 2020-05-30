@@ -1,8 +1,6 @@
 package Application;
 
 import Domain.Adapter;
-import Domain.Adapter;
-import Domain.DeliveryPoint;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
