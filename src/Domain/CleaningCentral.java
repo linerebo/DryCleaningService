@@ -40,7 +40,7 @@ public class CleaningCentral {
         eventTypes = Adapter.DBInstance().getEventTypesFromDB();
         // laundry_orders
         laundryItems = Adapter.DBInstance().getLaundryItemsFromDB();
-        //laundryTypes = Adapter.DBInstance().getLaundryTypesFromDB();
+        Adapter.DBInstance().getLaundryTypesFromDB();
         //NotAssignableLaundryItems
         orders = Adapter.DBInstance().getOrdersFromDB();
         payments = Adapter.DBInstance().getPaymentsFromDB();
@@ -61,7 +61,7 @@ public class CleaningCentral {
     public ObservableList<Customer> getCustomersFromName(String inputName) {
         ObservableList<Customer> resultListCustomers = FXCollections.observableArrayList();
         for (int i = 0; i < customers.size(); i++) {
-            if (customers.get(i).customerLastName.startsWith(inputName)) {
+            if (customers.get(i).customerLastName.toLowerCase().startsWith(inputName.toLowerCase())) {
                 resultListCustomers.add(customers.get(i));
             }
         }

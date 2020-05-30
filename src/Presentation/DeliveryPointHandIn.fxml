@@ -26,6 +26,11 @@
    <children>
       <AnchorPane minHeight="-Infinity" prefHeight="800.0" prefWidth="1300.0">
          <children>
+            <ImageView fitHeight="36.0" fitWidth="27.0" layoutX="1232.0" layoutY="396.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Resources/delete2.png" />
+               </image>
+            </ImageView>
             <ImageView fitWidth="1300.0" layoutX="-19.0" layoutY="15.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Resources/laundry-services.jpg" />
@@ -66,7 +71,7 @@
                   <Image url="@Resources/shirt.png" />
                </image>
             </ImageView>
-            <RadioButton fx:id="radiobuttonJacket" layoutX="383.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$groupItems" />
+            <RadioButton fx:id="radiobuttonBlazer" layoutX="383.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$groupItems" />
             <RadioButton fx:id="radiobuttonTrousers" layoutX="534.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$groupItems" />
             <RadioButton fx:id="radiobuttonTshirt" layoutX="693.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$groupItems" />
             <RadioButton fx:id="radiobuttonCoat" layoutX="846.0" layoutY="237.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="132.0" style="-fx-background-color: teal;" toggleGroup="$groupItems" />
@@ -108,7 +113,7 @@
                   <Font size="22.0" />
                </font>
             </Button>
-            <Label layoutX="576.0" layoutY="444.0" prefHeight="44.0" prefWidth="151.0" text="Order details:" textFill="#000000d5">
+            <Label layoutX="725.0" layoutY="403.0" prefHeight="44.0" prefWidth="151.0" text="Order details:" textFill="#000000d5">
                <font>
                   <Font size="23.0" />
                </font>
@@ -123,36 +128,13 @@
                   <Font size="22.0" />
                </font>
             </Button>
-            <Button layoutX="1222.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleButtonEdit" prefHeight="45.0" prefWidth="51.0" />
-            <ImageView fitHeight="36.0" fitWidth="27.0" layoutX="1232.0" layoutY="396.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Resources/delete2.png" />
-               </image>
-            </ImageView>
+            <Button layoutX="1222.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleButtonDeleteItem" opacity="0.39" prefHeight="45.0" prefWidth="51.0" />
             <Label fx:id="labelCustomerInfo" layoutX="383.0" layoutY="108.0" prefHeight="44.0" prefWidth="512.0" text="customer info">
                <font>
                   <Font name="System Italic" size="24.0" />
                </font>
             </Label>
-            <ListView fx:id="listViewType" layoutX="725.0" layoutY="444.0" prefHeight="269.0" prefWidth="151.0" />
-            <ListView fx:id="listViewColor" layoutX="876.0" layoutY="444.0" prefHeight="269.0" prefWidth="151.0" />
-            <ListView fx:id="listViewPrice" layoutX="1023.0" layoutY="444.0" prefHeight="269.0" prefWidth="151.0" />
-            <ListView layoutX="1173.0" layoutY="444.0" prefHeight="269.0" prefWidth="101.0" />
-            <Label layoutX="725.0" layoutY="409.0" prefHeight="36.0" prefWidth="70.0" text="Type">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-            <Label layoutX="876.0" layoutY="409.0" prefHeight="31.0" prefWidth="90.0" text="Color">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-            <Label layoutX="1023.0" layoutY="409.0" text="Price">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
+            <ListView fx:id="listViewLaundryItem" layoutX="725.0" layoutY="444.0" prefHeight="269.0" prefWidth="550.0" />
          </children>
       </AnchorPane>
    </children>

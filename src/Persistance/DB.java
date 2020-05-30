@@ -9,7 +9,7 @@
 package Persistance;
 
 import Domain.*;
-import Domain.LaundryItemTypes.LaundryItem;
+import Domain.LaundryItemTypes.*;
 import Domain.Customer;
 import Domain.DeliveryPoint;
 import Domain.Order;
@@ -219,24 +219,49 @@ public class DB {
         return eventTypes;
     }
 
-//    public ArrayList<LaundryType> getLaundryTypesFromDB() {
-//        ArrayList<LaundryType> laundryTypes = new ArrayList<>();
-//        Statement st;
-//        ResultSet resultSet;
-//        try {
-//            establishConnection();
-//            st = connection.createStatement();
-//            resultSet = st.executeQuery("SELECT * FROM tblLaundryType");
-//            while(resultSet.next()) {
-//                laundryTypes.add(new LaundryType(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4)));
-//            }
-//            st.close();
-//            closeConnection();
-//
-//        } catch (SQLException e) {}
-//
-//        return laundryTypes;
-//    }
+    public void getLaundryTypesFromDB() {
+        Statement st;
+        ResultSet resultSet;
+        try {
+            establishConnection();
+            st = connection.createStatement();
+            resultSet = st.executeQuery("SELECT * FROM tblLaundryType");
+            while(resultSet.next()) {
+                //laundryTypes.add(new LaundryType(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4)));
+                if(resultSet.getString(2).equals("Shirt")){
+                    Shirt.itemPrice = resultSet.getInt(3);
+                    Shirt.itemTimeToClean = resultSet.getInt(4);
+                }
+                else if(resultSet.getString(2).equals("Blazer")){
+                    Blazer.itemPrice = resultSet.getInt(3);
+                    Blazer.itemTimeToClean = resultSet.getInt(4);
+                }
+                else if(resultSet.getString(2).equals("Coat")){
+                    Coat.itemPrice = resultSet.getInt(3);
+                    Coat.itemTimeToClean = resultSet.getInt(4);
+                }
+                else if(resultSet.getString(2).equals("Tshirt")){
+                    Tshirt.itemPrice = resultSet.getInt(3);
+                    Tshirt.itemTimeToClean = resultSet.getInt(4);
+                }
+                else if(resultSet.getString(2).equals("Dress")){
+                    Dress.itemPrice = resultSet.getInt(3);
+                    Dress.itemTimeToClean = resultSet.getInt(4);
+                }
+                else if(resultSet.getString(2).equals("Trousers")){
+                    Trousers.itemPrice = resultSet.getInt(3);
+                    Trousers.itemTimeToClean = resultSet.getInt(4);
+                }
+                else if(resultSet.getString(2).equals("Carpet")){
+                    Carpet.squareMeterPrice = resultSet.getInt(3);
+                    Carpet.itemTimeToClean = resultSet.getInt(4);
+                }
+            }
+            st.close();
+           closeConnection();
+
+        } catch (SQLException e) {}
+    }
 
     public ArrayList<Payment> getPaymentsFromDB() {
         ArrayList<Payment> payments = new ArrayList<>();

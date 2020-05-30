@@ -3,10 +3,7 @@ package Application;
 import Domain.Colors;
 import Domain.Customer;
 import Domain.DeliveryPoint;
-import Domain.LaundryItemTypes.Blazer;
-import Domain.LaundryItemTypes.Carpet;
-import Domain.LaundryItemTypes.LaundryItem;
-import Domain.LaundryItemTypes.Shirt;
+import Domain.LaundryItemTypes.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -33,8 +30,8 @@ public class ControllerDeliveryPointHandIn implements Initializable {
 
     @FXML MenuButton menuButton1;
     @FXML MenuItem menuItem3;
-    @FXML RadioButton radiobuttonShirt, radiobuttonJacket, radiobuttonTrousers, radiobuttonTshirt, radiobuttonCoat, radiobuttonDress, radiobuttonCarpet;
-    @FXML ListView listViewType, listViewColor, listViewPrice;
+    @FXML RadioButton radiobuttonShirt, radiobuttonBlazer, radiobuttonTrousers, radiobuttonTshirt, radiobuttonCoat, radiobuttonDress, radiobuttonCarpet;
+    @FXML ListView listViewLaundryItem, listViewColor, listViewPrice;
     @FXML Label labelCustomerInfo;
     @FXML ComboBox comboBoxColors;
     @FXML ToggleGroup groupItems;
@@ -43,6 +40,7 @@ public class ControllerDeliveryPointHandIn implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         comboBoxColors.getItems().setAll(Colors.values());
+        listViewLaundryItem.setItems(basket);
 
         groupItems.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
@@ -83,38 +81,54 @@ public class ControllerDeliveryPointHandIn implements Initializable {
 
         switch (selectedButtonID){
             case "radiobuttonShirt":
+                Shirt newShirt = new Shirt(selectedColor, false);
+                newShirt.storeToDB();
+                basket.add(newShirt);
                 //basket.add(new Shirt());
                 System.out.println("We have a shirt");
                 break;
-            case "radiobuttonJacket":
-                Blazer newBlazer = new Blazer("black", false, 1, 2);
+            case "radiobuttonBlazer":
+                Blazer newBlazer = new Blazer(selectedColor, false);
                 newBlazer.storeToDB();
                 basket.add(newBlazer);
                 System.out.println("We have a blazer");
                 break;
             case "radiobuttonCarpet":
-                Carpet newCarpet = new Carpet("black", false, 1, 2, 3);
+                Carpet newCarpet = new Carpet(selectedColor, false, 1);
                 newCarpet.storeToDB();
                 basket.add(newCarpet);
                 System.out.println("We have a carpet");
                 break;
             case "radiobuttonCoat":
+                Coat newCoat = new Coat(selectedColor, false);
+                newCoat.storeToDB();
+                basket.add(newCoat);
                 System.out.println("We have a coat");
                 break;
             case "radiobuttonDress":
+                Dress newDress = new Dress(selectedColor, false);
+                newDress.storeToDB();
+                basket.add(newDress);
                 System.out.println("We have a dress");
                 break;
             case "radiobuttonTrousers":
+                Trousers newTrousers = new Trousers(selectedColor, false);
+                newTrousers.storeToDB();
+                basket.add(newTrousers);
                 System.out.println("We have trousers");
                 break;
             case "radiobuttonTshirt":
+                Tshirt newTshirt = new Tshirt(selectedColor, false);
+                newTshirt.storeToDB();
+                basket.add(newTshirt);
                 System.out.println("We have a Tshrit");
                 break;
         }
 
     }
 
-    public void handleButtonEdit(){
+    public void handleButtonDeleteItem(){
+        basket.remove(listViewLaundryItem.getSelectionModel().getSelectedItem());
     }
 
 }

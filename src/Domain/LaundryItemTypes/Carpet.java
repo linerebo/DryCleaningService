@@ -3,15 +3,13 @@ package Domain.LaundryItemTypes;
 import Domain.Adapter;
 
 public class Carpet extends LaundryItem {
-    private int squareMeterPrice;
+    public static int squareMeterPrice;
+    public static int itemTimeToClean;
     private int squareMeters;
-    private int itemTimeToClean;
 
 
-    public Carpet(String itemCol, boolean itemStat, int price, int timeToClean, int sizeCarpet) {
+    public Carpet(String itemCol, boolean itemStat, int sizeCarpet) {
         super(itemCol, itemStat);
-        squareMeterPrice = price;
-        itemTimeToClean = timeToClean;
         squareMeters = sizeCarpet;
     }
 
@@ -29,5 +27,9 @@ public class Carpet extends LaundryItem {
     public void storeToDB(){
         super.storeToDB();
         Adapter.DBInstance().insertNewSize(itemID, squareMeters);
+    }
+
+    public String toString(){
+        return "Carpet  " + itemColor + " " + "   Price:  " + price() + " Kroner";
     }
 }

@@ -1,13 +1,11 @@
 package Domain.LaundryItemTypes;
 
 public class Coat extends LaundryItem {
-    private int itemPrice;
-    private int itemTimeToClean;
+    public static int itemPrice;
+    public static int itemTimeToClean;
 
-    public Coat(String itemCol, boolean itemStat, int price, int timeToClean) {
+    public Coat(String itemCol, boolean itemStat) {
         super(itemCol, itemStat);
-        itemPrice = price;
-        itemTimeToClean = timeToClean;
     }
 
     @Override
@@ -18,5 +16,9 @@ public class Coat extends LaundryItem {
     @Override
     public int price(){
         return itemPrice;
+    }
+
+    public String toString(){
+        return "Coat  " + itemColor + " " + "   Price:  " + itemPrice + " Kroner";
     }
 }

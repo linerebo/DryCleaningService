@@ -15,10 +15,8 @@ import java.io.IOException;
 
 public class ControllerDeliveryPointNewCustomer {
 
-    @FXML
-    MenuButton menuButton1;
-    @FXML
-    MenuItem menuItem3;
+    @FXML MenuButton menuButton1;
+    @FXML MenuItem menuItem3;
 
     public void handleButtonHome(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));
