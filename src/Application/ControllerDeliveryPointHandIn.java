@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 
@@ -35,6 +36,10 @@ public class ControllerDeliveryPointHandIn implements Initializable {
     @FXML Label labelCustomerInfo;
     @FXML ComboBox comboBoxColors;
     @FXML ToggleGroup groupItems;
+    @FXML AnchorPane anchorPaneHandIn;
+    ObservableList<Integer> carpetSizes = FXCollections.observableArrayList();
+    ComboBox carpetSize = new ComboBox(carpetSizes);
+
 
 
     @Override
@@ -58,11 +63,16 @@ public class ControllerDeliveryPointHandIn implements Initializable {
     }
 
     public void addCarpetGUIElements() {
-        System.out.println("zzzz");
+        carpetSizes.addAll(5,10,15,20,25,30,35,40,45,50);
+        carpetSize.setLayoutX(229);
+        carpetSize.setLayoutY(500);
+        carpetSize.setPromptText("Carpet Size m2");
+        carpetSize.setStyle("-fx-background-color: #9dbfff; -fx-font-size: 23");
+        anchorPaneHandIn.getChildren().add(carpetSize);
     }
 
     public void removeAddedGUIElements() {
-        System.out.println("puhhh");
+        anchorPaneHandIn.getChildren().remove(carpetSize);
     }
 
 
@@ -77,27 +87,22 @@ public class ControllerDeliveryPointHandIn implements Initializable {
     public void handleButtonAddItem(ActionEvent event){
         String selectedButtonID = ((RadioButton) groupItems.getSelectedToggle()).getId();
         String selectedColor = comboBoxColors.getSelectionModel().getSelectedItem().toString();
-        //System.out.println("hej "+comboBoxColors.getSelectionModel().getSelectedItem().toString());
 
         switch (selectedButtonID){
             case "radiobuttonShirt":
                 Shirt newShirt = new Shirt(selectedColor, false);
                 newShirt.storeToDB();
                 basket.add(newShirt);
-                //basket.add(new Shirt());
-                System.out.println("We have a shirt");
                 break;
             case "radiobuttonBlazer":
                 Blazer newBlazer = new Blazer(selectedColor, false);
                 newBlazer.storeToDB();
                 basket.add(newBlazer);
-                System.out.println("We have a blazer");
                 break;
             case "radiobuttonCarpet":
-                Carpet newCarpet = new Carpet(selectedColor, false, 1);
+                Carpet newCarpet = new Carpet(selectedColor, false, (Integer) carpetSize.getSelectionModel().getSelectedItem());
                 newCarpet.storeToDB();
                 basket.add(newCarpet);
-                System.out.println("We have a carpet");
                 break;
             case "radiobuttonCoat":
                 Coat newCoat = new Coat(selectedColor, false);
@@ -109,19 +114,16 @@ public class ControllerDeliveryPointHandIn implements Initializable {
                 Dress newDress = new Dress(selectedColor, false);
                 newDress.storeToDB();
                 basket.add(newDress);
-                System.out.println("We have a dress");
                 break;
             case "radiobuttonTrousers":
                 Trousers newTrousers = new Trousers(selectedColor, false);
                 newTrousers.storeToDB();
                 basket.add(newTrousers);
-                System.out.println("We have trousers");
                 break;
             case "radiobuttonTshirt":
                 Tshirt newTshirt = new Tshirt(selectedColor, false);
                 newTshirt.storeToDB();
                 basket.add(newTshirt);
-                System.out.println("We have a Tshrit");
                 break;
         }
 

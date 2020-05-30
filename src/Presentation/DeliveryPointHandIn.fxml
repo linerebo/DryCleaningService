@@ -24,7 +24,7 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <AnchorPane minHeight="-Infinity" prefHeight="800.0" prefWidth="1300.0">
+      <AnchorPane fx:id="anchorPaneHandIn" minHeight="-Infinity" prefHeight="800.0" prefWidth="1300.0">
          <children>
             <ImageView fitHeight="36.0" fitWidth="27.0" layoutX="1232.0" layoutY="396.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -108,7 +108,7 @@
                </image>
             </ImageView>
             <ComboBox fx:id="comboBoxColors" layoutX="229.0" layoutY="400.0" prefHeight="35.0" prefWidth="166.0" promptText="Color" style="-fx-background-color: white; -fx-font-size: 23;" />
-            <Button layoutX="414.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleButtonAddItem" prefHeight="50.0" prefWidth="142.0" style="-fx-background-color: gray;" text="add item" textFill="WHITE">
+            <Button layoutX="529.0" layoutY="401.0" mnemonicParsing="false" onAction="#handleButtonAddItem" prefHeight="50.0" prefWidth="142.0" style="-fx-background-color: gray;" text="add item" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
