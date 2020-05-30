@@ -101,4 +101,36 @@ public class CleaningCentral {
 
         return existence;
     }
+
+    /**
+     * The method finds all orders, which are currently loaded on the truck of a specific driver/systemUser.
+     * This means, they haven't been processed further than this.
+     * @param userID of the system user
+     * @return an observable List of order objects.
+     */
+    public ObservableList<Order> getOrderObjectsOnTruck(int userID) {
+        ArrayList ordersOnTruckID = new ArrayList(); // an arraylist of orderIDs int
+        // get all orderID as ints, which are currently on the truck
+        for (int i = eventHistories.size() -1; i >= 0; i --) { // loop backwards, so it will not jump one item over when found one. Avoiding index out of bounds exception.
+            EventHistory eve = eventHistories.get(i);
+            if (eve.systemUserID == userID && eve.eventTypeID == 2 && eve.eventCurrentStatus == true) {
+                int eveOrderID = eve.orderID;
+                ordersOnTruckID.add(eveOrderID);
+            }
+        }
+        System.out.println("array orderIDs on truck: " + ordersOnTruckID);
+        //find the corresponding order objects in the orders list.
+        ArrayList<Order> onTruckOrders = new ArrayList<>();
+        for (int x = orders.size() - 1; x >= 0; x--) {
+            Order o = orders.get(x);
+            for(int y = ordersOnTruckID.size() - 1; y >= 0; y--) {
+                int otID = (int) ordersOnTruckID.get(y);
+                if (o.orderID == otID) {
+                    onTruckOrders.add(o);
+                }
+            }
+        }
+        ObservableList ordersOnTruck = FXCollections.observableArrayList(onTruckOrders);
+        return ordersOnTruck;
+    }
 }

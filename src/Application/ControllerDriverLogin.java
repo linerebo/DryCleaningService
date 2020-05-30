@@ -1,6 +1,9 @@
 package Application;
 
 import Domain.Adapter;
+import Domain.Order;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ControllerDriverLogin {
 
@@ -51,15 +55,28 @@ public class ControllerDriverLogin {
             Parent menuScreen = loader.load();
             ControllerDriverMenu controller = (ControllerDriverMenu) loader.getController();
             controller.su = Adapter.cleaningCentralInstance().getSystemUserFromID(inputDriverIDInt);
+            controller.ordersOnTruck = Adapter.cleaningCentralInstance().getOrderObjectsOnTruck(inputDriverIDInt);
+
+            //make an arraylist of orderIDs
+            ArrayList<Integer> orderIDsToDisplay = new ArrayList<>();
+            for(int i = controller.ordersOnTruck.size() - 1; i >= 0; i--) {
+                Order j = controller.ordersOnTruck.get(i);
+                orderIDsToDisplay.add(j.orderID);
+            }
+            //make an observable list to be inserted to the listview below
+            ObservableList observableOderIDs = FXCollections.observableArrayList(orderIDsToDisplay);
 
             // check if it is a driver acting as system user
-            if (controller.su.departmentID == 2) { // 2 is the departmentID of the driver department.
+            if (controller.su.departmentID != 2) { // 2 is the departmentID of the driver department.
+                txtFldInputDriverID.setText("This user is not a driver.");
+            } else {
+                controller.listViewOrdersCurrentlyLoaded.setItems(observableOderIDs);
+                controller.LabelCurrentLoadedOrders.setText("Hello " + controller.su.systemUserFirstName + ", you have currently loaded these orders:");
+                controller.labelTotalOrdersLoaded.setText("Total: " + controller.ordersOnTruck.size());
                 Scene scene = new Scene(menuScreen);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(scene);
                 window.show();
-            } else {
-                txtFldInputDriverID.setText("This user is not a driver.");
             }
         } else {
             txtFldInputDriverPassword.setText("wrong password");

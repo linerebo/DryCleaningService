@@ -190,7 +190,7 @@ public class DB {
             st = connection.createStatement();
             resultSet = st.executeQuery("SELECT * FROM tblEventHistory");
             while(resultSet.next()) {
-                eventHistories.add(new EventHistory(resultSet.getInt(1), resultSet.getInt(2), resultSet.getTimestamp(3), resultSet.getInt(4), resultSet.getInt(5)));
+                eventHistories.add(new EventHistory(resultSet.getInt(1), resultSet.getInt(2), resultSet.getTimestamp(3), resultSet.getInt(4), resultSet.getInt(5), resultSet.getBoolean(6)));
             }
             st.close();
             closeConnection();
@@ -333,7 +333,7 @@ public class DB {
         return passwordString;
     }
 
-    // TODO decide if it can be deleted, since there is a list for system users now?
+    // TODO decide if it can be deleted, since there is a list for system users now
     /**
      * The method checks if the user exists in the database.
      * @return a boolean value
