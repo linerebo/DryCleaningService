@@ -4,6 +4,7 @@ import Domain.Colors;
 import Domain.Customer;
 import Domain.DeliveryPoint;
 import Domain.LaundryItemTypes.*;
+import Domain.Order;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -32,7 +33,7 @@ public class ControllerDeliveryPointHandIn implements Initializable {
     @FXML MenuButton menuButton1;
     @FXML MenuItem menuItem3;
     @FXML RadioButton radiobuttonShirt, radiobuttonBlazer, radiobuttonTrousers, radiobuttonTshirt, radiobuttonCoat, radiobuttonDress, radiobuttonCarpet;
-    @FXML ListView listViewLaundryItem, listViewColor, listViewPrice;
+    @FXML ListView listViewLaundryItem;
     @FXML Label labelCustomerInfo;
     @FXML ComboBox comboBoxColors;
     @FXML ToggleGroup groupItems;
@@ -131,6 +132,18 @@ public class ControllerDeliveryPointHandIn implements Initializable {
 
     public void handleButtonDeleteItem(){
         basket.remove(listViewLaundryItem.getSelectionModel().getSelectedItem());
+    }
+
+    public void handleButtonCancel(){
+        basket.clear();
+    }
+
+    /**
+     *
+     */
+    public void handleButtonSave(){
+        //Order newOrder = new Order(0,);
+
     }
 
 }

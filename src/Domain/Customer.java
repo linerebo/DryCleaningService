@@ -8,8 +8,8 @@ public class Customer {
     public String customerEmail;
 
 
-    public Customer(int id, String firstName, String lastName, String phoneNo, String email){
-        customerID = id;
+    public Customer(int custID, String firstName, String lastName, String phoneNo, String email){
+        customerID = custID;
         customerFirstName = firstName;
         customerLastName = lastName;
         customerPhoneNumber = phoneNo;
@@ -18,5 +18,9 @@ public class Customer {
 
     public String toString(){
         return customerFirstName + " " + customerLastName;
+    }
+
+    public void storeToDB(){
+        customerID = Adapter.DBInstance().insertNewCustomer(this);
     }
 }

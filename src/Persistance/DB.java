@@ -107,7 +107,12 @@ public class DB {
             st = connection.createStatement();
             resultSet = st.executeQuery("SELECT * FROM tblOrder");
             while(resultSet.next()) {
-                orders.add(new Order(resultSet.getInt(1), resultSet.getInt(2), resultSet.getInt(3), resultSet.getInt(4)));
+                //orders.add(new Order(resultSet.getInt(1), resultSet.getInt(2), resultSet.getInt(3), resultSet.getInt(4)));
+                Order newOrder = new Order(
+                        resultSet.getInt(1),
+                        Adapter.cleaningCentralInstance().getCustomerFromID(resultSet.getInt(2)),
+                        Adapter.cleaningCentralInstance().getDeliveryPointFromID(resultSet.getInt(4))
+                        );
             }
             st.close();
             closeConnection();
@@ -116,13 +121,6 @@ public class DB {
 
         return orders;
     }
-
-    /*public ArrayList<DeliveryPoint> getDeliveryPointsFromDB(){
-        ArrayList<DeliveryPoint> deliveryPoints = new ArrayList<>();
-        deliveryPoints.add(new DeliveryPoint(1,"Kirkevej"));
-        deliveryPoints.add(new DeliveryPoint(2,"SuperBrugsen"));
-        return deliveryPoints;
-    }*/
 
     public ArrayList<LaundryItem> getLaundryItemsFromDB() {
         ArrayList<LaundryItem> laundryItems = new ArrayList<>();
@@ -398,6 +396,11 @@ public class DB {
     //TODO new table (laundryItemID and laundrySize) to store item size :)
     //TODO method to insert item size: int
     public void insertNewSize(int laundryItemID, int size){
+    }
+
+    //TODO SQL to insert new Customer in DB, return new Customer ID
+    public int insertNewCustomer(Customer newCustomer){
+        return 0;  //return newCustomer ID
     }
 
 }

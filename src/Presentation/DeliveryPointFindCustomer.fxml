@@ -25,7 +25,7 @@
       <AnchorPane minHeight="-Infinity" prefHeight="800.0" prefWidth="1300.0">
          <children>
             <Button layoutX="920.0" layoutY="322.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="70.0" />
-            <ImageView fitWidth="1300.0" layoutX="2.0" layoutY="-7.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitWidth="1300.0" layoutX="2.0" layoutY="-1.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Resources/laundry-services.jpg" />
                </image>
@@ -80,7 +80,10 @@
                   <Font size="17.0" />
                </font>
             </Button>
-            <ListView fx:id="listViewCustomerCard" layoutX="241.0" layoutY="370.0" prefHeight="212.0" prefWidth="581.0" />
+            <ListView fx:id="listViewCustomerCard" layoutX="568.0" layoutY="370.0" prefHeight="212.0" prefWidth="254.0" />
+            <Label fx:id="txtFieldName" layoutX="237.0" layoutY="367.0" prefHeight="48.0" prefWidth="290.0" style="-fx-background-color: white;" />
+            <Label fx:id="txtFieldPhone" layoutX="243.0" layoutY="452.0" prefHeight="48.0" prefWidth="290.0" style="-fx-background-color: white;" />
+            <Label fx:id="txtFieldEmail" layoutX="243.0" layoutY="534.0" prefHeight="48.0" prefWidth="290.0" style="-fx-background-color: white;" />
          </children>
       </AnchorPane>
    </children>

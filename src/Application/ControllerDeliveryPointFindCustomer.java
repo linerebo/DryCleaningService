@@ -58,7 +58,10 @@ public class ControllerDeliveryPointFindCustomer {
     }
 
     public void handleButtonCreateNewCustomer (ActionEvent event) throws IOException {
-        Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/DeliveryPointNewCustomer.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DeliveryPointNewCustomer.fxml"));
+        Parent menuScreen = loader.load();
+        ControllerDeliveryPointNewCustomer controller = (ControllerDeliveryPointNewCustomer) loader.getController();
+        controller.dp = dp;
         Scene Scene = new Scene(menuScreen);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(Scene);

@@ -1,7 +1,10 @@
 package Application;
 
 import Domain.Adapter;
+import Domain.Customer;
 import Domain.DeliveryPoint;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,6 +42,9 @@ public class ControllerDeliveryPointMenu {
         Parent menuScreen = loader.load();
         ControllerDeliveryPointFindCustomer controller = (ControllerDeliveryPointFindCustomer) loader.getController();
         controller.dp = dp;
+        ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
+        allCustomers.setAll(Adapter.cleaningCentralInstance().customers);
+        controller.listViewShowCustomers.setItems(allCustomers);
         Scene Scene = new Scene(menuScreen);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(Scene);

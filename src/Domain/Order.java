@@ -7,29 +7,14 @@ package Domain;
 public class Order {
     public ArrayList<LaundryItem> items = new ArrayList<>();
     public int orderID;
-    public int customerID;
-    public int orderAmount;
-    public int deliveryPointID;
+    public Customer orderCustomer;
+    public DeliveryPoint orderDeliveryPoint;
 
 
-    public Order(int id, int customerId, int amount, int deliveryPointId){
+    public Order(int id, Customer orderCust, DeliveryPoint dp){
         orderID = id;
-        customerID = customerId;
-        orderAmount = amount;
-        deliveryPointID = deliveryPointId;
+        orderCustomer = orderCust;
+        orderDeliveryPoint = dp;
     }
 
-//    public int customerID;
-//    public int orderAmount;
-//    public int deliveryPointID;
-//
-//    public Order(int orderID, int customerID, int orderAmount, int deliveryPointID) {
-//
-//        this.orderID = orderID;
-//        this.customerID = customerID;
-//        this.orderAmount = orderAmount;
-//        this.deliveryPointID = deliveryPointID;
-//    }
-//
-//    public Order() {}
 }
