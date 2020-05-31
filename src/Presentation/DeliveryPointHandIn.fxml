@@ -118,12 +118,12 @@
                   <Font size="23.0" />
                </font>
             </Label>
-            <Button layoutX="1017.0" layoutY="722.0" mnemonicParsing="false" onAction="#handleButtonCancel" prefHeight="48.0" prefWidth="122.0" style="-fx-background-color: gray;" text="cancel" textFill="#fffdfd">
+            <Button layoutX="939.0" layoutY="722.0" mnemonicParsing="false" onAction="#handleButtonCancel" prefHeight="48.0" prefWidth="122.0" style="-fx-background-color: gray;" text="cancel" textFill="#fffdfd">
                <font>
                   <Font size="22.0" />
                </font>
             </Button>
-            <Button fx:id="handleButtonSave" layoutX="1151.0" layoutY="722.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="122.0" style="-fx-background-color: gray;" text="save" textFill="#fffdfd">
+            <Button layoutX="1086.0" layoutY="722.0" mnemonicParsing="false" onAction="#handleButtonSaveAndPrint" prefHeight="48.0" prefWidth="189.0" style="-fx-background-color: gray;" text="save and print" textFill="#fffdfd">
                <font>
                   <Font size="22.0" />
                </font>

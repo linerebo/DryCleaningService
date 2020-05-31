@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -141,9 +142,20 @@ public class ControllerDeliveryPointHandIn implements Initializable {
     /**
      *
      */
-    public void handleButtonSave(){
+    public void handleButtonSaveAndPrint(ActionEvent event) throws IOException{
         //Order newOrder = new Order(0,);
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DeliveryPointMenu.fxml"));
+        Parent menuScreen = loader.load();
+        ControllerDeliveryPointMenu controller = (ControllerDeliveryPointMenu) loader.getController();
+        controller.dp = dp;
+        controller.labelDeliveryPointID.setText(String.valueOf(controller.dp.deliveryPointID));
+        controller.labelDeliveryPointAddress.setText(controller.dp.address);
+        controller.labelDeliveryPointZipCode.setText(controller.dp.zipCode);
+        controller.labelDeliveryPointRoute.setText(controller.dp.route);
+        Scene Scene = new Scene(menuScreen);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(Scene);
+        window.show();
     }
 
 }
