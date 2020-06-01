@@ -24,8 +24,7 @@
    <children>
       <AnchorPane minHeight="-Infinity" prefHeight="800.0" prefWidth="1300.0">
          <children>
-            <Button layoutX="920.0" layoutY="322.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="70.0" />
-            <ImageView fitWidth="1300.0" layoutX="2.0" layoutY="-1.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitWidth="1300.0" layoutX="1.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Resources/laundry-services.jpg" />
                </image>
@@ -60,12 +59,12 @@
                   <Font size="22.0" />
                </font>
             </Button>
-            <Label layoutX="237.0" layoutY="323.0" text="Customer Card:">
+            <Label layoutX="237.0" layoutY="351.0" text="Customer Card:">
                <font>
                   <Font size="29.0" />
                </font>
             </Label>
-            <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="940.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="33.0" fitWidth="31.0" layoutX="605.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Resources/edit.png" />
                </image>
@@ -80,10 +79,40 @@
                   <Font size="17.0" />
                </font>
             </Button>
-            <ListView fx:id="listViewCustomerCard" layoutX="568.0" layoutY="370.0" prefHeight="212.0" prefWidth="254.0" />
-            <Label fx:id="txtFieldName" layoutX="237.0" layoutY="367.0" prefHeight="48.0" prefWidth="290.0" style="-fx-background-color: white;" />
-            <Label fx:id="txtFieldPhone" layoutX="243.0" layoutY="452.0" prefHeight="48.0" prefWidth="290.0" style="-fx-background-color: white;" />
-            <Label fx:id="txtFieldEmail" layoutX="243.0" layoutY="534.0" prefHeight="48.0" prefWidth="290.0" style="-fx-background-color: white;" />
+            <ListView fx:id="listViewCustomerCard" layoutX="716.0" layoutY="397.0" prefHeight="241.0" prefWidth="394.0" />
+            <Label fx:id="labelCustomerName" layoutX="335.0" layoutY="420.0" prefHeight="48.0" prefWidth="309.0" style="-fx-background-color: white;">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Label fx:id="labelCustomerPhone" layoutX="335.0" layoutY="500.0" prefHeight="48.0" prefWidth="309.0" style="-fx-background-color: white;">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Label fx:id="labelCustomerEmail" layoutX="335.0" layoutY="582.0" prefHeight="48.0" prefWidth="309.0" style="-fx-background-color: white;">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Button layoutX="595.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleButtonEditCustomer" opacity="0.6" prefHeight="43.0" prefWidth="52.0" />
+            <Label layoutX="718.0" layoutY="351.0" text="Customer Orders:">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Label layoutX="237.0" layoutY="420.0" prefHeight="48.0" prefWidth="98.0" style="-fx-background-color: white;" text="Name">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="237.0" layoutY="500.0" prefHeight="48.0" prefWidth="98.0" style="-fx-background-color: white;" text="Phone">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="237.0" layoutY="582.0" prefHeight="48.0" prefWidth="98.0" style="-fx-background-color: white;" text="Email">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
