@@ -393,14 +393,53 @@ public class DB {
         return 0;
     }
 
-    //TODO new table (laundryItemID and laundrySize) to store item size :)
+
     //TODO method to insert item size: int
     public void insertNewSize(int laundryItemID, int size){
     }
 
-    //TODO SQL to insert new Customer in DB, return new Customer ID
+    /**
+     * The method inserts a new customer objects into the databse. First it gets a new value from the sequence,
+     * to generate an ID for the customer. Afterwards this value and the other parameters of the new customer objects
+     * will be inserted by the help of a SQL statement. TODO: change prep. statement 1 to stored procedure.
+     * @param newCustomer a new cutomer object
+     * @return returns new Customer ID of datatype int
+     */
     public int insertNewCustomer(Customer newCustomer){
-        return 0;  //return newCustomer ID
+
+        int newCustomerID = 0;
+
+        try {
+            establishConnection();
+
+            try{
+                PreparedStatement ps = connection.prepareStatement("SELECT NEXT VALUE FOR dbo.SequenceGenerateIDs");
+                ResultSet resultSet = ps.executeQuery();
+                while (resultSet.next()) {
+                    newCustomerID = resultSet.getInt(1);
+                    System.out.println("new value from DB: " + newCustomerID);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO tblCustomer VALUES (?, ?, ?, ?, ?)");
+            ps.setInt(1, newCustomerID);
+            ps.setString(2, newCustomer.customerFirstName);
+            ps.setString(3, newCustomer.customerLastName);
+            ps.setString(4, newCustomer.customerPhoneNumber);
+            ps.setString(5, newCustomer.customerEmail);
+
+            ps.addBatch();
+            ps.executeBatch();
+
+            ps.close();
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return newCustomerID;  //return newCustomer ID
     }
 
     //TODO SQL to insert new Order in DB, return new Order ID

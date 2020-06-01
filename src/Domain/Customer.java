@@ -23,4 +23,5 @@ public class Customer {
     public void storeToDB(){
         customerID = Adapter.DBInstance().insertNewCustomer(this);
     }
+
 }

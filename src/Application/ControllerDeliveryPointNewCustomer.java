@@ -52,7 +52,7 @@ public class ControllerDeliveryPointNewCustomer {
         String newEmail = txtFieldinputEmail.getText();
         Customer newCustomer = new Customer(0, newFirstName, newLastName, newPhoneNo, newEmail);
         newCustomer.storeToDB();
-        Adapter.cleaningCentralInstance().customers.add(newCustomer);
+        Adapter.cleaningCentralInstance().customers.add(newCustomer); // add to "overall" list of customers
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DeliveryPointFindCustomer.fxml"));
         Parent menuScreen = loader.load();
         ControllerDeliveryPointFindCustomer controller = (ControllerDeliveryPointFindCustomer) loader.getController();
