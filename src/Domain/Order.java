@@ -1,8 +1,11 @@
 package Domain;
 
         import Domain.LaundryItemTypes.LaundryItem;
-
         import java.util.ArrayList;
+        import java.util.*;
+        //import javax.mail.*;
+        //import javax.mail.internet.*;
+        import javax.activation.*;
 
 public class Order {
     public ArrayList<LaundryItem> items = new ArrayList<>();
@@ -20,5 +23,27 @@ public class Order {
     public void storeToDB(){
         orderID = Adapter.DBInstance().insertNewOrder(this);
     }
+
+   /* public void sendEmail(){
+        String to = "abcd@gmail.com";
+        String from = "cleaningcentral@fraemohs.de";
+        String host = "fraemohs.de";
+        Properties properties = System.getProperties();
+        properties.setProperty("smtp.host", host);
+        properties.setProperty("mail.user", "axelk");
+        properties.setProperty("mail.password", "BubenHund");
+        Session session = Session.getDefaultInstance(properties);
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject("Order confirmation");
+            message.setText("This is actual message");
+            Transport.send(message);
+            System.out.println("Sent message successfully....");
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+    }*/
 
 }
