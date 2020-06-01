@@ -17,4 +17,8 @@ public class Order {
         orderDeliveryPoint = dp;
     }
 
+    public void storeToDB(){
+        orderID = Adapter.DBInstance().insertNewOrder(this);
+    }
+
 }

@@ -1,10 +1,7 @@
 package Application;
 
-import Domain.Colors;
-import Domain.Customer;
-import Domain.DeliveryPoint;
+import Domain.*;
 import Domain.LaundryItemTypes.*;
-import Domain.Order;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -143,7 +140,12 @@ public class ControllerDeliveryPointHandIn implements Initializable {
      *
      */
     public void handleButtonSaveAndPrint(ActionEvent event) throws IOException{
-        //Order newOrder = new Order(0,);
+        Order newOrder = new Order(0, selectedCustomer, dp);
+        newOrder.storeToDB();           //newOrder is stored in DB
+        Adapter.cleaningCentralInstance().orders.add(newOrder);     //newOrder is stored in orders
+        System.out.println("Your Order was placed");
+        System.out.println("Print Orderslip: \n" + "Delivery Point: " + dp + "  \n" + "Customer: " + selectedCustomer + "\n" + basket);
+        System.out.println("Send Email");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DeliveryPointMenu.fxml"));
         Parent menuScreen = loader.load();
         ControllerDeliveryPointMenu controller = (ControllerDeliveryPointMenu) loader.getController();

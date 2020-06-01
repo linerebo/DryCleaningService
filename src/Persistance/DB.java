@@ -403,4 +403,9 @@ public class DB {
         return 0;  //return newCustomer ID
     }
 
+    //TODO SQL to insert new Order in DB, return new Order ID
+    public int insertNewOrder(Order newOrder){
+        return 0;       //return newOrderID
+    }
+
 }
