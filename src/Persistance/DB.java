@@ -107,12 +107,12 @@ public class DB {
             st = connection.createStatement();
             resultSet = st.executeQuery("SELECT * FROM tblOrder");
             while(resultSet.next()) {
-                //orders.add(new Order(resultSet.getInt(1), resultSet.getInt(2), resultSet.getInt(3), resultSet.getInt(4)));
                 Order newOrder = new Order(
                         resultSet.getInt(1),
                         Adapter.cleaningCentralInstance().getCustomerFromID(resultSet.getInt(2)),
                         Adapter.cleaningCentralInstance().getDeliveryPointFromID(resultSet.getInt(4))
                         );
+                orders.add(newOrder);
             }
             st.close();
             closeConnection();
@@ -281,8 +281,8 @@ public class DB {
     }
 
     /**
-     * The method will get all data from the table tblSystemuser in the database except from the passwords.
-     * @return an arraylist of SystemUser objects.
+     * The method will get all data from the table tblSystem user in the database except from the passwords.
+     * @return an array list of system user objects.
      */
     public ArrayList<SystemUser> getSystemUsersFromDB() {
         ArrayList<SystemUser> systemUsers = new ArrayList<>();
