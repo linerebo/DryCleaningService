@@ -67,7 +67,7 @@ public class ControllerDriverLogin {
             ObservableList observableOderIDs = FXCollections.observableArrayList(orderIDsToDisplay);
 
             // check if it is a driver acting as system user
-            if (controller.su.departmentID != 2) { // 2 is the departmentID of the driver department.
+            if (controller.su.departmentID != 12) { // 12 is the departmentID of the driver department.
                 txtFldInputDriverID.setText("This user is not a driver.");
             } else {
                 controller.listViewOrdersCurrentlyLoaded.setItems(observableOderIDs);

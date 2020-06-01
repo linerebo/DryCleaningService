@@ -123,12 +123,13 @@ public class CleaningCentral {
         // get all orderID as ints, which are currently on the truck
         for (int i = eventHistories.size() -1; i >= 0; i --) { // loop backwards, so it will not jump one item over when found one. Avoiding index out of bounds exception.
             EventHistory eve = eventHistories.get(i);
-            if (eve.systemUserID == userID && eve.eventTypeID == 2 && eve.eventCurrentStatus == true) {
+            if (eve.systemUserID == userID && eve.eventTypeID == 16 && eve.eventCurrentStatus == true) { // 16 is the eventTypeID for a pick-up event
                 int eveOrderID = eve.orderID;
                 ordersOnTruckID.add(eveOrderID);
             }
         }
         System.out.println("array orderIDs on truck: " + ordersOnTruckID);
+
         //find the corresponding order objects in the orders list.
         ArrayList<Order> onTruckOrders = new ArrayList<>();
         for (int x = orders.size() - 1; x >= 0; x--) {
@@ -141,6 +142,7 @@ public class CleaningCentral {
             }
         }
         ObservableList ordersOnTruck = FXCollections.observableArrayList(onTruckOrders);
+        System.out.println("order objects on truck: " + ordersOnTruck);
         return ordersOnTruck;
     }
 }
