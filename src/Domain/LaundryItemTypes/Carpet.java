@@ -23,6 +23,10 @@ public class Carpet extends LaundryItem {
         return squareMeterPrice*squareMeters;
     }
 
+    public String toString(){
+        return "Carpet  " + itemColor + " " + "   Price:  " + price() + " Kroner";
+    }
+
     @Override
     public void storeToDB(){
         super.storeToDB();

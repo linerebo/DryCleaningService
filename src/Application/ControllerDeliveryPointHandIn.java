@@ -155,9 +155,9 @@ public class ControllerDeliveryPointHandIn implements Initializable {
      */
     public void handleButtonSaveAndPrint(ActionEvent event) throws IOException{
         Order newOrder = new Order(0, selectedCustomer, dp);
+        newOrder.items.addAll(basket);
         newOrder.storeToDB();           //newOrder is stored in DB
         Adapter.cleaningCentralInstance().orders.add(newOrder);     //newOrder is stored in orders
-        newOrder.items.addAll(basket);
         System.out.println("Your Order was placed");
         System.out.println("Print Orderslip: \n" + "Delivery Point: " + dp + "  \n" + "Customer: " + selectedCustomer + " customerID: " + selectedCustomer.customerID +
                 "\n" + basket + "\nTotalPrice: " + newOrder.totalPriceOfOrder() + " Kroner");
