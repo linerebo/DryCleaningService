@@ -1,11 +1,13 @@
 package Domain.LaundryItemTypes;
 
+import Domain.Adapter;
+
 public class Tshirt extends LaundryItem {
     public static int itemPrice;
     public static int itemTimeToClean;
 
-    public Tshirt(String itemCol, boolean itemStat) {
-        super(itemCol, itemStat);
+    public Tshirt(int itemId, int laundryType, String itemCol, boolean itemStat) {
+        super(itemId, laundryType, itemCol, itemStat);
     }
 
     @Override
@@ -20,5 +22,10 @@ public class Tshirt extends LaundryItem {
 
     public String toString(){
         return "Shirt  " + itemColor + " " + "   Price:  " + itemPrice + " Kroner";
+    }
+
+    @Override
+    public void storeToDB(){
+        itemID = Adapter.DBInstance().insertNewLaundryItem(this);
     }
 }

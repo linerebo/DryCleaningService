@@ -89,38 +89,38 @@ public class ControllerDeliveryPointHandIn implements Initializable {
 
         switch (selectedButtonID){
             case "radiobuttonShirt":
-                Shirt newShirt = new Shirt(selectedColor, false);
-                newShirt.storeToDB();
+                Shirt newShirt = new Shirt( 0,  4, selectedColor, false);
+                newShirt.storeToDB(); //?
                 basket.add(newShirt);
                 break;
             case "radiobuttonBlazer":
-                Blazer newBlazer = new Blazer(selectedColor, false);
+                Blazer newBlazer = new Blazer(0, 5, selectedColor, false);
                 newBlazer.storeToDB();
                 basket.add(newBlazer);
                 break;
             case "radiobuttonCarpet":
-                Carpet newCarpet = new Carpet(selectedColor, false, (Integer) carpetSize.getSelectionModel().getSelectedItem());
+                Carpet newCarpet = new Carpet(0, 6, selectedColor, false, (Integer) carpetSize.getSelectionModel().getSelectedItem());
                 newCarpet.storeToDB();
                 basket.add(newCarpet);
                 break;
             case "radiobuttonCoat":
-                Coat newCoat = new Coat(selectedColor, false);
+                Coat newCoat = new Coat(0, 7,selectedColor, false);
                 newCoat.storeToDB();
                 basket.add(newCoat);
                 System.out.println("We have a coat");
                 break;
             case "radiobuttonDress":
-                Dress newDress = new Dress(selectedColor, false);
+                Dress newDress = new Dress(0,8, selectedColor, false);
                 newDress.storeToDB();
                 basket.add(newDress);
                 break;
             case "radiobuttonTrousers":
-                Trousers newTrousers = new Trousers(selectedColor, false);
+                Trousers newTrousers = new Trousers(0, 10, selectedColor, false);
                 newTrousers.storeToDB();
                 basket.add(newTrousers);
                 break;
             case "radiobuttonTshirt":
-                Tshirt newTshirt = new Tshirt(selectedColor, false);
+                Tshirt newTshirt = new Tshirt(0, 9, selectedColor, false);
                 newTshirt.storeToDB();
                 basket.add(newTshirt);
                 break;
@@ -129,11 +129,15 @@ public class ControllerDeliveryPointHandIn implements Initializable {
     }
 
     public void handleButtonDeleteItem(){
+        LaundryItem currItem = (LaundryItem) listViewLaundryItem.getSelectionModel().getSelectedItem();
+        int currItemDel = currItem.itemID;
+        Adapter.DBInstance().deleteLaundryItem(currItemDel);
         basket.remove(listViewLaundryItem.getSelectionModel().getSelectedItem());
     }
 
     public void handleButtonCancel(){
         basket.clear();
+        // TODO delete from DB only from tblLaundryItem
     }
 
     /**
@@ -141,9 +145,9 @@ public class ControllerDeliveryPointHandIn implements Initializable {
      */
     public void handleButtonSaveAndPrint(ActionEvent event) throws IOException{
         Order newOrder = new Order(0, selectedCustomer, dp);
+        newOrder.items.addAll(basket);
         newOrder.storeToDB();           //newOrder is stored in DB
         Adapter.cleaningCentralInstance().orders.add(newOrder);     //newOrder is stored in orders
-        newOrder.items.addAll(basket);
         System.out.println("Your Order was placed");
         System.out.println("Print Orderslip: \n" + "Delivery Point: " + dp + "  \n" + "Customer: " + selectedCustomer + " customerID: " + selectedCustomer.customerID +
                 "\n" + basket + "\nTotalPrice: " + newOrder.totalPriceOfOrder() + " Kroner");

@@ -8,8 +8,8 @@ public class Carpet extends LaundryItem {
     private int squareMeters;
 
 
-    public Carpet(String itemCol, boolean itemStat, int sizeCarpet) {
-        super(itemCol, itemStat);
+    public Carpet(int itemId, int laundryType, String itemCol, boolean itemStat, int sizeCarpet) {
+        super(itemId, laundryType, itemCol, itemStat);
         squareMeters = sizeCarpet;
     }
 
@@ -23,13 +23,13 @@ public class Carpet extends LaundryItem {
         return squareMeterPrice*squareMeters;
     }
 
-    @Override
-    public void storeToDB(){
-        super.storeToDB();
-        Adapter.DBInstance().insertNewSize(itemID, squareMeters);
-    }
-
     public String toString(){
         return "Carpet  " + itemColor + " " + "   Price:  " + price() + " Kroner";
+    }
+
+    @Override
+    public void storeToDB(){
+        itemID = Adapter.DBInstance().insertNewLaundryItem(this);
+        Adapter.DBInstance().insertNewSize(itemID, squareMeters);
     }
 }

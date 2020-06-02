@@ -29,16 +29,17 @@ public class DB {
 
     /**
      * This method will establish a connection wit the database called "DryLeaningServiceDB".
+     *
      * @return an object of connection
      */
-    public Connection establishConnection(){
+    public Connection establishConnection() {
 
         //get access information for the DB from a separate file called DB_Properties
         Properties prop = new Properties();
         String file = "src/Persistance/DB_Properties";
         InputStream input;
 
-        try{
+        try {
             //read information from file
             input = new FileInputStream(file);
             prop.load(input);
@@ -79,7 +80,7 @@ public class DB {
     }
 
     // a method for each table to get the data from the database
-    public ArrayList<Customer> getCustomersFromDB(){
+    public ArrayList<Customer> getCustomersFromDB() {
         ArrayList<Customer> customers = new ArrayList<>();
         Statement st;
         ResultSet resultSet;
@@ -87,18 +88,19 @@ public class DB {
             establishConnection();
             st = connection.createStatement();
             resultSet = st.executeQuery("SELECT * FROM tblCustomer");
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 customers.add(new Customer(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5))); //insert SQL statement here ??
             }
             st.close();
             closeConnection();
 
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+        }
 
         return customers;
     }
 
-    public ArrayList<Order> getOrdersFromDB(){
+    public ArrayList<Order> getOrdersFromDB() {
         ArrayList<Order> orders = new ArrayList<>();
         Statement st;
         ResultSet resultSet;
@@ -106,18 +108,19 @@ public class DB {
             establishConnection();
             st = connection.createStatement();
             resultSet = st.executeQuery("SELECT * FROM tblOrder");
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 Order newOrder = new Order(
                         resultSet.getInt(1),
                         Adapter.cleaningCentralInstance().getCustomerFromID(resultSet.getInt(2)),
                         Adapter.cleaningCentralInstance().getDeliveryPointFromID(resultSet.getInt(4))
-                        );
+                );
                 orders.add(newOrder);
             }
             st.close();
             closeConnection();
 
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+        }
 
         return orders;
     }
@@ -130,13 +133,14 @@ public class DB {
             establishConnection();
             st = connection.createStatement();
             resultSet = st.executeQuery("SELECT * FROM tblLaundryItem");
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 //laundryItems.add(new LaundryItem(resultSet.getInt(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getBoolean(4)));
             }
             st.close();
             closeConnection();
 
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+        }
 
         return laundryItems;
     }
@@ -149,13 +153,14 @@ public class DB {
             establishConnection();
             st = connection.createStatement();
             resultSet = st.executeQuery("SELECT * FROM tblDeliveryPoint");
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 deliveryPoints.add(new DeliveryPoint(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4)));
             }
             st.close();
             closeConnection();
 
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+        }
 
         return deliveryPoints;
     }
@@ -168,13 +173,14 @@ public class DB {
             establishConnection();
             st = connection.createStatement();
             resultSet = st.executeQuery("SELECT * FROM tblDepartment");
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 departments.add(new Department(resultSet.getInt(1), resultSet.getString(2)));
             }
             st.close();
             closeConnection();
 
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+        }
 
         return departments;
     }
@@ -187,13 +193,14 @@ public class DB {
             establishConnection();
             st = connection.createStatement();
             resultSet = st.executeQuery("SELECT * FROM tblEventHistory");
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 eventHistories.add(new EventHistory(resultSet.getInt(1), resultSet.getInt(2), resultSet.getTimestamp(3), resultSet.getInt(4), resultSet.getInt(5), resultSet.getBoolean(6)));
             }
             st.close();
             closeConnection();
 
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+        }
 
         return eventHistories;
     }
@@ -206,13 +213,14 @@ public class DB {
             establishConnection();
             st = connection.createStatement();
             resultSet = st.executeQuery("SELECT * FROM tblEventType");
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 eventTypes.add(new EventType(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3)));
             }
             st.close();
             closeConnection();
 
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+        }
 
         return eventTypes;
     }
@@ -224,41 +232,36 @@ public class DB {
             establishConnection();
             st = connection.createStatement();
             resultSet = st.executeQuery("SELECT * FROM tblLaundryType");
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 //laundryTypes.add(new LaundryType(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4)));
-                if(resultSet.getString(2).equals("Shirt")){
+                if (resultSet.getString(2).equals("Shirt")) {
                     Shirt.itemPrice = resultSet.getInt(3);
                     Shirt.itemTimeToClean = resultSet.getInt(4);
-                }
-                else if(resultSet.getString(2).equals("Blazer")){
+                } else if (resultSet.getString(2).equals("Blazer")) {
                     Blazer.itemPrice = resultSet.getInt(3);
                     Blazer.itemTimeToClean = resultSet.getInt(4);
-                }
-                else if(resultSet.getString(2).equals("Coat")){
+                } else if (resultSet.getString(2).equals("Coat")) {
                     Coat.itemPrice = resultSet.getInt(3);
                     Coat.itemTimeToClean = resultSet.getInt(4);
-                }
-                else if(resultSet.getString(2).equals("Tshirt")){
+                } else if (resultSet.getString(2).equals("Tshirt")) {
                     Tshirt.itemPrice = resultSet.getInt(3);
                     Tshirt.itemTimeToClean = resultSet.getInt(4);
-                }
-                else if(resultSet.getString(2).equals("Dress")){
+                } else if (resultSet.getString(2).equals("Dress")) {
                     Dress.itemPrice = resultSet.getInt(3);
                     Dress.itemTimeToClean = resultSet.getInt(4);
-                }
-                else if(resultSet.getString(2).equals("Trousers")){
+                } else if (resultSet.getString(2).equals("Trousers")) {
                     Trousers.itemPrice = resultSet.getInt(3);
                     Trousers.itemTimeToClean = resultSet.getInt(4);
-                }
-                else if(resultSet.getString(2).equals("Carpet")){
+                } else if (resultSet.getString(2).equals("Carpet")) {
                     Carpet.squareMeterPrice = resultSet.getInt(3);
                     Carpet.itemTimeToClean = resultSet.getInt(4);
                 }
             }
             st.close();
-           closeConnection();
+            closeConnection();
 
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+        }
     }
 
     public ArrayList<Payment> getPaymentsFromDB() {
@@ -269,19 +272,21 @@ public class DB {
             establishConnection();
             st = connection.createStatement();
             resultSet = st.executeQuery("SELECT * FROM tblPayment");
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 payments.add(new Payment(resultSet.getInt(1), resultSet.getInt(2), resultSet.getTimestamp(3), resultSet.getBoolean(4), resultSet.getInt(5)));
             }
             st.close();
             closeConnection();
 
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+        }
 
         return payments;
     }
 
     /**
      * The method will get all data from the table tblSystem user in the database except from the passwords.
+     *
      * @return an array list of system user objects.
      */
     public ArrayList<SystemUser> getSystemUsersFromDB() {
@@ -292,13 +297,14 @@ public class DB {
             establishConnection();
             st = connection.createStatement();
             resultSet = st.executeQuery("SELECT fldSystemUserID, fldSystemUserFirstName, fldSystemUserLastName, fldDepartmentID FROM tblSystemUser");
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 systemUsers.add(new SystemUser(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4)));
             }
             st.close();
             closeConnection();
 
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+        }
 
         return systemUsers;
     }
@@ -307,6 +313,7 @@ public class DB {
 
     /**
      * The method takes in an user ID and returns the corresponding password from the table of system users.
+     *
      * @param inputUserID int
      * @return the password of the given system user as a String
      */
@@ -324,16 +331,18 @@ public class DB {
 
             ps.close();
             closeConnection();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return passwordString;
     }
 
     // TODO decide if it can be deleted, since there is a list for system users now
+
     /**
      * The method checks if the user exists in the database.
+     *
      * @return a boolean value
      */
     public boolean checkUserExistence(int inputUserID) {
@@ -383,45 +392,175 @@ public class DB {
         return userDep;
     }
 
+    /**
+     * The method will return a new value from the sequence in the database, which will be used as ID for a new record
+     * in any of the tables. TODO: change prep. statement 1 to stored procedure.
+     * @return an integer
+     */
+    public int generateNewID() {
 
-    // TODO: create a new event for tblEventHistory: SP with all parameters to insert.
+        int newID = 0;
+        try {
+            establishConnection();
+            PreparedStatement ps = connection.prepareStatement("SELECT NEXT VALUE FOR dbo.SequenceGenerateIDs");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                newID = resultSet.getInt(1);
+                System.out.println("new value from DB: " + newID);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-
-    //TODO SQL for insert of new item, return generated keys (ItemID)
-    //https://www.codejava.net/java-se/jdbc/get-id-of-inserted-record-in-database
-    public int insertNewLaundryItem(LaundryItem itemToInsert){
-        return 0;
-    }
-
-
-    //TODO method to insert item size: int
-    public void insertNewSize(int laundryItemID, int size){
+        return newID;
     }
 
     /**
-     * The method inserts a new customer objects into the databse. First it gets a new value from the sequence,
-     * to generate an ID for the customer. Afterwards this value and the other parameters of the new customer objects
-     * will be inserted by the help of a SQL statement. TODO: change prep. statement 1 to stored procedure.
-     * @param newCustomer a new cutomer object
-     * @return returns new Customer ID of datatype int
+     * The method inserts a new item to the database
+     * @param itemToInsert
+     * @return
      */
-    public int insertNewCustomer(Customer newCustomer){
+    public int insertNewLaundryItem(LaundryItem itemToInsert) {
 
-        int newCustomerID = 0;
+        int newItemID = generateNewID();
+        try {
+            establishConnection();
+
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO tblLaundryItem VALUES (?, ?, ?, ?)");
+            ps.setInt(1, newItemID);
+            ps.setInt(2, itemToInsert.laundryTypeID);
+            ps.setString(3, itemToInsert.itemColor);
+            ps.setBoolean(4, itemToInsert.itemStatus);
+
+            ps.addBatch();
+            ps.executeBatch();
+
+            ps.close();
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return newItemID;
+    }
+
+    /**
+     * the mehtod takes the ID of the current selected item on the listview and deletes it form the database.
+     * @param itemToDelete
+     */
+    public void deleteLaundryItem(int itemToDelete) {
+        try {
+            establishConnection();
+
+            PreparedStatement ps = connection.prepareStatement("DELETE FROM tblLaundryItem WHERE fldLaundryItemID = (?)");
+            ps.setInt(1, itemToDelete);
+
+            int rowsAffected = ps.executeUpdate();
+            System.out.println("delete succesful, rows affected: " + rowsAffected);
+
+            ps.close();
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * The method inserts a new record for an item size.
+     * @param laundryItemID the ID of the item which got entered with a size
+     * @param size the size entered
+     */
+    public void insertNewSize(int laundryItemID, int size) {
+
+        int newLaundrySizeID = generateNewID();
 
         try {
             establishConnection();
 
-            try{
-                PreparedStatement ps = connection.prepareStatement("SELECT NEXT VALUE FOR dbo.SequenceGenerateIDs");
-                ResultSet resultSet = ps.executeQuery();
-                while (resultSet.next()) {
-                    newCustomerID = resultSet.getInt(1);
-                    System.out.println("new value from DB: " + newCustomerID);
-                }
-            } catch (Exception e) {
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO tblLaundrySize VALUES (?, ?, ?)");
+            ps.setInt(1, newLaundrySizeID);
+            ps.setInt(2, laundryItemID);
+            ps.setInt(3, size);
+
+            ps.addBatch();
+            ps.executeBatch();
+
+            ps.close();
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * The method inserts the new order in to the database.
+     * Also it inserts a new record in to the combination table tblLaundry_Order.
+     * @param newOrder the newly created order
+     * @return the new ID of this order
+     */
+    public int insertNewOrder(Order newOrder) {
+
+        int newOrderID = generateNewID();
+
+        try {
+            establishConnection();
+
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO tblOrder VALUES (?, ?, ?, ?)");
+            ps.setInt(1, newOrderID);
+            ps.setInt(2, newOrder.orderCustomer.customerID);
+            ps.setInt(3, newOrder.items.size());
+            ps.setInt(4, newOrder.orderDeliveryPoint.deliveryPointID);
+
+            ps.addBatch();
+            ps.executeBatch();
+
+            ps.close();
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // add record to tblLaundry_Order for every item on the new order (order - item pair)
+        for (int i = newOrder.items.size() -1; i >= 0; i--) {
+            LaundryItem itemToUse = newOrder.items.get(i);
+            int itemToInsert = itemToUse.itemID;
+            try {
+                establishConnection();
+
+                PreparedStatement ps = connection.prepareStatement("INSERT INTO tblLaundry_Order VALUES (?, ?, ?)");
+                ps.setInt(1, generateNewID());
+                ps.setInt(2, itemToInsert);
+                ps.setInt(3, newOrderID);
+
+                ps.addBatch();
+                ps.executeBatch();
+
+                ps.close();
+                closeConnection();
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+
+        // TODO call create Event function, see below
+        return newOrderID;       //return newOrderID
+    }
+
+    // TODO: create a new event for tblEventHistory: SP with all parameters to insert.
+
+    /**
+     * The method inserts a new customer objects into the database. First it gets a new value from the sequence,
+     * by calling the method generateNewID. Afterwards this value and the other parameters of the new customer objects
+     * will be inserted by the help of a SQL statement.
+     * @param newCustomer a new customer object
+     * @return returns new Customer ID of datatype int
+     */
+    public int insertNewCustomer(Customer newCustomer) {
+
+        int newCustomerID = generateNewID();
+
+        try {
+            establishConnection();
 
             PreparedStatement ps = connection.prepareStatement("INSERT INTO tblCustomer VALUES (?, ?, ?, ?, ?)");
             ps.setInt(1, newCustomerID);
@@ -440,11 +579,6 @@ public class DB {
         }
 
         return newCustomerID;  //return newCustomer ID
-    }
-
-    //TODO SQL to insert new Order in DB, return new Order ID
-    public int insertNewOrder(Order newOrder){
-        return 0;       //return newOrderID
     }
 
 }
