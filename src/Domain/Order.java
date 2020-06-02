@@ -24,6 +24,14 @@ public class Order {
         orderID = Adapter.DBInstance().insertNewOrder(this);
     }
 
+    public int totalPriceOfOrder(){
+        int totalPriceOrder = 0;
+        for(int i=0; i<items.size(); i++){
+            totalPriceOrder += items.get(i).price();
+        }
+        return totalPriceOrder;
+    }
+
    /* public void sendEmail(){
         String to = "abcd@gmail.com";
         String from = "cleaningcentral@fraemohs.de";
