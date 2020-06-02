@@ -3,10 +3,13 @@ package Application;
 import Domain.Adapter;
 import Domain.Customer;
 import Domain.DeliveryPoint;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,8 +21,10 @@ import javafx.stage.Stage;
 //import java.awt.*;
 //import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ControllerDeliveryPointFindCustomer {
+public class ControllerDeliveryPointFindCustomer implements Initializable {
 
     DeliveryPoint dp;
 
@@ -28,6 +33,20 @@ public class ControllerDeliveryPointFindCustomer {
     @FXML TextField txtFieldInputCustomerName;
     @FXML ListView listViewShowCustomers, listViewCustomerCard;
     @FXML Label labelCustomerName, labelCustomerPhone, labelCustomerEmail;
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources){
+        listViewShowCustomers.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Customer>() {
+            @Override
+            public void changed(ObservableValue<? extends Customer> observable, Customer oldValue, Customer newValue) {
+                Customer selectedCustomer = (Customer) listViewShowCustomers.getSelectionModel().getSelectedItem();
+                labelCustomerName.setText(selectedCustomer.customerFirstName + " " + selectedCustomer.customerLastName);
+                labelCustomerPhone.setText(selectedCustomer.customerPhoneNumber);
+                labelCustomerEmail.setText(selectedCustomer.customerEmail);
+            }
+        });
+    }
 
     public void handleButtonHome(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));
@@ -76,12 +95,6 @@ public class ControllerDeliveryPointFindCustomer {
         Parent menuScreen = loader.load();
         ControllerDeliveryPointEditCustomer controller = (ControllerDeliveryPointEditCustomer) loader.getController();
         controller.dp = dp;
-        controller.selectedCustomer = (Customer) listViewShowCustomers.getSelectionModel().getSelectedItem();
-        controller.txtFieldEditName.setText(controller.selectedCustomer.customerFirstName);
-        controller.txtFieldEditLastname.setText(controller.selectedCustomer.customerLastName);
-        controller.txtFieldEditPhone.setText(String.valueOf(controller.selectedCustomer.customerPhoneNumber));
-        controller.txtFieldEditEmail.setText(String.valueOf(controller.selectedCustomer.customerEmail));
-
         Scene Scene = new Scene(menuScreen);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(Scene);
