@@ -20,5 +20,4 @@ public abstract class LaundryItem {
         itemID = Adapter.DBInstance().insertNewLaundryItem(this);
     }
 
-
 }

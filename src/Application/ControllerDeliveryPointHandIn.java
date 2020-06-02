@@ -32,7 +32,7 @@ public class ControllerDeliveryPointHandIn implements Initializable {
     @FXML MenuItem menuItem3;
     @FXML RadioButton radiobuttonShirt, radiobuttonBlazer, radiobuttonTrousers, radiobuttonTshirt, radiobuttonCoat, radiobuttonDress, radiobuttonCarpet;
     @FXML ListView listViewLaundryItem;
-    @FXML Label labelCustomerInfo;
+    @FXML Label labelCustomerInfo, labelInputValidation;
     @FXML ComboBox comboBoxColors;
     @FXML ToggleGroup groupItems;
     @FXML AnchorPane anchorPaneHandIn;
@@ -48,14 +48,15 @@ public class ControllerDeliveryPointHandIn implements Initializable {
 
         groupItems.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
+                labelInputValidation.setText("");
                 if (groupItems.getSelectedToggle() != null) {
                     removeAddedGUIElements();
-                    String selectedButtonID = ((RadioButton) groupItems.getSelectedToggle()).getId();
-                    switch (selectedButtonID){
-                        case "radiobuttonCarpet":
-                            addCarpetGUIElements();
-                            break;
-                    }
+                        String selectedButtonID = ((RadioButton) groupItems.getSelectedToggle()).getId();
+                        switch (selectedButtonID) {
+                            case "radiobuttonCarpet":
+                                addCarpetGUIElements();
+                                break;
+                        }
                 }
             }
         });
@@ -84,48 +85,61 @@ public class ControllerDeliveryPointHandIn implements Initializable {
     }
 
     public void handleButtonAddItem(ActionEvent event){
-        String selectedButtonID = ((RadioButton) groupItems.getSelectedToggle()).getId();
-        String selectedColor = comboBoxColors.getSelectionModel().getSelectedItem().toString();
-
-        switch (selectedButtonID){
-            case "radiobuttonShirt":
-                Shirt newShirt = new Shirt(selectedColor, false);
-                newShirt.storeToDB();
-                basket.add(newShirt);
-                break;
-            case "radiobuttonBlazer":
-                Blazer newBlazer = new Blazer(selectedColor, false);
-                newBlazer.storeToDB();
-                basket.add(newBlazer);
-                break;
-            case "radiobuttonCarpet":
-                Carpet newCarpet = new Carpet(selectedColor, false, (Integer) carpetSize.getSelectionModel().getSelectedItem());
-                newCarpet.storeToDB();
-                basket.add(newCarpet);
-                break;
-            case "radiobuttonCoat":
-                Coat newCoat = new Coat(selectedColor, false);
-                newCoat.storeToDB();
-                basket.add(newCoat);
-                System.out.println("We have a coat");
-                break;
-            case "radiobuttonDress":
-                Dress newDress = new Dress(selectedColor, false);
-                newDress.storeToDB();
-                basket.add(newDress);
-                break;
-            case "radiobuttonTrousers":
-                Trousers newTrousers = new Trousers(selectedColor, false);
-                newTrousers.storeToDB();
-                basket.add(newTrousers);
-                break;
-            case "radiobuttonTshirt":
-                Tshirt newTshirt = new Tshirt(selectedColor, false);
-                newTshirt.storeToDB();
-                basket.add(newTshirt);
-                break;
+        labelInputValidation.setText("");
+        if(groupItems.getSelectedToggle() == null){
+            labelInputValidation.setText("Please select laundry type");
         }
-
+        else if (comboBoxColors.getSelectionModel().isEmpty()) {
+            labelInputValidation.setText("Please select color");
+        }
+        else {
+            String selectedButtonID = ((RadioButton) groupItems.getSelectedToggle()).getId();
+            String selectedColor = comboBoxColors.getSelectionModel().getSelectedItem().toString();
+            switch (selectedButtonID) {
+                case "radiobuttonShirt":
+                    Shirt newShirt = new Shirt(selectedColor, false);
+                    newShirt.storeToDB();
+                    basket.add(newShirt);
+                    break;
+                case "radiobuttonBlazer":
+                    Blazer newBlazer = new Blazer(selectedColor, false);
+                    newBlazer.storeToDB();
+                    basket.add(newBlazer);
+                    break;
+                case "radiobuttonCarpet":
+                    if (carpetSize.getSelectionModel().isEmpty()) {
+                        labelInputValidation.setText("Please select carpet size");
+                        break;
+                    }
+                    else {
+                        Carpet newCarpet = new Carpet(selectedColor, false, (Integer) carpetSize.getSelectionModel().getSelectedItem());
+                        newCarpet.storeToDB();
+                        basket.add(newCarpet);
+                        break;
+                    }
+                case "radiobuttonCoat":
+                    Coat newCoat = new Coat(selectedColor, false);
+                    newCoat.storeToDB();
+                    basket.add(newCoat);
+                    System.out.println("We have a coat");
+                    break;
+                case "radiobuttonDress":
+                    Dress newDress = new Dress(selectedColor, false);
+                    newDress.storeToDB();
+                    basket.add(newDress);
+                    break;
+                case "radiobuttonTrousers":
+                    Trousers newTrousers = new Trousers(selectedColor, false);
+                    newTrousers.storeToDB();
+                    basket.add(newTrousers);
+                    break;
+                case "radiobuttonTshirt":
+                    Tshirt newTshirt = new Tshirt(selectedColor, false);
+                    newTshirt.storeToDB();
+                    basket.add(newTshirt);
+                    break;
+            }
+        }
     }
 
     public void handleButtonDeleteItem(){

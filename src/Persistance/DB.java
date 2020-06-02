@@ -225,7 +225,6 @@ public class DB {
             st = connection.createStatement();
             resultSet = st.executeQuery("SELECT * FROM tblLaundryType");
             while(resultSet.next()) {
-                //laundryTypes.add(new LaundryType(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getInt(4)));
                 if(resultSet.getString(2).equals("Shirt")){
                     Shirt.itemPrice = resultSet.getInt(3);
                     Shirt.itemTimeToClean = resultSet.getInt(4);

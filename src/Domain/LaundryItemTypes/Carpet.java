@@ -32,4 +32,5 @@ public class Carpet extends LaundryItem {
     public String toString(){
         return "Carpet  " + itemColor + " " + "   Price:  " + price() + " Kroner";
     }
+
 }

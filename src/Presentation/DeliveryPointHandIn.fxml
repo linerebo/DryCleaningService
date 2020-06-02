@@ -135,6 +135,11 @@
                </font>
             </Label>
             <ListView fx:id="listViewLaundryItem" layoutX="725.0" layoutY="444.0" prefHeight="269.0" prefWidth="550.0" />
+            <Label fx:id="labelInputValidation" layoutX="403.0" layoutY="451.0" prefHeight="50.0" prefWidth="316.0" textFill="#ff1313">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
