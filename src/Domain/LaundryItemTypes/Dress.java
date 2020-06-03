@@ -5,9 +5,15 @@ import Domain.Adapter;
 public class Dress extends LaundryItem {
     public static int itemPrice;
     public static int itemTimeToClean;
+    public static int laundryTypeID = 8;
 
-    public Dress(int itemId, int laundryType, String itemCol, boolean itemStat) {
-        super(itemId, laundryType, itemCol, itemStat);
+    public Dress(String itemCol, boolean itemStat) {
+        super(itemCol, itemStat);
+    }
+
+    @Override
+    public int getLaundryTypeID(){
+        return Dress.laundryTypeID;
     }
 
     @Override

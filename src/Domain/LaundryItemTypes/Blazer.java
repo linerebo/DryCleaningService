@@ -5,9 +5,15 @@ import Domain.Adapter;
 public class Blazer extends LaundryItem {
     public static int itemPrice;
     public static int itemTimeToClean;;
+    public static int laundryTypeID = 5;
 
-    public Blazer(int itemId, int laundryType, String itemCol, boolean itemStat) {
-        super(itemId, laundryType, itemCol, itemStat);
+    public Blazer(String itemCol, boolean itemStat) {
+        super(itemCol, itemStat);
+    }
+
+    @Override
+    public int getLaundryTypeID(){
+        return Blazer.laundryTypeID;
     }
 
     @Override

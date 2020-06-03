@@ -233,25 +233,25 @@ public class DB {
             st = connection.createStatement();
             resultSet = st.executeQuery("SELECT * FROM tblLaundryType");
             while(resultSet.next()) {
-                if(resultSet.getString(2).equals("Shirt")){
+                if(resultSet.getInt(1) == Shirt.laundryTypeID){
                     Shirt.itemPrice = resultSet.getInt(3);
                     Shirt.itemTimeToClean = resultSet.getInt(4);
-                } else if (resultSet.getString(2).equals("Blazer")) {
+                } else if (resultSet.getInt(1) == Blazer.laundryTypeID) {
                     Blazer.itemPrice = resultSet.getInt(3);
                     Blazer.itemTimeToClean = resultSet.getInt(4);
-                } else if (resultSet.getString(2).equals("Coat")) {
+                } else if (resultSet.getInt(1) == Coat.laundryTypeID) {
                     Coat.itemPrice = resultSet.getInt(3);
                     Coat.itemTimeToClean = resultSet.getInt(4);
-                } else if (resultSet.getString(2).equals("Tshirt")) {
+                } else if (resultSet.getInt(1) == Tshirt.laundryTypeID) {
                     Tshirt.itemPrice = resultSet.getInt(3);
                     Tshirt.itemTimeToClean = resultSet.getInt(4);
-                } else if (resultSet.getString(2).equals("Dress")) {
+                } else if (resultSet.getInt(1) == Dress.laundryTypeID) {
                     Dress.itemPrice = resultSet.getInt(3);
                     Dress.itemTimeToClean = resultSet.getInt(4);
-                } else if (resultSet.getString(2).equals("Trousers")) {
+                } else if (resultSet.getInt(1) == Trousers.laundryTypeID) {
                     Trousers.itemPrice = resultSet.getInt(3);
                     Trousers.itemTimeToClean = resultSet.getInt(4);
-                } else if (resultSet.getString(2).equals("Carpet")) {
+                } else if (resultSet.getInt(1) == Carpet.laundryTypeID) {
                     Carpet.squareMeterPrice = resultSet.getInt(3);
                     Carpet.itemTimeToClean = resultSet.getInt(4);
                 }
@@ -427,7 +427,7 @@ public class DB {
 
             PreparedStatement ps = connection.prepareStatement("INSERT INTO tblLaundryItem VALUES (?, ?, ?, ?)");
             ps.setInt(1, newItemID);
-            ps.setInt(2, itemToInsert.laundryTypeID);
+            ps.setInt(2, itemToInsert.getLaundryTypeID());
             ps.setString(3, itemToInsert.itemColor);
             ps.setBoolean(4, itemToInsert.itemStatus);
 
