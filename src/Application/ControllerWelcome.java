@@ -1,6 +1,7 @@
 package Application;
 
 import Domain.Adapter;
+import Domain.LaundryItemTypes.LaundryItem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

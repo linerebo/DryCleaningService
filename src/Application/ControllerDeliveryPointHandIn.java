@@ -98,12 +98,10 @@ public class ControllerDeliveryPointHandIn implements Initializable {
             switch (selectedButtonID) {
                 case "radiobuttonShirt":
                     Shirt newShirt = new Shirt(selectedColor, false);
-                    newShirt.storeToDB();
                     basket.add(newShirt);
                     break;
                 case "radiobuttonBlazer":
                     Blazer newBlazer = new Blazer(selectedColor, false);
-                    newBlazer.storeToDB();
                     basket.add(newBlazer);
                     break;
                 case "radiobuttonCarpet":
@@ -113,29 +111,24 @@ public class ControllerDeliveryPointHandIn implements Initializable {
                     }
                     else {
                         Carpet newCarpet = new Carpet(selectedColor, false, (Integer) carpetSize.getSelectionModel().getSelectedItem());
-                        newCarpet.storeToDB();
                         basket.add(newCarpet);
                         break;
                     }
                 case "radiobuttonCoat":
                     Coat newCoat = new Coat(selectedColor, false);
-                    newCoat.storeToDB();
                     basket.add(newCoat);
                     System.out.println("We have a coat");
                     break;
                 case "radiobuttonDress":
                     Dress newDress = new Dress(selectedColor, false);
-                    newDress.storeToDB();
                     basket.add(newDress);
                     break;
                 case "radiobuttonTrousers":
                     Trousers newTrousers = new Trousers(selectedColor, false);
-                    newTrousers.storeToDB();
                     basket.add(newTrousers);
                     break;
                 case "radiobuttonTshirt":
                     Tshirt newTshirt = new Tshirt(selectedColor, false);
-                    newTshirt.storeToDB();
                     basket.add(newTshirt);
                     break;
             }
@@ -154,6 +147,9 @@ public class ControllerDeliveryPointHandIn implements Initializable {
      *
      */
     public void handleButtonSaveAndPrint(ActionEvent event) throws IOException{
+        for(int i=0; i<basket.size(); i++) {
+            basket.get(i).storeToDB();
+        }
         Order newOrder = new Order(0, selectedCustomer, dp);
         newOrder.items.addAll(basket);
         newOrder.storeToDB();           //newOrder is stored in DB
