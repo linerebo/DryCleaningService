@@ -3,6 +3,7 @@ package Application;
 import Domain.Adapter;
 import Domain.Customer;
 import Domain.DeliveryPoint;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,12 +23,9 @@ public class ControllerDeliveryPointMenu {
 
     DeliveryPoint dp;
 
-    @FXML
-    MenuButton menuButton1;
-    @FXML
-    MenuItem menuItem3;
-    @FXML
-    Label labelDeliveryPointID, labelDeliveryPointAddress, labelDeliveryPointZipCode, labelDeliveryPointRoute;
+    @FXML MenuButton menuButton1;
+    @FXML MenuItem menuItem3;
+    @FXML Label labelDeliveryPointID, labelDeliveryPointAddress, labelDeliveryPointZipCode, labelDeliveryPointRoute;
 
     public void handleButtonHome(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));

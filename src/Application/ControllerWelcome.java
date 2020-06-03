@@ -1,18 +1,21 @@
 package Application;
 
-import Domain.Adapter;
-import Domain.LaundryItemTypes.LaundryItem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-
+import javafx.scene.control.*;
 import java.io.IOException;
+import javafx.fxml.FXML;
+
+
 
 public class ControllerWelcome {
+
+    @FXML MenuButton menuButton1;
+    @FXML MenuItem menuItem3;
 
     public void handleButtonDeliveryPoint(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/DeliveryPointLogin.fxml"));

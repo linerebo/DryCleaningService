@@ -155,8 +155,9 @@ public class ControllerDeliveryPointHandIn implements Initializable {
         newOrder.storeToDB();           //newOrder is stored in DB
         Adapter.cleaningCentralInstance().orders.add(newOrder);     //newOrder is stored in orders
         System.out.println("Your Order was placed");
-        System.out.println("Print Orderslip: \n" + "Delivery Point: " + dp + "  \n" + "Customer: " + selectedCustomer + " customerID: " + selectedCustomer.customerID +
-                "\n" + basket + "\nTotalPrice: " + newOrder.totalPriceOfOrder() + " Kroner");
+        System.out.println("Print Orderslip: \n" + "Order Number: " + newOrder.orderID + "\n" +
+                "Delivery Point: " + dp + "  \n" + "Customer: " + selectedCustomer + " customerID: " +
+                selectedCustomer.customerID + "\n" + basket + "\nTotalPrice: " + newOrder.totalPriceOfOrder() + " Kroner");
         System.out.println("Send Email");
         basket.clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DeliveryPointMenu.fxml"));

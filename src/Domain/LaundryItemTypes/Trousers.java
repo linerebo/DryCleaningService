@@ -30,6 +30,8 @@ public class Trousers extends LaundryItem {
         return "Trousers  " + itemColor + " " + "   Price:  " + itemPrice + " Kroner";
     }
 
+    public String toWashableLabel() {return "Trousers  " + itemColor + " ItemID: " + itemID;}
+
     @Override
     public void storeToDB(){
         itemID = Adapter.DBInstance().insertNewLaundryItem(this);

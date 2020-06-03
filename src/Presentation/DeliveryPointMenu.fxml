@@ -42,7 +42,7 @@
               <items>
                 <MenuItem mnemonicParsing="false" style="-fx-font-size: 25; -fx-background-color: peru;" text="MENU" />
                 <MenuItem mnemonicParsing="false" style="-fx-font-size: 25; -fx-background-color: peru;" text="LOGOUT" />
-                  <MenuItem fx:id="menuItem3" mnemonicParsing="false" style="-fx-font-size: 25; -fx-background-color: peru;" text="HOME" />
+                  <MenuItem fx:id="menuItem3" mnemonicParsing="false" onAction="#handleButtonHome" style="-fx-font-size: 25; -fx-background-color: peru;" text="HOME" />
               </items>
                <font>
                   <Font size="30.0" />

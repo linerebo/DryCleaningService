@@ -14,16 +14,10 @@ import java.io.IOException;
 
 public class ControllerDeliveryPointLogin {
 
-    @FXML
-    MenuButton menuButton1;
-    @FXML
-    MenuItem menuItem3;
-    @FXML
-    ComboBox deliveryPointCombobox;
-    @FXML
-    TextField txtFieldInputDeliveryPointPassword, txtFieldInputDeliveryPointUserID, txtFieldInputDeliveryPointID;
-    @FXML
-    Button buttonGoDeliveryPointLogin;
+    @FXML MenuButton menuButton1;
+    @FXML MenuItem menuItem3;
+    @FXML TextField txtFieldInputDeliveryPointPassword, txtFieldInputDeliveryPointUserID, txtFieldInputDeliveryPointID;
+    @FXML Button buttonGoDeliveryPointLogin;
 
 
     public void handleButtonHome(ActionEvent event) throws IOException {
@@ -42,7 +36,7 @@ public class ControllerDeliveryPointLogin {
         String inputUserIDString = txtFieldInputDeliveryPointUserID.getText();
         int inputUserIDInt = Integer.parseInt(inputUserIDString);
 
-        // getText from text field txtFieldInputCanteenPassword
+        // getText from text field txtFieldInputDeliveryPointPassword
         String inPassword = txtFieldInputDeliveryPointPassword.getText();
         System.out.println("input: " + inPassword); // test -gets the right input? yes
 

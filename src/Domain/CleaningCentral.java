@@ -69,6 +69,16 @@ public class CleaningCentral {
         return tmpCustomer;
     }
 
+    public Order getOrderFromID(int id){
+        Order tmpOrder = null;
+        for(int i = 0; i< orders.size(); i++){
+            if(id == orders.get(i).orderID){
+                tmpOrder = orders.get(i);
+            }
+        }
+        return tmpOrder;
+    }
+
     public ObservableList<Customer> getCustomersFromName(String inputName) {
         ObservableList<Customer> resultListCustomers = FXCollections.observableArrayList();
         for (int i = 0; i < customers.size(); i++) {
