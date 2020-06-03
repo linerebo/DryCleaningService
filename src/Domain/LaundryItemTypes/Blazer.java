@@ -4,7 +4,7 @@ import Domain.Adapter;
 
 public class Blazer extends LaundryItem {
     public static int itemPrice;
-    public static int itemTimeToClean;;
+    public static int itemTimeToClean;
     public static int laundryTypeID = 5;
 
     public Blazer(String itemCol, boolean itemStat) {

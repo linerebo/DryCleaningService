@@ -74,7 +74,7 @@ public class ControllerDriverLogin {
                 controller.LabelCurrentLoadedOrders.setText("Hello " + controller.su.systemUserFirstName + ", you have currently loaded these orders:");
                 controller.labelTotalOrdersLoaded.setText("Total: " + controller.ordersOnTruck.size());
                 Scene scene = new Scene(menuScreen);
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
                 window.setScene(scene);
                 window.show();
             }
