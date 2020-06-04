@@ -20,6 +20,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -134,7 +135,7 @@ public class DB {
             st = connection.createStatement();
             resultSet = st.executeQuery("SELECT * FROM tblLaundryItem");
             while (resultSet.next()) {
-                //laundryItems.add(new LaundryItem(resultSet.getInt(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getBoolean(4)));
+               // laundryItems.add(new LaundryItem(resultSet.getInt(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getBoolean(4)));
             }
             st.close();
             closeConnection();
@@ -393,7 +394,7 @@ public class DB {
 
     /**
      * The method will return a new value from the sequence in the database, which will be used as ID for a new record
-     * in any of the tables. TODO: change prep. statement 1 to stored procedure.
+     * in any of the tables.
      * @return an integer
      */
     public int generateNewID() {
@@ -401,7 +402,7 @@ public class DB {
         int newID = 0;
         try {
             establishConnection();
-            PreparedStatement ps = connection.prepareStatement("SELECT NEXT VALUE FOR dbo.SequenceGenerateIDs");
+            PreparedStatement ps = connection.prepareStatement("EXECUTE sp_generateNewID");
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
                 newID = resultSet.getInt(1);
@@ -441,27 +442,6 @@ public class DB {
         }
 
         return newItemID;
-    }
-
-    /**
-     * the mehtod takes the ID of the current selected item on the listview and deletes it form the database.
-     * @param itemToDelete
-     */
-    public void deleteLaundryItem(int itemToDelete) {
-        try {
-            establishConnection();
-
-            PreparedStatement ps = connection.prepareStatement("DELETE FROM tblLaundryItem WHERE fldLaundryItemID = (?)");
-            ps.setInt(1, itemToDelete);
-
-            int rowsAffected = ps.executeUpdate();
-            System.out.println("delete succesful, rows affected: " + rowsAffected);
-
-            ps.close();
-            closeConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -540,12 +520,70 @@ public class DB {
                 e.printStackTrace();
             }
         }
+        // call create Event function TODO: find a better way to get eventType and system userID
+        insertNewEvent(newOrderID, 15, 24); // the creation of a new order has the eventType 15,
+                                                                // the shop assistant has the systemUserID 24
 
-        // TODO call create Event function, see below
         return newOrderID;       //return newOrderID
     }
 
-    // TODO: create a new event for tblEventHistory: SP with all parameters to insert.
+    /**
+     * The method creates a new event and updates previous events for the same orderID
+     * @param orderID
+     * @param eventType
+     * @param systemUser
+     * @return
+     */
+    public int insertNewEvent(int orderID, int eventType, int systemUser) {
+        int newEventID = generateNewID();
+
+        try {
+            establishConnection();
+
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO tblEventHistory VALUES (?, ?, ?, ?, ?, ?)");
+            ps.setInt(1, newEventID);
+            ps.setInt(2, orderID);
+            ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            ps.setInt(4, eventType);
+            ps.setInt(5, systemUser);
+            ps.setBoolean(6, true);
+
+            ps.addBatch();
+            ps.executeBatch();
+
+            ps.close();
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //if it is not an event for creating a new order, update all the other events with same orderID to set current status to false.
+        if (eventType != 15) {
+
+            try {
+                establishConnection();
+
+                for (int i = Adapter.cleaningCentralInstance().eventHistories.size() - 1; i >= 0; i--) {
+
+                    EventHistory eventHistoryToCheck = Adapter.cleaningCentralInstance().eventHistories.get(i);
+
+                    if (eventHistoryToCheck.orderID == orderID) {
+
+                        PreparedStatement ps = connection.prepareStatement("UPDATE tblEventHistory SET fldEventHistoryCurrentStatus = (?) WHERE fldOrderID = (?)");
+                        ps.setBoolean(1, false);
+                        ps.setInt(2, orderID);
+
+                        ps.executeUpdate();
+                        ps.close();
+                        closeConnection();
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return newEventID;
+    }
 
     /**
      * The method inserts a new customer objects into the database. First it gets a new value from the sequence,
