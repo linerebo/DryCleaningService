@@ -47,7 +47,8 @@ public class ControllerCleaningCentralWashLabels {
         for(int i = 0; i < selectedOrder.items.size(); i++){
         System.out.println("\nPrint Washable label:\n" +
                 "************************************\n" +
-                "Order No: " + selectedOrderID + "\n" +
+                (i+1) + " of " + selectedOrder.items.size() +
+                "\nOrder No: " + selectedOrderID + "\n" +
                 selectedOrder.items.get(i).toWashableLabel() + "\n" +
                 "************************************\n");
         }
