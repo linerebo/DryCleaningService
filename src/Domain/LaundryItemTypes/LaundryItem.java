@@ -1,6 +1,7 @@
 package Domain.LaundryItemTypes;
 
 import Domain.Adapter;
+import Domain.Order;
 
 public abstract class LaundryItem {
     public int itemID;
@@ -24,4 +25,16 @@ public abstract class LaundryItem {
         itemID = Adapter.DBInstance().insertNewLaundryItem(this);
     }
 
+    public void updateToDB(){
+        Adapter.DBInstance().updataLaundryItem(this);
+    }
+
+    public Order getOrderFromItem(){
+        for(int i=0; i<Adapter.cleaningCentralInstance().orders.size(); i++){
+            if(Adapter.cleaningCentralInstance().orders.get(i).isItemInOrder(itemID)){
+                return Adapter.cleaningCentralInstance().orders.get(i);
+            }
+        }
+        return null;
+    }
 }

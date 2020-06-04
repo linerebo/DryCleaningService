@@ -62,12 +62,25 @@ public class Order {
     }
 
     /**
-     * This method returns true if all items in order are cleaned.
+     * This method returns true if all items in an order are cleaned.
      * @return
      */
-    public boolean statusOfOrder(){
+    public boolean statusOfOrderAllCleaned(){
         for(int i=0; i<items.size(); i++){
             if(items.get(i).itemStatus == false){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * This method returns true if all items in an order are not cleaned yet.
+     * @return
+     */
+    public boolean statusOfOrderAllNoncleaned(){
+        for(int i=0; i<items.size(); i++){
+            if(items.get(i).itemStatus == true){
                 return false;
             }
         }

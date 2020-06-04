@@ -467,6 +467,11 @@ public class DB {
         return newItemID;
     }
 
+    //TODO SQL for updata item status after cleaning
+    public void updataLaundryItem(LaundryItem laundryItemToUpdate){
+
+    }
+
     /**
      * The method inserts a new record for an item size.
      * @param laundryItemID the ID of the item which got entered with a size

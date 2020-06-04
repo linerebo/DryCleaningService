@@ -80,7 +80,7 @@
                   <Font size="32.0" />
                </font>
             </Label>
-            <Label layoutX="704.0" layoutY="677.0" prefHeight="71.0" prefWidth="400.0" style="-fx-background-color: lightgray;" text=" order status">
+            <Label fx:id="labelOrderStatusFirstItem" layoutX="711.0" layoutY="644.0" prefHeight="71.0" prefWidth="400.0" style="-fx-background-color: lightgray;" textFill="RED">
                <font>
                   <Font name="System Italic" size="23.0" />
                </font>
@@ -88,6 +88,11 @@
             <Label fx:id="labelItemDetails" layoutX="704.0" layoutY="274.0" prefHeight="58.0" prefWidth="407.0" style="-fx-background-color: lightgray;">
                <font>
                   <Font size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelOrderStatusAllCleaned" layoutX="711.0" layoutY="715.0" prefHeight="71.0" prefWidth="400.0" style="-fx-background-color: lightgray;" textFill="RED">
+               <font>
+                  <Font name="System Italic" size="23.0" />
                </font>
             </Label>
          </children>

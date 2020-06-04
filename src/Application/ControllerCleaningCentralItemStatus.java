@@ -19,7 +19,7 @@ public class ControllerCleaningCentralItemStatus {
     @FXML MenuItem menuItem3;
     @FXML TextField txtFieldEnterItemNo;
     @FXML ListView listViewItemEventDetails;
-    @FXML Label labelItemDetails;
+    @FXML Label labelItemDetails, labelOrderStatusFirstItem, labelOrderStatusAllCleaned;
     LaundryItem scannedItem;
 
     public void handleButtonHome(ActionEvent event) throws IOException {
@@ -31,12 +31,23 @@ public class ControllerCleaningCentralItemStatus {
     }
 
     public void handleButtonGo(){
+        labelOrderStatusAllCleaned.setText("");
+        labelOrderStatusFirstItem.setText("");
         int scannedItemID = Integer.parseInt(txtFieldEnterItemNo.getText());
         scannedItem = Adapter.cleaningCentralInstance().getItemFromID(scannedItemID);
         labelItemDetails.setText(scannedItem.toWashableLabel());
     }
 
     public void handleButtonItemCleaned(){
+        Order orderInProcess = scannedItem.getOrderFromItem();
+        if(orderInProcess.statusOfOrderAllNoncleaned()){
+            labelOrderStatusFirstItem.setText("First item in this order is cleaned. \nLabel for return bag is generated");
+            System.out.println("Print label for return bag: ");
+        }
         scannedItem.itemStatus = true;
+        scannedItem.updateToDB();
+        if(orderInProcess.statusOfOrderAllCleaned()){
+            labelOrderStatusAllCleaned.setText("All items in this order are cleaned. \nThe Order is now ready for pick-up");
+        }
     }
 }
