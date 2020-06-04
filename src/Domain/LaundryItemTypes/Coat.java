@@ -30,7 +30,8 @@ public class Coat extends LaundryItem {
         return "Coat  " + itemColor + " " + "   Price:  " + itemPrice + " Kroner";
     }
 
-    public String toWashableLabel() {return "Coat  " + itemColor + " ItemID: " + itemID;}
+    @Override
+    public String toWashableLabel() {return "Coat  " + itemColor + " Item No: " + itemID;}
 
     @Override
     public void storeToDB(){

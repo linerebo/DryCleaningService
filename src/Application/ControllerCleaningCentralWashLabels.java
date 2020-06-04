@@ -38,15 +38,17 @@ public class ControllerCleaningCentralWashLabels {
         selectedOrder = Adapter.cleaningCentralInstance().getOrderFromID(selectedOrderID);
         itemsInOrder.setAll(selectedOrder.items);
         listViewOrderDetails.setItems(itemsInOrder);
-        System.out.println("Print " + itemsInOrder + selectedOrder);
     }
 
+    /**
+     * This method prints out a washable label for each item in the selected order
+     */
     public void handleButtonPrintLabels(){
         for(int i = 0; i < selectedOrder.items.size(); i++){
-        System.out.println("Print Washable label:\n" +
+        System.out.println("\nPrint Washable label:\n" +
                 "************************************\n" +
                 "Order No: " + selectedOrderID + "\n" +
-                selectedOrder.items.get(i) + "\n" +
+                selectedOrder.items.get(i).toWashableLabel() + "\n" +
                 "************************************\n");
         }
     }
