@@ -35,15 +35,16 @@ public class CleaningCentral {
         System.out.println("amount of customers: " + customers.size()); // test print
         deliveryPoints = Adapter.DBInstance().getDeliveryPointsFromDB();
         System.out.println("amount of deliveryPoints: " + deliveryPoints.size()); // test print
+        orders = Adapter.DBInstance().getOrdersFromDB();
         departments = Adapter.DBInstance().getDepartmentsFromDB();
         eventHistories = Adapter.DBInstance().getEventHistoriesFromDB();
         System.out.println("amount of eventHistories: " + eventHistories.size()); // test print
         eventTypes = Adapter.DBInstance().getEventTypesFromDB();
         // laundry_orders
-        laundryItems = Adapter.DBInstance().getLaundryItemsFromDB();
         Adapter.DBInstance().getLaundryTypesFromDB();
+        Adapter.DBInstance().getLaundryItemsFromDB();
+
         //NotAssignableLaundryItems
-        orders = Adapter.DBInstance().getOrdersFromDB();
         payments = Adapter.DBInstance().getPaymentsFromDB();
         //postalCode
         systemUsers = Adapter.DBInstance().getSystemUsersFromDB();
@@ -77,6 +78,16 @@ public class CleaningCentral {
             }
         }
         return tmpOrder;
+    }
+
+    public LaundryItem getItemFromID(int id){
+        LaundryItem tmpItem = null;
+        for(int i=0; i<orders.size(); i++){
+            if(orders.get(i).isItemInOrder(id)){
+                return orders.get(i).getItemFromItemID(id);
+            }
+        }
+        return null;
     }
 
     public ObservableList<Customer> getCustomersFromName(String inputName) {

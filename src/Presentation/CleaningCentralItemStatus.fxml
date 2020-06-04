@@ -50,8 +50,11 @@
                   <Font name="Cambria" size="30.0" />
                </font>
             </Button>
-            <TextField fx:id="txtFieldEnterOrderNo" layoutX="245.0" layoutY="274.0" prefHeight="58.0" prefWidth="366.0" />
-            <Label layoutX="245.0" layoutY="228.0" prefHeight="29.0" prefWidth="366.0" text="Scan Order/Enter Order Number:">
+            <TextField fx:id="txtFieldEnterItemNo" layoutX="245.0" layoutY="274.0" prefHeight="58.0" prefWidth="366.0" promptText="item number">
+               <font>
+                  <Font name="System Italic" size="25.0" />
+               </font></TextField>
+            <Label layoutX="245.0" layoutY="228.0" prefHeight="29.0" prefWidth="366.0" text="Scan Item/Enter Item Number:">
                <font>
                   <Font size="25.0" />
                </font>
@@ -61,8 +64,8 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <ListView fx:id="listViewOrderDetails" layoutX="704.0" layoutY="274.0" prefHeight="272.0" prefWidth="407.0" />
-            <Button layoutX="856.0" layoutY="581.0" mnemonicParsing="false" onAction="#handleButtonPrintLabels" prefHeight="58.0" prefWidth="255.0" style="-fx-background-color: gray;" text="SAVE" textFill="#fffafa">
+            <ListView fx:id="listViewItemEventDetails" layoutX="704.0" layoutY="328.0" prefHeight="218.0" prefWidth="407.0" />
+            <Button layoutX="856.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleButtonItemCleaned" prefHeight="58.0" prefWidth="255.0" style="-fx-background-color: gray;" text="ITEM CLEANED" textFill="#fffafa">
                <font>
                   <Font size="25.0" />
                </font>
@@ -77,9 +80,14 @@
                   <Font size="32.0" />
                </font>
             </Label>
-            <Label layoutX="704.0" layoutY="683.0" prefHeight="65.0" prefWidth="400.0" style="-fx-background-color: lightgray;" text="order status">
+            <Label layoutX="704.0" layoutY="677.0" prefHeight="71.0" prefWidth="400.0" style="-fx-background-color: lightgray;" text=" order status">
                <font>
                   <Font name="System Italic" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelItemDetails" layoutX="704.0" layoutY="274.0" prefHeight="58.0" prefWidth="407.0" style="-fx-background-color: lightgray;">
+               <font>
+                  <Font size="25.0" />
                </font>
             </Label>
          </children>

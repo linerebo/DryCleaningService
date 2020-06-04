@@ -32,6 +32,50 @@ public class Order {
         return totalPriceOrder;
     }
 
+    /**
+     * This method checks if an item is found in an order.
+     * @param itemID
+     * @return
+     */
+    public boolean isItemInOrder(int itemID){
+        for(int i=0; i<items.size(); i++){
+            if(items.get(i).itemID == itemID){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public LaundryItem getItemFromItemID(int id){
+        LaundryItem tmpItem = null;
+        for(int i=0; i<items.size(); i++){
+            if(id == items.get(i).itemID){
+                tmpItem = items.get(i);
+            }
+        }
+        return tmpItem;
+    }
+
+    /**
+     * This method returns true if all items in order are cleaned.
+     * @return
+     */
+    public boolean statusOfOrder(){
+        for(int i=0; i<items.size(); i++){
+            if(items.get(i).itemStatus == false){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
    /* public void sendEmail(){
         String to = "abcd@gmail.com";
         String from = "cleaningcentral@fraemohs.de";

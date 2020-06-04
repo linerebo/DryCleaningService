@@ -30,7 +30,7 @@
                </image>
             </ImageView>
             <Label layoutX="2.0" layoutY="1.0" prefHeight="71.0" prefWidth="1300.0" style="-fx-background-color: lightgray;" />
-            <Label layoutX="245.0" layoutY="129.0" text="GENERATE LABELS">
+            <Label layoutX="245.0" layoutY="117.0" text="GENERATE WASHABLE LABELS">
                <font>
                   <Font size="36.0" />
                </font>
@@ -50,7 +50,10 @@
                   <Font name="Cambria" size="30.0" />
                </font>
             </Button>
-            <TextField fx:id="txtFieldEnterOrderNo" layoutX="245.0" layoutY="274.0" prefHeight="58.0" prefWidth="366.0" />
+            <TextField fx:id="txtFieldEnterOrderNo" layoutX="245.0" layoutY="274.0" prefHeight="58.0" prefWidth="366.0" promptText="order number">
+               <font>
+                  <Font name="System Italic" size="24.0" />
+               </font></TextField>
             <Label layoutX="245.0" layoutY="228.0" prefHeight="29.0" prefWidth="366.0" text="Scan Order/Enter Order Number:">
                <font>
                   <Font size="25.0" />

@@ -122,28 +122,51 @@ public class DB {
 
         } catch (SQLException e) {
         }
-
         return orders;
     }
 
-    public ArrayList<LaundryItem> getLaundryItemsFromDB() {
-        ArrayList<LaundryItem> laundryItems = new ArrayList<>();
+    public void getLaundryItemsFromDB() {
         Statement st;
         ResultSet resultSet;
         try {
             establishConnection();
             st = connection.createStatement();
-            resultSet = st.executeQuery("SELECT * FROM tblLaundryItem");
+            resultSet = st.executeQuery("SELECT * FROM  (tblLaundryItem INNER JOIN tblLaundry_Order ON tblLaundryItem.fldLaundryItemID = tblLaundry_Order.fldLaundryItemID) LEFT JOIN tblLaundrySize ON tblLaundryItem.fldLaundryItemID = tblLaundrySize.fldLaundryItemID");
             while (resultSet.next()) {
-               // laundryItems.add(new LaundryItem(resultSet.getInt(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getBoolean(4)));
+                if(resultSet.getInt(2) == Shirt.laundryTypeID){
+                    Shirt newShirt = new Shirt(resultSet.getString(3), resultSet.getBoolean(4));
+                    newShirt.itemID = resultSet.getInt(1);
+                    Adapter.cleaningCentralInstance().getOrderFromID(resultSet.getInt(7)).items.add(newShirt);
+                } else if (resultSet.getInt(2) == Blazer.laundryTypeID) {
+                    Blazer newBlazer = new Blazer(resultSet.getString(3), resultSet.getBoolean(4));
+                    newBlazer.itemID = resultSet.getInt(1);
+                    Adapter.cleaningCentralInstance().getOrderFromID(resultSet.getInt(7)).items.add(newBlazer);
+                } else if (resultSet.getInt(2) == Coat.laundryTypeID) {
+                    Coat newCoat = new Coat(resultSet.getString(3), resultSet.getBoolean(4));
+                    newCoat.itemID = resultSet.getInt(1);
+                    Adapter.cleaningCentralInstance().getOrderFromID(resultSet.getInt(7)).items.add(newCoat);
+                } else if (resultSet.getInt(2) == Tshirt.laundryTypeID) {
+                    Tshirt newTshirt = new Tshirt(resultSet.getString(3), resultSet.getBoolean(4));
+                    newTshirt.itemID = resultSet.getInt(1);
+                    Adapter.cleaningCentralInstance().getOrderFromID(resultSet.getInt(7)).items.add(newTshirt);
+                } else if (resultSet.getInt(2) == Dress.laundryTypeID) {
+                    Dress newDress = new Dress(resultSet.getString(3), resultSet.getBoolean(4));
+                    newDress.itemID = resultSet.getInt(1);
+                    Adapter.cleaningCentralInstance().getOrderFromID(resultSet.getInt(7)).items.add(newDress);
+                } else if (resultSet.getInt(2) == Trousers.laundryTypeID) {
+                    Trousers newTrousers = new Trousers(resultSet.getString(3), resultSet.getBoolean(4));
+                    newTrousers.itemID = resultSet.getInt(1);
+                    Adapter.cleaningCentralInstance().getOrderFromID(resultSet.getInt(7)).items.add(newTrousers);
+                } else if (resultSet.getInt(2) == Carpet.laundryTypeID) {
+                    Carpet newCarpet = new Carpet(resultSet.getString(3), resultSet.getBoolean(4), resultSet.getInt(10));
+                    newCarpet.itemID = resultSet.getInt(1);
+                    Adapter.cleaningCentralInstance().getOrderFromID(resultSet.getInt(7)).items.add(newCarpet);
+                }
             }
             st.close();
             closeConnection();
-
         } catch (SQLException e) {
         }
-
-        return laundryItems;
     }
 
     public ArrayList<DeliveryPoint> getDeliveryPointsFromDB() {
