@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -37,7 +38,7 @@
             </Label>
             <Label layoutX="899.0" layoutY="110.0" text="Driver:">
                <font>
-                  <Font name="System Italic" size="24.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
             <Label fx:id="labelShowDriverNameAndID" layoutX="995.0" layoutY="117.0" text="show driver name and ID">
@@ -69,24 +70,24 @@
                   <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="233.0" layoutY="260.0" text="Orders waiting for Pick-Up:">
+            <Label layoutX="233.0" layoutY="280.0" text="Orders waiting for Pick-Up:">
                 <font>
-                    <Font size="24.0" />
+                    <Font size="18.0" />
                 </font>
             </Label>
-            <ListView layoutX="233.0" layoutY="300.0" prefHeight="400.0" prefWidth="250.0" />
-            <TextField layoutX="566.0" layoutY="300.0" prefHeight="250.0" prefWidth="250.0" promptText="scan/enter loaded order">
+            <ListView fx:id="listViewWaitingOrders" layoutX="233.0" layoutY="320.0" onMouseClicked="#handleListViewWaitingOrders" prefHeight="400.0" prefWidth="250.0" />
+            <TextArea fx:id="textAreaSelectedOrder" layoutX="566.0" layoutY="320.0" prefHeight="250.0" prefWidth="250.0" promptText="choose order from list or scan order">
                <font>
-                  <Font size="24.0" />
+                  <Font size="18.0" />
                </font>
-            </TextField>
-            <Button layoutX="566.0" layoutY="550.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="250.0" style="-fx-background-color: gray;" text="load on truck" textFill="#fffbfb">
+            </TextArea>
+            <Button fx:id="buttonLoadOnTruck" layoutX="566.0" layoutY="570.0" mnemonicParsing="false" onAction="#handleButtonLoadOnTruck" prefHeight="53.0" prefWidth="250.0" style="-fx-background-color: gray;" text="load on truck" textFill="#fffbfb">
                <font>
                   <Font size="26.0" />
                </font>
             </Button>
-            <ListView layoutX="899.0" layoutY="300.0" prefHeight="400.0" prefWidth="250.0" />
-            <Button layoutX="899.0" layoutY="700.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="250.0" style="-fx-background-color: gray;" text="Loading complete" textFill="#fffbfb">
+            <ListView fx:id="listViewCompletedLoading" layoutX="899.0" layoutY="320.0" prefHeight="400.0" prefWidth="250.0" />
+            <Button fx:id="buttonLoadingCompleted" layoutX="899.0" layoutY="720.0" mnemonicParsing="false" onAction="#handleButtonLoadingCompleted" prefHeight="53.0" prefWidth="250.0" style="-fx-background-color: gray;" text="Loading complete" textFill="#fffbfb">
                 <font>
                     <Font size="26.0" />
                 </font></Button>

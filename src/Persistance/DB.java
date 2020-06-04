@@ -597,9 +597,10 @@ public class DB {
 
                     if (eventHistoryToCheck.orderID == orderID) {
 
-                        PreparedStatement ps = connection.prepareStatement("UPDATE tblEventHistory SET fldEventHistoryCurrentStatus = (?) WHERE fldOrderID = (?)");
+                        PreparedStatement ps = connection.prepareStatement("UPDATE tblEventHistory SET fldEventHistoryCurrentStatus = (?) WHERE fldOrderID = (?) AND NOT fldEventTypeID = (?)");
                         ps.setBoolean(1, false);
                         ps.setInt(2, orderID);
+                        ps.setInt(3, eventType);
 
                         ps.executeUpdate();
                         ps.close();
@@ -610,6 +611,7 @@ public class DB {
                 e.printStackTrace();
             }
         }
+        Adapter.cleaningCentralInstance().eventHistories = Adapter.DBInstance().getEventHistoriesFromDB(); // update list of eventHistories
         return newEventID;
     }
 

@@ -167,4 +167,31 @@ public class CleaningCentral {
         System.out.println("order objects on truck: " + ordersOnTruck);
         return ordersOnTruck;
     }
+
+    public ObservableList getWaitingOrdersFromDeliveryPoint(int deliveryPointID) {
+
+        ArrayList<Order> orderObjectsCreatedOnDeliveryPoint = new ArrayList();
+        // get orders with matching delivery point ID from tblOrder
+        for (int i = orders.size() - 1; i >= 0; i--) {
+            Order o = orders.get(i);
+            if (o.orderDeliveryPoint.deliveryPointID == deliveryPointID) {
+                orderObjectsCreatedOnDeliveryPoint.add(o);
+            }
+        }
+        System.out.println("all order objects, which were created at this delivery point: " + orderObjectsCreatedOnDeliveryPoint);
+        // for the found orders, find out in the event table, if they have eventtype 15(order created) and current status true.
+        ArrayList orderIdsOnDeliveryPoint = new ArrayList(); // an arraylist of OrderIDs
+        for (int j = eventHistories.size() - 1; j >= 0; j--) {
+            EventHistory e = eventHistories.get(j);
+            for(int k = orderObjectsCreatedOnDeliveryPoint.size() - 1; k >= 0; k--) {
+                Order oID = orderObjectsCreatedOnDeliveryPoint.get(k);
+                if (e.orderID == oID.orderID && e.eventTypeID == 15 && e.eventCurrentStatus == true) {
+                    orderIdsOnDeliveryPoint.add(e.orderID);
+                }
+            }
+        }
+        ObservableList waitingOrderIds = FXCollections.observableArrayList(orderIdsOnDeliveryPoint);
+        System.out.println("order IDs waiting for pick up: " + waitingOrderIds);
+        return waitingOrderIds;
+    }
 }
