@@ -4,6 +4,7 @@ package Application;
 import Domain.Adapter;
 import Domain.LaundryItemTypes.LaundryItem;
 import Domain.Order;
+import Domain.SystemUser.SystemUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import java.io.IOException;
 
 public class ControllerCleaningCentralItemStatus {
 
+    public SystemUser su;
     @FXML MenuButton menuButton1;
     @FXML MenuItem menuItem3;
     @FXML TextField txtFieldEnterItemNo;
@@ -53,6 +55,8 @@ public class ControllerCleaningCentralItemStatus {
         scannedItem.updateToDB();
         if(orderInProcess.statusOfOrderAllCleaned()){
             labelOrderStatusAllCleaned.setText("All items in this order are cleaned. \nThe Order is now ready for pick-up");
+            // update Events for the whole order to finished cleaning
+            Adapter.DBInstance().insertNewEvent(orderInProcess.orderID, 18, su.systemUserID); // event type 18 for "cleaning process finished"
         }
     }
 }

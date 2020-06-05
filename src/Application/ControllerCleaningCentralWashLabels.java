@@ -2,6 +2,8 @@ package Application;
 
 import Domain.Adapter;
 import Domain.Order;
+import Domain.SystemUser.SystemUser;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,9 +16,11 @@ import javafx.scene.control.*;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class ControllerCleaningCentralWashLabels {
 
+    public SystemUser su;
     @FXML ListView listViewOrderDetails;
     @FXML MenuButton menuButton1;
     @FXML MenuItem menuItem3;
@@ -52,5 +56,6 @@ public class ControllerCleaningCentralWashLabels {
                 selectedOrder.items.get(i).toWashableLabel() + "\n" +
                 "************************************\n");
         }
+        Adapter.DBInstance().insertNewEvent(selectedOrder.orderID, 17, su.systemUserID); // event type 17 for "cleaning process started"
     }
 }

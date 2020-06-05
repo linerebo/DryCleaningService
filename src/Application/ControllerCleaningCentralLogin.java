@@ -47,6 +47,8 @@ public class ControllerCleaningCentralLogin {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/CleaningCentralMenu.fxml"));
             Parent menuScreen = loader.load();
             ControllerCleaningCentralMenu controller = (ControllerCleaningCentralMenu) loader.getController();
+            controller.su = Adapter.cleaningCentralInstance().getSystemUserFromID(inputUserIDInt);
+
             Scene scene = new Scene(menuScreen);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(scene);
