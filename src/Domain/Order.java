@@ -24,6 +24,10 @@ public class Order {
         orderID = Adapter.DBInstance().insertNewOrder(this);
     }
 
+    public String toString(){
+        return "Order No: " + orderID + "\nDelivery Point: " + orderDeliveryPoint + "\nCustomer: " + orderCustomer;
+    }
+
     public int totalPriceOfOrder(){
         int totalPriceOrder = 0;
         for(int i=0; i<items.size(); i++){

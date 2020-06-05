@@ -42,7 +42,12 @@ public class ControllerCleaningCentralItemStatus {
         Order orderInProcess = scannedItem.getOrderFromItem();
         if(orderInProcess.statusOfOrderAllNoncleaned()){
             labelOrderStatusFirstItem.setText("First item in this order is cleaned. \nLabel for return bag is generated");
-            System.out.println("Print label for return bag: ");
+            System.out.println("\nPrint label for return bag: \n" +
+                               "**************************************************\n" +
+                               orderInProcess.toString() +
+                                "\namount of items in order: " + orderInProcess.items.size() +
+                                "\nRoute: " + orderInProcess.orderDeliveryPoint.route +
+                                "\n**************************************************\n");
         }
         scannedItem.itemStatus = true;
         scannedItem.updateToDB();

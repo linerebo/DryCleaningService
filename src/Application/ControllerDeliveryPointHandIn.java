@@ -158,7 +158,7 @@ public class ControllerDeliveryPointHandIn implements Initializable {
         System.out.println("Print Orderslip: \n" + "Order Number: " + newOrder.orderID + "\n" +
                 "Delivery Point: " + dp + "  \n" + "Customer: " + selectedCustomer + " customerID: " +
                 selectedCustomer.customerID + "\n" + basket + "\nTotal Price: " + newOrder.totalPriceOfOrder() + " Kroner");
-        System.out.println("Send Email");
+        System.out.println("Send Email to customer");
         basket.clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DeliveryPointMenu.fxml"));
         Parent menuScreen = loader.load();

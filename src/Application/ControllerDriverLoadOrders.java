@@ -2,6 +2,7 @@ package Application;
 
 import Domain.Adapter;
 import Domain.DeliveryPoint;
+import Domain.Order;
 import Domain.SystemUser.SystemUser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
