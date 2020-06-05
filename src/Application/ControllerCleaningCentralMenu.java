@@ -47,4 +47,14 @@ public class ControllerCleaningCentralMenu {
         window.show();
     }
 
+    public void handleButtonStatistics(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/CleaningCentralStatistics.fxml"));
+        Parent menuScreen = loader.load();
+        ControllerCleaningCentralStatistics controller = (ControllerCleaningCentralStatistics) loader.getController();
+        controller.su = su;
+        Scene Scene = new Scene(menuScreen);
+        Stage window = (Stage) menuButton1.getScene().getWindow();
+        window.setScene(Scene);
+        window.show();
+    }
 }
