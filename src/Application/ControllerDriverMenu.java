@@ -21,14 +21,10 @@ public class ControllerDriverMenu {
 
     public SystemUser su;
     public ObservableList<Order> ordersOnTruck;
-    @FXML
-    MenuButton menuButton1;
-    @FXML
-    MenuItem menuItem3;
-    @FXML
-    Label LabelCurrentLoadedOrders, labelTotalOrdersLoaded;
-    @FXML
-    ListView listViewOrdersCurrentlyLoaded;
+    @FXML MenuButton menuButton1;
+    @FXML MenuItem menuItem3;
+    @FXML Label LabelCurrentLoadedOrders, labelTotalOrdersLoaded;
+    @FXML ListView listViewOrdersCurrentlyLoaded;
 
     public void handleButtonHome(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));

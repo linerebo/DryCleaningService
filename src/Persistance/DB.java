@@ -431,6 +431,8 @@ public class DB {
                 newID = resultSet.getInt(1);
                 System.out.println("new value from DB: " + newID);
             }
+            ps.close();
+            closeConnection();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -470,6 +472,18 @@ public class DB {
     //TODO SQL for updata item status after cleaning
     public void updataLaundryItem(LaundryItem laundryItemToUpdate){
 
+        try {
+            establishConnection();
+            PreparedStatement ps = connection.prepareStatement("UPDATE tblLaundryItem SET fldLaundryItemStatus = (?) WHERE fldLaundryItemID = (?)");
+            ps.setBoolean(1, true);
+            ps.setInt(2, laundryItemToUpdate.itemID);
+
+            ps.executeUpdate();
+            ps.close();
+            closeConnection();
+        } catch (SQLException e) {
+        e.printStackTrace();
+        }
     }
 
     /**
@@ -604,9 +618,9 @@ public class DB {
 
                         ps.executeUpdate();
                         ps.close();
-                        closeConnection();
                     }
                 }
+                closeConnection();
             } catch (SQLException e) {
                 e.printStackTrace();
             }

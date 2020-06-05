@@ -140,7 +140,7 @@ public class CleaningCentral {
      * @param userID of the system user
      * @return an observable List of order objects.
      */
-    public ObservableList<Order> getOrderObjectsOnTruck(int userID) {
+    public ObservableList getOrderObjectsOnTruck(int userID) {
         ArrayList ordersOnTruckID = new ArrayList(); // an arraylist of orderIDs int
         // get all orderID as ints, which are currently on the truck
         for (int i = eventHistories.size() -1; i >= 0; i --) { // loop backwards, so it will not jump one item over when found one. Avoiding index out of bounds exception.
