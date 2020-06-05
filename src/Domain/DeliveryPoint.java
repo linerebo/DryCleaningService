@@ -19,6 +19,6 @@ public class DeliveryPoint {
         route = routeDP;
     }
     public String toString(){
-        return deliveryPointID + "  Address: " + address + ", Zip Code: " + zipCode;
+        return "Delivery Point: " + deliveryPointID + "  Address: " + address + ", Zip Code: " + zipCode;
     }
 }

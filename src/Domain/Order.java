@@ -25,7 +25,7 @@ public class Order {
     }
 
     public String toString(){
-        return "Order No: " + orderID + "\nDelivery Point: " + orderDeliveryPoint + "\nCustomer: " + orderCustomer;
+        return "Order No: " + orderID + "\n" + orderDeliveryPoint + "\nCustomer: " + orderCustomer;
     }
 
     public int totalPriceOfOrder(){

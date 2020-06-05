@@ -26,6 +26,7 @@ public class ControllerDeliveryPointMenu {
     @FXML MenuButton menuButton1;
     @FXML MenuItem menuItem3;
     @FXML Label labelDeliveryPointID, labelDeliveryPointAddress, labelDeliveryPointZipCode, labelDeliveryPointRoute;
+    @FXML Label labelDeliveryPoint;
 
     public void handleButtonHome(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));
@@ -43,6 +44,18 @@ public class ControllerDeliveryPointMenu {
         ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
         allCustomers.setAll(Adapter.cleaningCentralInstance().customers);
         controller.listViewShowCustomers.setItems(allCustomers);
+        Scene Scene = new Scene(menuScreen);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(Scene);
+        window.show();
+    }
+
+    public void handleButtonHandOut(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DeliveryPointHandOut.fxml"));
+        Parent menuScreen = loader.load();
+        ControllerDeliveryPointHandOut controller = (ControllerDeliveryPointHandOut) loader.getController();
+        controller.dp = dp;
+        controller.labelDeliveryPoint.setText(controller.dp.toString());
         Scene Scene = new Scene(menuScreen);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(Scene);

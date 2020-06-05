@@ -41,7 +41,6 @@ public class ControllerDeliveryPointLogin {
         System.out.println("input: " + inPassword); // test -gets the right input? yes
 
         // get Password from DB (string)
-        //String properPassword = "ab";    //.getPasswordDeliveryPoint();
         String properPassword = Adapter.DBInstance().getPasswordSystemUser(inputUserIDInt); // takes in systemUserID as variable from the textfield, see above.
         System.out.println("password from DB: " + properPassword); // test - gets the right password from DB? yes
 
@@ -54,10 +53,7 @@ public class ControllerDeliveryPointLogin {
             if (controller.dp.deliveryPointID == 0) {
                 txtFieldInputDeliveryPointID.setText("wrong Delivery Point ID");
             } else {
-                controller.labelDeliveryPointID.setText(txtFieldInputDeliveryPointID.getText());
-                controller.labelDeliveryPointAddress.setText(controller.dp.address);
-                controller.labelDeliveryPointZipCode.setText(controller.dp.zipCode);
-                controller.labelDeliveryPointRoute.setText(controller.dp.route);
+                controller.labelDeliveryPoint.setText(controller.dp.toString());
                 Scene scene = new Scene(menuScreen);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(scene);
