@@ -7,7 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class CleaningCentral {
@@ -20,7 +19,7 @@ public class CleaningCentral {
     //laundry_Order // not sure if we need this.
     public ArrayList<LaundryItem> laundryItems;
     //public ArrayList<LaundryType> laundryTypes; // No need for this.
-    //public ArrayList<NotAssignableLaundryItem> notAssignableLaundryItems; // no need. directly from DB.
+    //public ArrayList<NotAssignableLaundryItem> notAssignableLaundryItems; // no need. directly from DB for statistics.
     public ArrayList<Order> orders;
     public ArrayList<Payment> payments;
     //public ArrayList<PostalCode> postalCodes; // no need for this
@@ -178,7 +177,6 @@ public class CleaningCentral {
                 orderObjectsCreatedOnDeliveryPoint.add(o);
             }
         }
-        System.out.println("all order objects, which were created at this delivery point: " + orderObjectsCreatedOnDeliveryPoint);
         // for the found orders, find out in the event table, if they have eventtype 15(order created) and current status true.
         ArrayList orderIdsOnDeliveryPoint = new ArrayList(); // an arraylist of OrderIDs
         for (int j = eventHistories.size() - 1; j >= 0; j--) {

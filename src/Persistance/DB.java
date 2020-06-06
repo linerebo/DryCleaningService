@@ -14,6 +14,9 @@ import Domain.Customer;
 import Domain.DeliveryPoint;
 import Domain.Order;
 import Domain.SystemUser.SystemUser;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -362,7 +365,6 @@ public class DB {
     }
 
     // TODO decide if it can be deleted, since there is a list for system users now
-
     /**
      * The method checks if the user exists in the database.
      *
@@ -469,7 +471,6 @@ public class DB {
         return newItemID;
     }
 
-    //TODO SQL for updata item status after cleaning
     public void updataLaundryItem(LaundryItem laundryItemToUpdate){
 
         try {
@@ -662,4 +663,104 @@ public class DB {
         return newCustomerID;  //return newCustomer ID
     }
 
+    /**
+     * The method gets the amount of each group of laundy type handed in, directly from the database.
+     * @return an observable list of Piechart data objects
+     */
+    public ObservableList<PieChart.Data> getPopularItems() {
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+        try {
+            establishConnection();
+            PreparedStatement ps = connection.prepareStatement("EXECUTE sp_getAmountOfShirts");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                PieChart.Data pc = new PieChart.Data("Shirts", resultSet.getInt(1));
+                pieChartData.add(pc);
+            }
+            ps.close();
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            establishConnection();
+            PreparedStatement ps = connection.prepareStatement("EXECUTE sp_getAmountOfBlazers");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                PieChart.Data pc = new PieChart.Data("Blazers", resultSet.getInt(1));
+                pieChartData.add(pc);
+            }
+            ps.close();
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            establishConnection();
+            PreparedStatement ps = connection.prepareStatement("EXECUTE sp_getAmountOfCarpets");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                PieChart.Data pc = new PieChart.Data("Carpets", resultSet.getInt(1));
+                pieChartData.add(pc);
+            }
+            ps.close();
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            establishConnection();
+            PreparedStatement ps = connection.prepareStatement("EXECUTE sp_getAmountOfCoats");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                PieChart.Data pc = new PieChart.Data("Coats", resultSet.getInt(1));
+                pieChartData.add(pc);
+            }
+            ps.close();
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            establishConnection();
+            PreparedStatement ps = connection.prepareStatement("EXECUTE sp_getAmountOfDresses");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                PieChart.Data pc = new PieChart.Data("Dresses", resultSet.getInt(1));
+                pieChartData.add(pc);
+            }
+            ps.close();
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            establishConnection();
+            PreparedStatement ps = connection.prepareStatement("EXECUTE sp_getAmountOfTShirts");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                PieChart.Data pc = new PieChart.Data("T-Shirts", resultSet.getInt(1));
+                pieChartData.add(pc);
+            }
+            ps.close();
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            establishConnection();
+            PreparedStatement ps = connection.prepareStatement("EXECUTE sp_getAmountOfTrousers");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                PieChart.Data pc = new PieChart.Data("Trousers", resultSet.getInt(1));
+                pieChartData.add(pc);
+            }
+            ps.close();
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pieChartData;
+    }
 }
