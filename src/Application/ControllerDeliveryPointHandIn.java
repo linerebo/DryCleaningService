@@ -155,15 +155,19 @@ public class ControllerDeliveryPointHandIn implements Initializable {
         newOrder.storeToDB();           //newOrder is stored in DB
         Adapter.cleaningCentralInstance().orders.add(newOrder);     //newOrder is stored in orders
         System.out.println("Your Order was placed");
-        System.out.println("Print Orderslip: \n" + "Order Number: " + newOrder.orderID + "\n" +
+        System.out.println("Print Orderslip: \n" +
+                "++++++++++++++++++++++++++++++++++++++++++++\n" +
+                "Order Number: " + newOrder.orderID + "\n" +
                 "Delivery Point: " + dp + "  \n" + "Customer: " + selectedCustomer + " customerID: " +
-                selectedCustomer.customerID + "\n" + basket + "\nTotal Price: " + newOrder.totalPriceOfOrder() + " Kroner");
+                selectedCustomer.customerID + "\n" + basket + "\nTotal Price: " + newOrder.totalPriceOfOrder() + " Kroner\n" +
+                "++++++++++++++++++++++++++++++++++++++++++++\n");
         System.out.println("Send Email to customer");
         basket.clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DeliveryPointMenu.fxml"));
         Parent menuScreen = loader.load();
         ControllerDeliveryPointMenu controller = (ControllerDeliveryPointMenu) loader.getController();
         controller.dp = dp;
+        controller.labelDeliveryPoint.setText(controller.dp.toString());
         Scene Scene = new Scene(menuScreen);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(Scene);
