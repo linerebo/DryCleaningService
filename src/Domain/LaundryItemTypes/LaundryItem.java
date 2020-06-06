@@ -21,6 +21,7 @@ public abstract class LaundryItem {
 
     public abstract String toWashableLabel();
 
+
     public void storeToDB(){
         itemID = Adapter.DBInstance().insertNewLaundryItem(this);
     }

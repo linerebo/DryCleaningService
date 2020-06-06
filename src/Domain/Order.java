@@ -28,6 +28,14 @@ public class Order {
         return "Order No: " + orderID + "\n" + orderDeliveryPoint + "\nCustomer: " + orderCustomer;
     }
 
+    public String itemsToString() {
+        String str = "";
+        for (int i = 0; i < items.size(); i++){
+            str = str + items.get(i).toString();
+        }
+        return str;
+    }
+
     /**
      * This method returns the total price of an order
      * @return

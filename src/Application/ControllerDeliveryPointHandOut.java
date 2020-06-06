@@ -57,9 +57,9 @@ public class ControllerDeliveryPointHandOut {
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++\n" +
                            "Invoice:\n" + "Order No: " + orderToBeHandedOut.orderID +
                            "\nCustomer: " + orderToBeHandedOut.orderCustomer.toString() +"\n" +
-                           orderToBeHandedOut.items.toString() +
+                           orderToBeHandedOut.orderDeliveryPoint.toString() + "\n" +
+                           orderToBeHandedOut.itemsToString() +
                            "\nTotal price: " + orderToBeHandedOut.totalPriceOfOrder() + " Kroner\n" +
-                           "+++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println();
+                           "+++++++++++++++++++++++++++++++++++++++++++++++\n");
     }
 }
