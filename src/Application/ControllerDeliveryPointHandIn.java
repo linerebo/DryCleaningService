@@ -164,14 +164,9 @@ public class ControllerDeliveryPointHandIn implements Initializable {
         Parent menuScreen = loader.load();
         ControllerDeliveryPointMenu controller = (ControllerDeliveryPointMenu) loader.getController();
         controller.dp = dp;
-        controller.labelDeliveryPointID.setText(String.valueOf(controller.dp.deliveryPointID));
-        controller.labelDeliveryPointAddress.setText(controller.dp.address);
-        controller.labelDeliveryPointZipCode.setText(controller.dp.zipCode);
-        controller.labelDeliveryPointRoute.setText(controller.dp.route);
         Scene Scene = new Scene(menuScreen);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(Scene);
         window.show();
     }
-
 }
