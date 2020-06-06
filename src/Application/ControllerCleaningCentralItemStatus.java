@@ -35,8 +35,6 @@ public class ControllerCleaningCentralItemStatus {
         labelItemStatus.setText("");
         labelOrderStatusFirstItem.setText("");
         labelOrderStatusAllCleaned.setText("");
-        labelOrderStatusAllCleaned.setText("");
-        labelOrderStatusFirstItem.setText("");
         int scannedItemID = Integer.parseInt(txtFieldEnterItemNo.getText());
         scannedItem = Adapter.cleaningCentralInstance().getItemFromID(scannedItemID);
         labelItemDetails.setText(scannedItem.toWashableLabel());

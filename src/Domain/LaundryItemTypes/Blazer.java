@@ -27,7 +27,7 @@ public class Blazer extends LaundryItem {
     }
 
     public String toString(){
-        return "Blazer  " + itemColor + " " + "   Price:  " + itemPrice + " Kroner";
+        return "Blazer  " + itemColor + "    Price:  " + itemPrice + " Kroner\n";
     }
 
     @Override

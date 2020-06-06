@@ -28,6 +28,10 @@ public class Order {
         return "Order No: " + orderID + "\n" + orderDeliveryPoint + "\nCustomer: " + orderCustomer;
     }
 
+    /**
+     * This method returns the total price of an order
+     * @return
+     */
     public int totalPriceOfOrder(){
         int totalPriceOrder = 0;
         for(int i=0; i<items.size(); i++){
@@ -90,8 +94,6 @@ public class Order {
         }
         return true;
     }
-
-
 
    /* public void sendEmail(){
         String to = "abcd@gmail.com";

@@ -158,7 +158,7 @@ public class ControllerDeliveryPointHandIn implements Initializable {
         System.out.println("Print Orderslip: \n" +
                 "++++++++++++++++++++++++++++++++++++++++++++\n" +
                 "Order Number: " + newOrder.orderID + "\n" +
-                "Delivery Point: " + dp + "  \n" + "Customer: " + selectedCustomer + " customerID: " +
+                dp + "  \n" + "Customer: " + selectedCustomer + " customerID: " +
                 selectedCustomer.customerID + "\n" + basket + "\nTotal Price: " + newOrder.totalPriceOfOrder() + " Kroner\n" +
                 "++++++++++++++++++++++++++++++++++++++++++++\n");
         System.out.println("Send Email to customer");

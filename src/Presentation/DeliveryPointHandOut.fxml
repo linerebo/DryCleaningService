@@ -55,23 +55,22 @@
                   <Font size="26.0" />
                </font>
             </Label>
-            <TextField layoutX="545.0" layoutY="290.0" prefHeight="53.0" prefWidth="259.0" promptText="enter order number">
+            <TextField fx:id="txtFieldEnterOrderNo" layoutX="545.0" layoutY="290.0" prefHeight="53.0" prefWidth="259.0" promptText="enter order number">
                <font>
                   <Font name="System Italic" size="24.0" />
                </font>
             </TextField>
-            <Label layoutX="399.0" layoutY="383.0" prefHeight="58.0" prefWidth="184.0" text="Order details:">
+            <Label layoutX="399.0" layoutY="383.0" prefHeight="53.0" prefWidth="191.0" text="Order details:  #">
                <font>
                   <Font size="26.0" />
                </font>
             </Label>
-            <ListView layoutX="399.0" layoutY="434.0" prefHeight="238.0" prefWidth="543.0" />
-            <Button layoutX="758.0" layoutY="701.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="184.0" style="-fx-background-color: gray;" text="Print Invoice" textFill="#fffefe">
+            <Button layoutX="758.0" layoutY="701.0" mnemonicParsing="false" onAction="#handleButtonPrintInvoice" prefHeight="53.0" prefWidth="184.0" style="-fx-background-color: gray;" text="Print Invoice" textFill="#fffefe">
                <font>
                   <Font size="25.0" />
                </font>
             </Button>
-            <Button layoutX="810.0" layoutY="290.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="128.0" style="-fx-background-color: gray;" text="SEARCH" textFill="WHITE">
+            <Button layoutX="810.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleButtonGo" prefHeight="53.0" prefWidth="128.0" style="-fx-background-color: gray;" text="GO" textFill="WHITE">
                <font>
                   <Font size="25.0" />
                </font>
@@ -79,6 +78,27 @@
             <Label fx:id="labelDeliveryPoint" layoutX="385.0" layoutY="114.0" prefHeight="53.0" prefWidth="695.0">
                <font>
                   <Font size="25.0" />
+               </font>
+            </Label>
+            <ListView layoutX="665.0" layoutY="478.0" prefHeight="215.0" prefWidth="276.0" />
+            <Label fx:id="labelCustomer" layoutX="399.0" layoutY="479.0" prefHeight="106.0" prefWidth="240.0" style="-fx-background-color: white;">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelOrderNo" layoutX="587.0" layoutY="382.0" prefHeight="53.0" prefWidth="354.0">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label layoutX="399.0" layoutY="439.0" prefHeight="42.0" prefWidth="240.0" style="-fx-background-color: white;" text=" Customer info:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="665.0" layoutY="439.0" prefHeight="42.0" prefWidth="276.0" style="-fx-background-color: white;" text=" Order history:">
+               <font>
+                  <Font size="24.0" />
                </font>
             </Label>
          </children>

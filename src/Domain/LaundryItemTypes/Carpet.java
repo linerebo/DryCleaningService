@@ -30,7 +30,7 @@ public class Carpet extends LaundryItem {
     }
 
     public String toString(){
-        return "Carpet  " + itemColor + " " + "   Price:  " + price() + " Kroner";
+        return "Carpet  " + itemColor + "    Price:  " + price() + " Kroner\n";
     }
 
     @Override
