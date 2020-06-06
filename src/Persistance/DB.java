@@ -17,6 +17,7 @@ import Domain.SystemUser.SystemUser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -763,4 +764,26 @@ public class DB {
         }
         return pieChartData;
     }
+
+    public ArrayList<XYChart.Data> getIncomingOrders() {
+        ArrayList<XYChart.Data> incomingOrdersPerRoute = new ArrayList<>();
+        try {
+            establishConnection();
+            PreparedStatement ps = connection.prepareStatement("EXECUTE sp_getIncomingOrdersPerRoute");
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                XYChart.Data cd = new XYChart.Data(resultSet.getString(1), resultSet.getInt(2));
+                incomingOrdersPerRoute.add(cd);
+            }
+
+            ps.close();
+            closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return incomingOrdersPerRoute;
+    }
+
 }
