@@ -59,7 +59,7 @@
                <font>
                   <Font size="26.0" />
                </font></Button>
-            <Button layoutX="399.0" layoutY="372.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="380.0" style="-fx-background-color: gray;" text="Hand over Orders" textFill="WHITE">
+            <Button layoutX="399.0" layoutY="372.0" mnemonicParsing="false" onAction="#handleButtonUnloadOrders" prefHeight="53.0" prefWidth="380.0" style="-fx-background-color: gray;" text="Unload Orders" textFill="WHITE">
                <font>
                   <Font size="26.0" />
                </font></Button>

@@ -37,10 +37,21 @@ public class ControllerDriverMenu {
     public void handleButtonLoadOrders(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DriverLoadOrders.fxml"));
         Parent menuScreen = loader.load();
-
         ControllerDriverLoadOrders controller = (ControllerDriverLoadOrders) loader.getController();
         controller.su = su;
+        controller.labelShowDriverNameAndID.setText(su.systemUserFirstName + ", ID: " + su.systemUserID);
+        Scene Scene = new Scene(menuScreen);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(Scene);
+        window.show();
+    }
 
+    public void handleButtonUnloadOrders(ActionEvent event) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DriverUnloadOrders.fxml"));
+        Parent menuScreen = loader.load();
+        ControllerDriverUnloadOrders controller = (ControllerDriverUnloadOrders) loader.getController();
+        controller.su = su;
+        controller.ordersOnTruck = ordersOnTruck;
         controller.labelShowDriverNameAndID.setText(su.systemUserFirstName + ", ID: " + su.systemUserID);
         Scene Scene = new Scene(menuScreen);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();

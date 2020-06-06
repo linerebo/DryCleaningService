@@ -8,23 +8,22 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ControllerDeliveryPointHandOut {
 
     DeliveryPoint dp;
     Order orderToBeHandedOut;
-
+    int orderToBeHandedOutID;
     @FXML Label labelDeliveryPoint, labelOrderNo, labelCustomer;
     @FXML MenuButton menuButton1;
     @FXML MenuItem menuItem3;
     @FXML TextField txtFieldEnterOrderNo;
+    @FXML ListView listViewOrderHistory;
 
     public void handleButtonHome(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));
@@ -37,7 +36,7 @@ public class ControllerDeliveryPointHandOut {
     public void handleButtonGo(){
         labelOrderNo.setText("");
         labelCustomer.setText("");
-        int orderToBeHandedOutID = Integer.parseInt(txtFieldEnterOrderNo.getText());
+        orderToBeHandedOutID = Integer.parseInt(txtFieldEnterOrderNo.getText());
         orderToBeHandedOut = Adapter.cleaningCentralInstance().getOrderFromID(orderToBeHandedOutID);
         if(orderToBeHandedOut == null) {
             labelOrderNo.setText("Order number not found");
@@ -48,7 +47,7 @@ public class ControllerDeliveryPointHandOut {
                         "tel: " + orderToBeHandedOut.orderCustomer.customerPhoneNumber + "\n" +
                         "mail: " + orderToBeHandedOut.orderCustomer.customerEmail);
         }
-        //TODO insert eventhistory for orderToBeHandedOut in label or listview?
+        listViewOrderHistory.setItems(Adapter.cleaningCentralInstance().getEventHistoryFromOrderID(orderToBeHandedOutID));
     }
 
     public void handleButtonPrintInvoice(){

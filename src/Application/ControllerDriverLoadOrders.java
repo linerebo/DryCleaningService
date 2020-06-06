@@ -24,16 +24,11 @@ public class ControllerDriverLoadOrders {
     ObservableList waitingOrderIDs;
     ArrayList<Integer> ordersLoad = new ArrayList<>();
 
-    @FXML
-    Label labelShowDriverNameAndID, labelShowDPInfo;
-    @FXML
-    MenuButton menuButton1;
-    @FXML
-    TextField textFieldInputDpID;
-    @FXML
-    ListView listViewWaitingOrders, listViewCompletedLoading;
-    @FXML
-    TextArea textAreaSelectedOrder;
+    @FXML Label labelShowDriverNameAndID, labelShowDPInfo;
+    @FXML MenuButton menuButton1;
+    @FXML TextField textFieldInputDpID;
+    @FXML ListView listViewWaitingOrders, listViewCompletedLoading;
+    @FXML TextArea textAreaSelectedOrder;
 
     public void handleButtonHome(ActionEvent actionEvent) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));

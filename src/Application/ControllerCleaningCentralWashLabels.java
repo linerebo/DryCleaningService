@@ -47,14 +47,14 @@ public class ControllerCleaningCentralWashLabels {
     /**
      * This method prints out a washable label for each item in the selected order
      */
-    public void handleButtonPrintLabels(){
+    public void handleButtonPrintLabels() {
         for(int i = 0; i < selectedOrder.items.size(); i++){
-        System.out.println("\nPrint Washable label:\n" +
-                "************************************\n" +
-                (i+1) + " of " + selectedOrder.items.size() +
-                "\nOrder No: " + selectedOrderID + "\n" +
-                selectedOrder.items.get(i).toWashableLabel() + "\n" +
-                "************************************\n");
+            System.out.println("\nPrint Washable label:\n" +
+                    "************************************\n" +
+                    (i+1) + " of " + selectedOrder.items.size() +
+                    "\nOrder No: " + selectedOrderID + "\n" +
+                    selectedOrder.items.get(i).toWashableLabel() + "\n" +
+                    "************************************\n");
         }
         Adapter.DBInstance().insertNewEvent(selectedOrder.orderID, 17, su.systemUserID); // event type 17 for "cleaning process started"
     }

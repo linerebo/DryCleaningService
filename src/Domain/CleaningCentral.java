@@ -192,4 +192,43 @@ public class CleaningCentral {
         System.out.println("order IDs waiting for pick up: " + waitingOrderIds);
         return waitingOrderIds;
     }
+
+    /**
+     * The method creates a list over all the events for one order.
+     * @param orderID
+     * @return an observable list of Strings
+     */
+    public ObservableList<String> getEventHistoryFromOrderID(int orderID) {
+        // find and store all event histories for the given order ID
+        ArrayList<EventHistory> eHisToProcess = new ArrayList<>();
+        for(int i = eventHistories.size()-1; i >= 0; i--) {
+            if(eventHistories.get(i).orderID == orderID) {
+                eHisToProcess.add(eventHistories.get(i));
+            }
+        }
+        // from the list above, get the information needed from every event
+        ArrayList<String> eventStrings = new ArrayList<>();
+        for(int j = eHisToProcess.size()-1; j >= 0; j--){
+            // if statement to "translate" event type
+            String eventType = "";
+            if(eHisToProcess.get(j).eventTypeID == 15){
+                eventType = "Order Created";
+            } else if (eHisToProcess.get(j).eventTypeID == 16){
+                eventType = "Order on transportation";
+            } else if (eHisToProcess.get(j).eventTypeID == 17){
+                eventType = "Cleaning process started";
+            } else if (eHisToProcess.get(j).eventTypeID == 18){
+                eventType = "Cleaning process finished";
+            } else if (eHisToProcess.get(j).eventTypeID == 19){
+                eventType = "Return transportation";
+            } else if (eHisToProcess.get(j).eventTypeID == 20){
+                eventType = "Ready for hand-out";
+            } else if (eHisToProcess.get(j).eventTypeID == 21){
+                eventType = "Order Handed back";
+            }
+            eventStrings.add(eHisToProcess.get(j).eventDateTimeStamp + " - " + eventType + " - " + eHisToProcess.get(j).eventCurrentStatus);
+        }
+        ObservableList<String> evHist = FXCollections.observableArrayList(eventStrings);
+        return evHist;
+    }
 }
