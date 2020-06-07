@@ -17,10 +17,10 @@ import java.util.ArrayList;
 
 public class ControllerDeliveryPointHandOut {
 
-    DeliveryPoint dp;
+    public DeliveryPoint dp;
     public SystemUser su;
-    Order orderToBeHandedOut;
-    int orderToBeHandedOutID;
+    public Order orderToBeHandedOut;
+    public int orderToBeHandedOutID;
     @FXML Label labelDeliveryPoint, labelOrderNo, labelCustomer, labelWrongDP;
     @FXML MenuButton menuButton1;
     @FXML MenuItem menuItem3;

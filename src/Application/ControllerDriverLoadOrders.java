@@ -38,6 +38,25 @@ public class ControllerDriverLoadOrders {
         window.show();
     }
 
+    public void handleButtonLogout(ActionEvent event) throws IOException{
+        Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/DriverLogin.fxml"));
+        Scene Scene = new Scene(menuScreen);
+        Stage window = (Stage) menuButton1.getScene().getWindow();
+        window.setScene(Scene);
+        window.show();
+    }
+
+    public void handleButtonMenu(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DriverMenu.fxml"));
+        Parent menuScreen = loader.load();
+        ControllerDriverMenu controller = (ControllerDriverMenu) loader.getController();
+        controller.su = su;
+        Scene Scene = new Scene(menuScreen);
+        Stage window = (Stage) menuButton1.getScene().getWindow();
+        window.setScene(Scene);
+        window.show();
+    }
+
     public void handleButtonGo() {
         // get delivery point ID from textFieldInputDpID
         int inputDeliveryPointID = Integer.parseInt(textFieldInputDpID.getText());

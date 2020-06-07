@@ -22,10 +22,9 @@ import java.io.IOException;
 
 public class ControllerDeliveryPointMenu {
 
-    DeliveryPoint dp;
+    public DeliveryPoint dp;
     public SystemUser su;
     @FXML MenuButton menuButton1;
-    //@FXML MenuItem menuItem3;
     @FXML Label labelDeliveryPoint;
 
     public void handleButtonHome(ActionEvent event) throws IOException {

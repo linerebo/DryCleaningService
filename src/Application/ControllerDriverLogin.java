@@ -20,14 +20,14 @@ import java.util.ArrayList;
 
 public class ControllerDriverLogin {
 
-    @FXML MenuButton menuButton2;
+    @FXML MenuButton menuButton1;
     @FXML MenuItem menuItem3;
     @FXML TextField txtFldInputDriverID, txtFldInputDriverPassword;
 
     public void handleButtonHome(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));
         Scene Scene = new Scene(menuScreen);
-        Stage window = (Stage) menuButton2.getScene().getWindow();
+        Stage window = (Stage) menuButton1.getScene().getWindow();
         window.setScene(Scene);
         window.show();
     }

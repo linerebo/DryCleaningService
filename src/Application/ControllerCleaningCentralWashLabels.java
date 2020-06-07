@@ -16,17 +16,17 @@ import javafx.scene.control.*;
 
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class ControllerCleaningCentralWashLabels {
 
     public SystemUser su;
+    public int selectedOrderID;
+    public Order selectedOrder;
     @FXML ListView listViewOrderDetails;
     @FXML MenuButton menuButton1;
     @FXML MenuItem menuItem3;
     @FXML TextField txtFieldEnterOrderNo;
-    int selectedOrderID;
-    Order selectedOrder;
+
 
     public void handleButtonHome(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));

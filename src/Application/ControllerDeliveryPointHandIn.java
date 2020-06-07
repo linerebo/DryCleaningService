@@ -24,8 +24,8 @@ import java.util.ResourceBundle;
 
 public class ControllerDeliveryPointHandIn implements Initializable {
 
-    DeliveryPoint dp;
-    Customer selectedCustomer;
+    public DeliveryPoint dp;
+    public Customer selectedCustomer;
     public ObservableList<LaundryItem> basket = FXCollections.observableArrayList();
 
     @FXML MenuButton menuButton1;
