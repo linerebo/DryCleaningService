@@ -3,6 +3,7 @@ package Application;
 import Domain.Adapter;
 import Domain.DeliveryPoint;
 import Domain.Order;
+import Domain.SystemUser.SystemUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,13 +18,15 @@ import java.util.ArrayList;
 public class ControllerDeliveryPointHandOut {
 
     DeliveryPoint dp;
+    public SystemUser su;
     Order orderToBeHandedOut;
     int orderToBeHandedOutID;
-    @FXML Label labelDeliveryPoint, labelOrderNo, labelCustomer;
+    @FXML Label labelDeliveryPoint, labelOrderNo, labelCustomer, labelWrongDP;
     @FXML MenuButton menuButton1;
     @FXML MenuItem menuItem3;
     @FXML TextField txtFieldEnterOrderNo;
     @FXML ListView listViewOrderHistory;
+    @FXML Button buttonPrintInvoice;
 
     public void handleButtonHome(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));
@@ -67,10 +70,20 @@ public class ControllerDeliveryPointHandOut {
                         "mail: " + orderToBeHandedOut.orderCustomer.customerEmail);
         }
         listViewOrderHistory.setItems(Adapter.cleaningCentralInstance().getEventHistoryFromOrderID(orderToBeHandedOutID));
+        // check if the order is at the right delivery point and enable/disable print invoice button accordingly
+        if(orderToBeHandedOut.orderDeliveryPoint.deliveryPointID == dp.deliveryPointID) {
+            System.out.println("Delivery points are matching");
+            buttonPrintInvoice.setVisible(true);
+        } else {
+            System.out.println("Delivery points are not matching");
+            buttonPrintInvoice.setVisible(false);
+            labelWrongDP.setText("The order does not belong to this delivery point. Print invoice is not possible.");
+        }
     }
 
     public void handleButtonPrintInvoice(){
-        //TODO updata eventhistory for orderToBeHandedOut
+        // updates eventhistory for orderToBeHandedOut
+        Adapter.DBInstance().insertNewEvent(orderToBeHandedOutID, 21, su.systemUserID);
         System.out.println("Print Invoice: ");
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++\n" +
                            "Invoice:\n" + "Order No: " + orderToBeHandedOut.orderID +

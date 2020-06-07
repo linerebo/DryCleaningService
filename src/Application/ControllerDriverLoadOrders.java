@@ -62,11 +62,11 @@ public class ControllerDriverLoadOrders {
         int orderLoaded = Integer.parseInt(textAreaSelectedOrder.getText());
         ordersLoad.add(orderLoaded);
         listViewCompletedLoading.setItems(FXCollections.observableArrayList(ordersLoad));
-        // TODO the chosen order needs to disappear from the listViewWaitingOrders
+        //the chosen order disappears from the listViewWaitingOrders
+        waitingOrderIDs.remove(listViewWaitingOrders.getSelectionModel().getSelectedItem());
     }
 
     public void handleButtonLoadingCompleted(ActionEvent event) {
-        // TODO get the orders from the listView, not from the array. -> listViewCompletedLoading.getItems();
         for (int i = ordersLoad.size() -1; i >= 0; i--) {
              int oID = ordersLoad.get(i);
              Adapter.DBInstance().insertNewEvent(oID, 16, su.systemUserID);

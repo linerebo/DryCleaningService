@@ -63,6 +63,7 @@ public class ControllerDeliveryPointMenu {
         Parent menuScreen = loader.load();
         ControllerDeliveryPointHandOut controller = (ControllerDeliveryPointHandOut) loader.getController();
         controller.dp = dp;
+        controller.su = su;
         controller.labelDeliveryPoint.setText(controller.dp.toString());
         Scene Scene = new Scene(menuScreen);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

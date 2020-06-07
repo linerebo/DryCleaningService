@@ -182,6 +182,7 @@ public class ControllerDeliveryPointHandIn implements Initializable {
                 "++++++++++++++++++++++++++++++++++++++++++++\n");
         System.out.println("Send Email to customer");
         basket.clear();
+        //go back to delivery point menu
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DeliveryPointMenu.fxml"));
         Parent menuScreen = loader.load();
         ControllerDeliveryPointMenu controller = (ControllerDeliveryPointMenu) loader.getController();
