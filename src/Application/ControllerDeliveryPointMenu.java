@@ -25,12 +25,19 @@ public class ControllerDeliveryPointMenu {
     DeliveryPoint dp;
     public SystemUser su;
     @FXML MenuButton menuButton1;
-    @FXML MenuItem menuItem3;
-    @FXML Label labelDeliveryPointID, labelDeliveryPointAddress, labelDeliveryPointZipCode, labelDeliveryPointRoute;
+    //@FXML MenuItem menuItem3;
     @FXML Label labelDeliveryPoint;
 
     public void handleButtonHome(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));
+        Scene Scene = new Scene(menuScreen);
+        Stage window = (Stage) menuButton1.getScene().getWindow();
+        window.setScene(Scene);
+        window.show();
+    }
+
+    public void handleButtonLogout(ActionEvent event) throws IOException{
+        Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/DeliveryPointLogin.fxml"));
         Scene Scene = new Scene(menuScreen);
         Stage window = (Stage) menuButton1.getScene().getWindow();
         window.setScene(Scene);

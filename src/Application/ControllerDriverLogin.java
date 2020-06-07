@@ -20,12 +20,9 @@ import java.util.ArrayList;
 
 public class ControllerDriverLogin {
 
-    @FXML
-    MenuButton menuButton2;
-    @FXML
-    MenuItem menuItem3;
-    @FXML
-    TextField txtFldInputDriverID, txtFldInputDriverPassword;
+    @FXML MenuButton menuButton2;
+    @FXML MenuItem menuItem3;
+    @FXML TextField txtFldInputDriverID, txtFldInputDriverPassword;
 
     public void handleButtonHome(ActionEvent event) throws IOException {
         Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/welcome.fxml"));

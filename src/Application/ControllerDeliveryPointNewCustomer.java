@@ -34,6 +34,25 @@ public class ControllerDeliveryPointNewCustomer {
         window.show();
     }
 
+    public void handleButtonLogout(ActionEvent event) throws IOException{
+        Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/DeliveryPointLogin.fxml"));
+        Scene Scene = new Scene(menuScreen);
+        Stage window = (Stage) menuButton1.getScene().getWindow();
+        window.setScene(Scene);
+        window.show();
+    }
+
+    public void handleButtonMenu(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DeliveryPointMenu.fxml"));
+        Parent menuScreen = loader.load();
+        ControllerDeliveryPointMenu controller = (ControllerDeliveryPointMenu) loader.getController();
+        controller.dp = dp;
+        Scene Scene = new Scene(menuScreen);
+        Stage window = (Stage) menuButton1.getScene().getWindow();
+        window.setScene(Scene);
+        window.show();
+    }
+
     public void handleButtonCancel(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DeliveryPointFindCustomer.fxml"));
         Parent menuScreen = loader.load();
