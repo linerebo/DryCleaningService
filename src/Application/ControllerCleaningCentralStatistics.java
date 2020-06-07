@@ -30,6 +30,22 @@ public class ControllerCleaningCentralStatistics {
         window.show();
     }
 
+    public void handleButtonLogout(ActionEvent event) throws IOException{
+        Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/CleaningCentralLogin.fxml"));
+        Scene Scene = new Scene(menuScreen);
+        Stage window = (Stage) menuButton1.getScene().getWindow();
+        window.setScene(Scene);
+        window.show();
+    }
+
+    public void handleButtonMenu(ActionEvent event) throws IOException{
+        Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/CleaningCentralMenu.fxml"));
+        Scene Scene = new Scene(menuScreen);
+        Stage window = (Stage) menuButton1.getScene().getWindow();
+        window.setScene(Scene);
+        window.show();
+    }
+
     /**
      * The method will display a pieChart of the item types, sorted by the frequency of how often such type is being cleaned.
      */

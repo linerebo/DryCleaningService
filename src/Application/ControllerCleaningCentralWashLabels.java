@@ -36,6 +36,22 @@ public class ControllerCleaningCentralWashLabels {
         window.show();
     }
 
+    public void handleButtonLogout(ActionEvent event) throws IOException{
+        Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/CleaningCentralLogin.fxml"));
+        Scene Scene = new Scene(menuScreen);
+        Stage window = (Stage) menuButton1.getScene().getWindow();
+        window.setScene(Scene);
+        window.show();
+    }
+
+    public void handleButtonMenu(ActionEvent event) throws IOException{
+        Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/CleaningCentralMenu.fxml"));
+        Scene Scene = new Scene(menuScreen);
+        Stage window = (Stage) menuButton1.getScene().getWindow();
+        window.setScene(Scene);
+        window.show();
+    }
+
     public void handleButtonGo(){
         ObservableList itemsInOrder = FXCollections.observableArrayList();
         selectedOrderID = Integer.parseInt(txtFieldEnterOrderNo.getText());

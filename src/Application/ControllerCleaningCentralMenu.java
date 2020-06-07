@@ -25,6 +25,14 @@ public class ControllerCleaningCentralMenu {
         window.show();
     }
 
+    public void handleButtonLogout(ActionEvent event) throws IOException{
+        Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/CleaningCentralLogin.fxml"));
+        Scene Scene = new Scene(menuScreen);
+        Stage window = (Stage) menuButton1.getScene().getWindow();
+        window.setScene(Scene);
+        window.show();
+    }
+
     public void handleButtonGenerateLabels(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/CleaningCentralWashLabels.fxml"));
         Parent menuScreen = loader.load();
