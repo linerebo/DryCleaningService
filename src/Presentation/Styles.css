@@ -1,0 +1,15 @@
+.chart {
+    -fx-background-color: white;
+}
+
+.chart-title {
+    -fx-font-weight: bold;
+}
+
+.chart-content {
+    -fx-font-weight: bold;
+}
+
+.chart-legend {
+    -fx-font-weight: bold;
+}

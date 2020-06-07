@@ -8,7 +8,7 @@ package Domain;
         import javax.activation.*;
 
 public class Order {
-    public ArrayList<LaundryItem> items = new ArrayList<>();        //TODO get items from DB?
+    public ArrayList<LaundryItem> items = new ArrayList<>();
     public int orderID;
     public Customer orderCustomer;
     public DeliveryPoint orderDeliveryPoint;

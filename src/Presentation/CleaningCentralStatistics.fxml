@@ -26,7 +26,7 @@
     <children>
         <AnchorPane minHeight="-Infinity" prefHeight="800.0" prefWidth="1300.0">
             <children>
-            <BarChart fx:id="barChart" layoutX="30.0" layoutY="250.0" prefHeight="400.0" prefWidth="500.0" title="Incoming Orders">
+            <BarChart fx:id="barChart" animated="false" layoutX="30.0" layoutY="250.0" prefHeight="400.0" prefWidth="500.0" stylesheets="@Styles.css" title="Incoming Orders">
               <xAxis>
                 <CategoryAxis label="Routes" side="BOTTOM" fx:id="xAxis" />
               </xAxis>
@@ -34,7 +34,7 @@
                 <NumberAxis fx:id="yAxis" label="Orders" side="LEFT" />
               </yAxis>
             </BarChart>
-            <PieChart fx:id="pieChart" layoutX="700.0" layoutY="250.0" title="Popular Items" />
+            <PieChart fx:id="pieChart" layoutX="700.0" layoutY="250.0" prefHeight="400.0" prefWidth="500.0" stylesheets="@Styles.css" title="Popular Items" />
                 <ImageView fitWidth="1300.0" layoutX="2.0" layoutY="-7.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@Resources/laundry-services.jpg" />

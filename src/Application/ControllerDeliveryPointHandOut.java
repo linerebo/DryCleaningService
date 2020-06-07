@@ -56,6 +56,7 @@ public class ControllerDeliveryPointHandOut {
     }
 
     public void handleButtonGo(){
+        labelWrongDP.setText("");
         labelOrderNo.setText("");
         labelCustomer.setText("");
         orderToBeHandedOutID = Integer.parseInt(txtFieldEnterOrderNo.getText());
