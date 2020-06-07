@@ -26,7 +26,7 @@ public class ControllerDeliveryPointFindCustomer implements Initializable {
     @FXML MenuButton menuButton1;
     @FXML MenuItem menuItem3;
     @FXML TextField txtFieldInputCustomerName;
-    @FXML ListView listViewShowCustomers, listViewCustomerCard;
+    @FXML ListView listViewShowCustomers, listViewCustomerOrders;
     @FXML Label labelCustomerName, labelCustomerPhone, labelCustomerEmail;
 
 
@@ -39,6 +39,7 @@ public class ControllerDeliveryPointFindCustomer implements Initializable {
                 labelCustomerName.setText(selectedCustomer.customerFirstName + " " + selectedCustomer.customerLastName);
                 labelCustomerPhone.setText(selectedCustomer.customerPhoneNumber);
                 labelCustomerEmail.setText(selectedCustomer.customerEmail);
+                listViewCustomerOrders.setItems(selectedCustomer.getOrders());
             }
         });
     }

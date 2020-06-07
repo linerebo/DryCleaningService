@@ -1,5 +1,10 @@
 package Domain;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.util.ArrayList;
+
 public class Customer {
     public int customerID;
     public String customerFirstName;
@@ -22,6 +27,20 @@ public class Customer {
 
     public void storeToDB(){
         customerID = Adapter.DBInstance().insertNewCustomer(this);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ObservableList getOrders(){
+        ObservableList ordersFromCustomer = FXCollections.observableArrayList();
+        for(int i=0; i<Adapter.cleaningCentralInstance().orders.size(); i++){
+            if(Adapter.cleaningCentralInstance().orders.get(i).orderCustomer == this){
+                ordersFromCustomer.add(Adapter.cleaningCentralInstance().orders.get(i));
+            }
+        }
+        return ordersFromCustomer;
     }
 
 }
