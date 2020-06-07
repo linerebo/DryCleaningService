@@ -37,7 +37,7 @@ public class Order {
     }
 
     /**
-     * This method returns the total price of an order
+     * This method returns the total price of an order.
      * @return
      */
     public int totalPriceOfOrder(){

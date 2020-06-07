@@ -3,7 +3,6 @@ package Domain;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
 
 public class Customer {
     public int customerID;
@@ -30,7 +29,7 @@ public class Customer {
     }
 
     /**
-     *
+     *This method returns a list of all orders from a customer.
      * @return
      */
     public ObservableList getOrders(){
