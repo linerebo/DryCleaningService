@@ -20,6 +20,9 @@ public class Order {
         orderDeliveryPoint = dp;
     }
 
+    /**
+     * This method calls insertNewOrder() in DB to insert a new order in DB.
+     */
     public void storeToDB(){
         orderID = Adapter.DBInstance().insertNewOrder(this);
     }
@@ -28,6 +31,10 @@ public class Order {
         return "Order No: " + orderID + "\n" + orderDeliveryPoint + "\nCustomer: " + orderCustomer;
     }
 
+    /**
+     * This method returns a String of all laundry items in an items list.
+     * @return
+     */
     public String itemsToString() {
         String str = "";
         for (int i = 0; i < items.size(); i++){
@@ -63,7 +70,7 @@ public class Order {
     }
 
     /**
-     *
+     *This method returns a LaundryItem from an itemID.
      * @param id
      * @return
      */

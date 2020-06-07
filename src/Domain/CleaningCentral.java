@@ -49,6 +49,11 @@ public class CleaningCentral {
         systemUsers = Adapter.DBInstance().getSystemUsersFromDB();
     }
 
+    /**
+     * This method returns DeliveryPoint from deliveryPointID.
+     * @param id
+     * @return
+     */
     public DeliveryPoint getDeliveryPointFromID(int id) {
         DeliveryPoint dp = new DeliveryPoint(0, "", "", "");
         for (int i = 0; i < deliveryPoints.size(); i++) {
@@ -59,6 +64,11 @@ public class CleaningCentral {
         return dp;
     }
 
+    /**
+     * This method returns Customer from customerID.
+     * @param id
+     * @return
+     */
     public Customer getCustomerFromID(int id){
         Customer tmpCustomer = null;
         for (int i = 0; i < customers.size(); i++) {
@@ -69,6 +79,11 @@ public class CleaningCentral {
         return tmpCustomer;
     }
 
+    /**
+     * This method returns Order from orderID.
+     * @param id
+     * @return
+     */
     public Order getOrderFromID(int id){
         Order tmpOrder = null;
         for(int i = 0; i< orders.size(); i++){
@@ -79,16 +94,27 @@ public class CleaningCentral {
         return tmpOrder;
     }
 
+    /**
+     *This method search the list of Orders and returns a LaundryItem from itemID.
+     * @param id
+     * @return
+     */
     public LaundryItem getItemFromID(int id){
         LaundryItem tmpItem = null;
         for(int i=0; i<orders.size(); i++){
-            if(orders.get(i).isItemInOrder(id)){
-                return orders.get(i).getItemFromItemID(id);
+            if(orders.get(i).isItemInOrder(id)){    //if item is found in an order
+                return orders.get(i).getItemFromItemID(id); // returns LaundryItem from itemID
             }
         }
         return null;
     }
 
+    /**
+     * This method return a list of Customers where customerLastName starts with the input String.
+     * The search is case insensitive.
+     * @param inputName
+     * @return
+     */
     public ObservableList<Customer> getCustomersFromName(String inputName) {
         ObservableList<Customer> resultListCustomers = FXCollections.observableArrayList();
         for (int i = 0; i < customers.size(); i++) {

@@ -47,6 +47,8 @@ public class ControllerDriverUnloadOrders {
         Parent menuScreen = loader.load();
         ControllerDriverMenu controller = (ControllerDriverMenu) loader.getController();
         controller.su = su;
+        controller.LabelCurrentLoadedOrders.setText("Hello " + controller.su.systemUserFirstName + ", you have currently loaded these orders:");
+        controller.labelTotalOrdersLoaded.setText("Total: " + controller.ordersOnTruck.size());
         Scene Scene = new Scene(menuScreen);
         Stage window = (Stage) menuButton1.getScene().getWindow();
         window.setScene(Scene);
