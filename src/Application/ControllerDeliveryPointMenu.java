@@ -4,6 +4,7 @@ import Domain.Adapter;
 import Domain.Customer;
 import Domain.DeliveryPoint;
 
+import Domain.SystemUser.SystemUser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,7 +23,7 @@ import java.io.IOException;
 public class ControllerDeliveryPointMenu {
 
     DeliveryPoint dp;
-
+    public SystemUser su;
     @FXML MenuButton menuButton1;
     @FXML MenuItem menuItem3;
     @FXML Label labelDeliveryPointID, labelDeliveryPointAddress, labelDeliveryPointZipCode, labelDeliveryPointRoute;

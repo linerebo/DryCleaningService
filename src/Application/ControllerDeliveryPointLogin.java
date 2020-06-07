@@ -50,14 +50,20 @@ public class ControllerDeliveryPointLogin {
             Parent menuScreen = loader.load();
             ControllerDeliveryPointMenu controller = (ControllerDeliveryPointMenu) loader.getController();
             controller.dp = Adapter.cleaningCentralInstance().getDeliveryPointFromID(Integer.parseInt(txtFieldInputDeliveryPointID.getText()));
+            controller.su = Adapter.cleaningCentralInstance().getSystemUserFromID(inputUserIDInt);
             if (controller.dp.deliveryPointID == 0) {
                 txtFieldInputDeliveryPointID.setText("wrong Delivery Point ID");
             } else {
-                controller.labelDeliveryPoint.setText(controller.dp.toString());
-                Scene scene = new Scene(menuScreen);
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                window.setScene(scene);
-                window.show();
+                // check if it is a shop assistant acting as system user
+                if (controller.su.departmentID != 11) { // 11 is the departmentID of the shop assistant department
+                    txtFieldInputDeliveryPointUserID.setText("This is not a shop assistant.");
+                } else {
+                    controller.labelDeliveryPoint.setText(controller.dp.toString());
+                    Scene scene = new Scene(menuScreen);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(scene);
+                    window.show();
+                }
             }
         }
         else{

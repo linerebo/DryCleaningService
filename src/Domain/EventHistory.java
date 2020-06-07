@@ -1,6 +1,5 @@
 package Domain;
 
-
 import java.sql.Timestamp;
 
 public class EventHistory {

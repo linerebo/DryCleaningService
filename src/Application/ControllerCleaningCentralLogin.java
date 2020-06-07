@@ -48,11 +48,14 @@ public class ControllerCleaningCentralLogin {
             Parent menuScreen = loader.load();
             ControllerCleaningCentralMenu controller = (ControllerCleaningCentralMenu) loader.getController();
             controller.su = Adapter.cleaningCentralInstance().getSystemUserFromID(inputUserIDInt);
-
-            Scene scene = new Scene(menuScreen);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(scene);
-            window.show();
+            if(controller.su.departmentID != 13 && controller.su.departmentID != 14){
+                txtFieldCleaningEmployeeID.setText("This is whether a Desk Assistant nor a Manager.");
+            } else {
+                Scene scene = new Scene(menuScreen);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(scene);
+                window.show();
+            }
         }
         else{
             txtFieldCleaningCentralPassword.setText("wrong password");
