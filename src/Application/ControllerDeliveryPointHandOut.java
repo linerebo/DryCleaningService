@@ -7,6 +7,7 @@ import Domain.SystemUser.SystemUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -82,7 +83,7 @@ public class ControllerDeliveryPointHandOut {
         }
     }
 
-    public void handleButtonPrintInvoice(){
+    public void handleButtonPrintInvoice(ActionEvent event) throws IOException{
         // updates eventhistory for orderToBeHandedOut
         Adapter.DBInstance().insertNewEvent(orderToBeHandedOutID, 21, su.systemUserID);
         System.out.println("Print Invoice: ");
@@ -93,5 +94,15 @@ public class ControllerDeliveryPointHandOut {
                            orderToBeHandedOut.itemsToString() +
                            "\nTotal price: " + orderToBeHandedOut.totalPriceOfOrder() + " Kroner\n" +
                            "+++++++++++++++++++++++++++++++++++++++++++++++\n");
+        //go back to delivery point menu
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DeliveryPointMenu.fxml"));
+        Parent menuScreen = loader.load();
+        ControllerDeliveryPointMenu controller = (ControllerDeliveryPointMenu) loader.getController();
+        controller.dp = dp;
+        controller.labelDeliveryPoint.setText(controller.dp.toString());
+        Scene Scene = new Scene(menuScreen);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(Scene);
+        window.show();
     }
 }
