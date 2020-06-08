@@ -72,8 +72,10 @@ public class ControllerCleaningCentralItemStatus {
         labelItemStatus.setText("The laundry item was cleaned\nPlease sort to order.\nOrder No: " + orderInProcess.orderID);
         if(orderInProcess.statusOfOrderAllCleaned()){
             labelOrderStatusAllCleaned.setText("All items in this order are cleaned. \nThe Order is now ready for pick-up");
-            // update Events for the whole order to finished cleaning
-            Adapter.DBInstance().insertNewEvent(orderInProcess.orderID, 18, su.systemUserID); // event type 18 for "cleaning process finished"
+            // update EventHistories
+            Adapter.DBInstance().getEventHistoriesFromDB();
+            //insert new event
+            Adapter.DBInstance().insertNewEvent(orderInProcess.orderID, 19, su.systemUserID); // event type 19 for "cleaning process finished"
         }
     }
 }

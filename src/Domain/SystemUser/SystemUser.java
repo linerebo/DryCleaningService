@@ -5,7 +5,6 @@ public class SystemUser {
     public int systemUserID;
     public String systemUserFirstName;
     public String systemUserLastName;
-    //public String systemUserPassword;
     public int departmentID;
 
     public SystemUser(int systemUserID, String systemUserFirstName, String systemUserLastName, int departmentID){
@@ -15,7 +14,7 @@ public class SystemUser {
         this.departmentID = departmentID;
     }
 
-    // fincionality for all different system users here in superclass, only specific stuff in the subclass
+    // functionality for all different system users here in superclass, only specific stuff in the subclass
     // do we have specific stuff?
 
 }

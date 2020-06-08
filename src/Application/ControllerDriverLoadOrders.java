@@ -146,7 +146,7 @@ public class ControllerDriverLoadOrders {
             // insert new event "return transportation = event type ID 19"
             for (int i = ordersLoad.size() - 1; i >= 0; i--) {
                 int oID = ordersLoad.get(i);
-                Adapter.DBInstance().insertNewEvent(oID, 19, su.systemUserID);
+                Adapter.DBInstance().insertNewEvent(oID, 20, su.systemUserID);
                 // update list of eventHistories
                 Adapter.cleaningCentralInstance().eventHistories = Adapter.DBInstance().getEventHistoriesFromDB();
             }

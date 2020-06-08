@@ -169,7 +169,7 @@ public class CleaningCentral {
         // get all orderID as ints, which are currently on the truck
         for (int i = eventHistories.size() -1; i >= 0; i --) { // loop backwards, so it will not jump one item over when found one. Avoiding index out of bounds exception.
             EventHistory eve = eventHistories.get(i);
-            if (eve.systemUserID == userID && eve.eventCurrentStatus == true && eve.eventTypeID != 292 && eve.eventTypeID != 20) { // event type 292 = order got unloaded, event type 20 = order is ready at the delivery point
+            if (eve.systemUserID == userID && eve.eventCurrentStatus == true && eve.eventTypeID != 17 && eve.eventTypeID != 21) { // event type 292 = order got unloaded at cleaning central, event type 20 = order is ready at the delivery point
                 int eveOrderID = eve.orderID;
                 ordersOnTruckID.add(eveOrderID);
             }
@@ -237,7 +237,7 @@ public class CleaningCentral {
         ObservableList waitingCleanOrderIDsAtCC = FXCollections.observableArrayList();
         for (int i = eventHistories.size() - 1; i >= 0; i--) {
             EventHistory e = eventHistories.get(i);
-            if (e.eventTypeID == 18 && e.eventCurrentStatus == true) { // event type 18 = "cleaning finished"
+            if (e.eventTypeID == 19 && e.eventCurrentStatus == true) { // event type 19 = "cleaning finished"
                 waitingCleanOrderIDsAtCC.add(e.orderID);
             }
         }
@@ -266,17 +266,17 @@ public class CleaningCentral {
                 eventType = "Order Created";
             } else if (eHisToProcess.get(j).eventTypeID == 16){
                 eventType = "Order on transportation";
-            } else if (eHisToProcess.get(j).eventTypeID == 292) {
+            } else if (eHisToProcess.get(j).eventTypeID == 17) {
                 eventType = "Order arrived at Cleaning Central";
-            } else if (eHisToProcess.get(j).eventTypeID == 17){
-                eventType = "Cleaning process started";
             } else if (eHisToProcess.get(j).eventTypeID == 18){
-                eventType = "Cleaning process finished";
+                eventType = "Cleaning process started";
             } else if (eHisToProcess.get(j).eventTypeID == 19){
-                eventType = "Return transportation";
+                eventType = "Cleaning process finished";
             } else if (eHisToProcess.get(j).eventTypeID == 20){
-                eventType = "Ready for hand-out";
+                eventType = "Return transportation";
             } else if (eHisToProcess.get(j).eventTypeID == 21){
+                eventType = "Ready for hand-out";
+            } else if (eHisToProcess.get(j).eventTypeID == 22){
                 eventType = "Order Handed back";
             }
             eventStrings.add(eHisToProcess.get(j).eventDateTimeStamp + " - " + eventType + " - " + eHisToProcess.get(j).eventCurrentStatus);

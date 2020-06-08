@@ -72,6 +72,6 @@ public class ControllerCleaningCentralWashLabels {
                     selectedOrder.items.get(i).toWashableLabel() + "\n" +
                     "************************************\n");
         }
-        Adapter.DBInstance().insertNewEvent(selectedOrder.orderID, 17, su.systemUserID); // event type 17 for "cleaning process started"
+        Adapter.DBInstance().insertNewEvent(selectedOrder.orderID, 18, su.systemUserID); // event type 18 for "cleaning process started"
     }
 }

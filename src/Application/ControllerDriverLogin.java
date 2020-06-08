@@ -1,9 +1,6 @@
 package Application;
 
 import Domain.Adapter;
-import Domain.Order;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,9 +11,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class ControllerDriverLogin {
 
@@ -52,7 +47,7 @@ public class ControllerDriverLogin {
             Parent menuScreen = loader.load();
             ControllerDriverMenu controller = (ControllerDriverMenu) loader.getController();
             controller.su = Adapter.cleaningCentralInstance().getSystemUserFromID(inputDriverIDInt);
-            controller.ordersOnTruck = Adapter.cleaningCentralInstance().getOrderObjectsOnTruck(controller.su.systemUserID); // TODO is this still needed?
+            controller.ordersOnTruck = Adapter.cleaningCentralInstance().getOrderObjectsOnTruck(controller.su.systemUserID);
             controller.observableOrderIDsOnTruck = Adapter.cleaningCentralInstance().getOrderIDsOnTruck(controller.su.systemUserID);
 
             // check if it is a driver acting as system user

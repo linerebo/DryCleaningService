@@ -33,7 +33,7 @@ public class DB {
     public Connection connection;
 
     /**
-     * This method will establish a connection wit the database called "DryLeaningServiceDB".
+     * This method will establish a connection with the database called "DryCleaningServiceDB".
      *
      * @return an object of connection
      */
@@ -565,8 +565,8 @@ public class DB {
             }
         }
         // call create Event function
-        insertNewEvent(newOrderID, 15, 24); // the creation of a new order has the eventType 15,
-                                                                // the shop assistant has the systemUserID 24
+        insertNewEvent(newOrderID, 15, 25); // the creation of a new order has the eventType 15,
+                                                                // the shop assistant has the systemUserID 25
 
         return newOrderID;       //return newOrderID
     }

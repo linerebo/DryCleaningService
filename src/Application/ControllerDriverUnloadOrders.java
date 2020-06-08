@@ -14,7 +14,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -25,18 +24,12 @@ public class ControllerDriverUnloadOrders {
     public ObservableList observableOrderIDsOnTruck;
     ArrayList<Integer> ordersUnload = new ArrayList<>();
 
-    @FXML
-    MenuButton menuButton1;
-    @FXML
-    Button buttonUnloadingCompleted, buttonUnloadFromTruck, buttonGo;
-    @FXML
-    ListView listViewOrdersOnTruck, listViewCompletedUnloading;
-    @FXML
-    TextField textFieldInputDpID;
-    @FXML
-    TextArea textAreaOrderToUnload;
-    @FXML
-    Label labelShowLocationInfo, labelShowDriverNameAndID;
+    @FXML MenuButton menuButton1;
+    @FXML Button buttonUnloadingCompleted, buttonUnloadFromTruck, buttonGo;
+    @FXML ListView listViewOrdersOnTruck, listViewCompletedUnloading;
+    @FXML TextField textFieldInputDpID;
+    @FXML TextArea textAreaOrderToUnload;
+    @FXML Label labelShowLocationInfo, labelShowDriverNameAndID;
 
     String currentLocation;
 
@@ -121,15 +114,15 @@ public class ControllerDriverUnloadOrders {
      */
     public void handleButtonUnloadingCompleted(ActionEvent event) {
         if (currentLocation.equals("Delivery Point")) {
-            // insert new event "order ready = 20"
+            // insert new event "order ready = 21"
             for (int i = ordersUnload.size() - 1; i >= 0; i--) {
                 int oID = ordersUnload.get(i);
-                Adapter.DBInstance().insertNewEvent(oID, 20, su.systemUserID);
+                Adapter.DBInstance().insertNewEvent(oID, 21, su.systemUserID);
                 // update list of eventHistories
                 Adapter.cleaningCentralInstance().eventHistories = Adapter.DBInstance().getEventHistoriesFromDB();
             }
             //go back to driver Menu
-            try {
+            try{
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DriverMenu.fxml"));
                 Parent menuScreen = loader.load();
                 ControllerDriverMenu controller = (ControllerDriverMenu) loader.getController();
@@ -148,10 +141,10 @@ public class ControllerDriverUnloadOrders {
                 System.out.println("could not go back to driver menu");
             }
         } else if (currentLocation.equals("Cleaning Central")) {
-            // insert new event "unload at cleaning central = 292"
+            // insert new event "unload at cleaning central = 17"
             for (int i = ordersUnload.size() - 1; i >= 0; i--) {
                 int oID = ordersUnload.get(i);
-                Adapter.DBInstance().insertNewEvent(oID, 292, su.systemUserID);
+                Adapter.DBInstance().insertNewEvent(oID, 17, su.systemUserID);
                 // update list of eventHistories
                 Adapter.cleaningCentralInstance().eventHistories = Adapter.DBInstance().getEventHistoriesFromDB();
             }

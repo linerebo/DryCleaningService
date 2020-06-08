@@ -1,7 +1,5 @@
 package Application;
 
-import Domain.Adapter;
-import Domain.DeliveryPoint;
 import Domain.Order;
 import Domain.SystemUser.SystemUser;
 import javafx.collections.ObservableList;
@@ -19,7 +17,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ControllerDriverMenu {
-
 
     public SystemUser su;
     public ObservableList<Order> ordersOnTruck;

@@ -85,7 +85,7 @@ public class ControllerDeliveryPointHandOut {
 
     public void handleButtonPrintInvoice(ActionEvent event) throws IOException{
         // updates eventhistory for orderToBeHandedOut
-        Adapter.DBInstance().insertNewEvent(orderToBeHandedOutID, 21, su.systemUserID);
+        Adapter.DBInstance().insertNewEvent(orderToBeHandedOutID, 22, su.systemUserID);
         System.out.println("Print Invoice: ");
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++\n" +
                            "Invoice:\n" + "Order No: " + orderToBeHandedOut.orderID +
