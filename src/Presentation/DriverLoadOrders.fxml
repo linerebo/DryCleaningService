@@ -46,30 +46,6 @@
                   <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="233.0" layoutY="166.0" text="Enter delivery point ID:">
-                <font>
-                    <Font size="24.0" />
-                </font>
-            </Label>
-            <TextField fx:id="textFieldInputDpID" layoutX="480.0" layoutY="160.0" prefHeight="45.0" prefWidth="321.0" promptText="enter delivery point ID">
-               <font>
-                  <Font name="System Italic" size="15.0" />
-               </font></TextField>
-            <Button layoutX="800.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleButtonGo" prefHeight="45.0" prefWidth="52.0" text="GO">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Button>
-            <Label layoutX="899.0" layoutY="166.0" text="Delivery Point:">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelShowDPInfo" layoutX="1070.0" layoutY="175.0" text="show delivery point ID">
-               <font>
-                  <Font name="System Italic" size="15.0" />
-               </font>
-            </Label>
             <Label layoutX="233.0" layoutY="280.0" text="Orders waiting for Pick-Up:">
                 <font>
                     <Font size="18.0" />
@@ -106,6 +82,32 @@
                     <Font name="Cambria" size="30.0" />
                 </font>
             </Button>
+            <Button layoutX="490.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleButtonLocationCleaningCentral" prefHeight="45.0" prefWidth="321.0" text="Cleaning Central" />
+            <Label layoutX="909.0" layoutY="176.0" text="Location:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textFieldInputDpID" layoutX="490.0" layoutY="170.0" prefHeight="45.0" prefWidth="321.0" promptText="enter delivery point ID">
+               <font>
+                  <Font name="System Italic" size="15.0" />
+               </font>
+            </TextField>
+            <Button fx:id="buttonGo" layoutX="810.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleButtonGo" prefHeight="45.0" prefWidth="52.0" text="GO">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Label fx:id="labelShowLocationInfo" layoutX="1030.0" layoutY="185.0" text="show current location">
+               <font>
+                  <Font name="System Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="243.0" layoutY="176.0" text="Choose location:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
         </children>
     </AnchorPane>
 </children>

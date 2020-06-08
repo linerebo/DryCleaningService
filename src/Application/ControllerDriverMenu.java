@@ -1,5 +1,6 @@
 package Application;
 
+import Domain.Adapter;
 import Domain.DeliveryPoint;
 import Domain.Order;
 import Domain.SystemUser.SystemUser;
@@ -22,6 +23,7 @@ public class ControllerDriverMenu {
 
     public SystemUser su;
     public ObservableList<Order> ordersOnTruck;
+    public ObservableList observableOrderIDsOnTruck;
     @FXML MenuButton menuButton1;
     @FXML MenuItem menuItem3;
     @FXML Label LabelCurrentLoadedOrders, labelTotalOrdersLoaded;
@@ -48,6 +50,7 @@ public class ControllerDriverMenu {
         Parent menuScreen = loader.load();
         ControllerDriverLoadOrders controller = (ControllerDriverLoadOrders) loader.getController();
         controller.su = su;
+        controller.observableOrderIDsOnTruck = observableOrderIDsOnTruck;
         controller.labelShowDriverNameAndID.setText(su.systemUserFirstName + ", ID: " + su.systemUserID);
         Scene Scene = new Scene(menuScreen);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -61,6 +64,7 @@ public class ControllerDriverMenu {
         ControllerDriverUnloadOrders controller = (ControllerDriverUnloadOrders) loader.getController();
         controller.su = su;
         controller.ordersOnTruck = ordersOnTruck;
+        controller.observableOrderIDsOnTruck = observableOrderIDsOnTruck;
         controller.labelShowDriverNameAndID.setText(su.systemUserFirstName + ", ID: " + su.systemUserID);
         Scene Scene = new Scene(menuScreen);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();

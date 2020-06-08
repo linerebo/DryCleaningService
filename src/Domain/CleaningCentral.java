@@ -160,22 +160,32 @@ public class CleaningCentral {
     }
 
     /**
-     * The method finds all orders, which are currently loaded on the truck of a specific driver/systemUser.
+     * The method finds all order IDs from the event history which are currently loaded on the truk of the given user.
+     * @param userID the ID of the systemuser /driver.
+     * @return an observablelist of orderIDs
+     */
+    public ObservableList getOrderIDsOnTruck(int userID) {
+        ObservableList ordersOnTruckID = FXCollections.observableArrayList();
+        // get all orderID as ints, which are currently on the truck
+        for (int i = eventHistories.size() -1; i >= 0; i --) { // loop backwards, so it will not jump one item over when found one. Avoiding index out of bounds exception.
+            EventHistory eve = eventHistories.get(i);
+            if (eve.systemUserID == userID && eve.eventCurrentStatus == true && eve.eventTypeID != 292 && eve.eventTypeID != 20) { // event type 292 = order got unloaded, event type 20 = order is ready at the delivery point
+                int eveOrderID = eve.orderID;
+                ordersOnTruckID.add(eveOrderID);
+            }
+        }
+        System.out.println("observable list of orderIDs on truck: " + ordersOnTruckID);
+        return ordersOnTruckID;
+    }
+
+    /**
+     * The method finds all order objects, which are currently loaded on the truck of a specific driver/systemUser.
      * This means, they haven't been processed further than this.
      * @param userID of the system user
      * @return an observable List of order objects.
      */
     public ObservableList getOrderObjectsOnTruck(int userID) {
-        ArrayList ordersOnTruckID = new ArrayList(); // an arraylist of orderIDs int
-        // get all orderID as ints, which are currently on the truck
-        for (int i = eventHistories.size() -1; i >= 0; i --) { // loop backwards, so it will not jump one item over when found one. Avoiding index out of bounds exception.
-            EventHistory eve = eventHistories.get(i);
-            if (eve.systemUserID == userID && eve.eventTypeID == 16 && eve.eventCurrentStatus == true) { // 16 is the eventTypeID for a pick-up event
-                int eveOrderID = eve.orderID;
-                ordersOnTruckID.add(eveOrderID);
-            }
-        }
-        System.out.println("array orderIDs on truck: " + ordersOnTruckID);
+        ObservableList ordersOnTruckID = getOrderIDsOnTruck(userID); // an observable list of orderIDs int
 
         //find the corresponding order objects in the orders list.
         ArrayList<Order> onTruckOrders = new ArrayList<>();
@@ -220,6 +230,21 @@ public class CleaningCentral {
     }
 
     /**
+     * The method collects all the orders in an observable list, which are finished for cleaning at the cleaning central.
+     * @return observablelist of int "waitingCleanOrderIDsAtCC"
+     */
+    public ObservableList getWaitingOrdersAtCleaningCentral() {
+        ObservableList waitingCleanOrderIDsAtCC = FXCollections.observableArrayList();
+        for (int i = eventHistories.size() - 1; i >= 0; i--) {
+            EventHistory e = eventHistories.get(i);
+            if (e.eventTypeID == 18 && e.eventCurrentStatus == true) { // event type 18 = "cleaning finished"
+                waitingCleanOrderIDsAtCC.add(e.orderID);
+            }
+        }
+        return waitingCleanOrderIDsAtCC;
+    }
+
+    /**
      * The method creates a list over all the events for one order.
      * @param orderID
      * @return an observable list of Strings
@@ -241,6 +266,8 @@ public class CleaningCentral {
                 eventType = "Order Created";
             } else if (eHisToProcess.get(j).eventTypeID == 16){
                 eventType = "Order on transportation";
+            } else if (eHisToProcess.get(j).eventTypeID == 292) {
+                eventType = "Order arrived at Cleaning Central";
             } else if (eHisToProcess.get(j).eventTypeID == 17){
                 eventType = "Cleaning process started";
             } else if (eHisToProcess.get(j).eventTypeID == 18){

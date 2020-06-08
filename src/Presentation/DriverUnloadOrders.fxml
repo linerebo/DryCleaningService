@@ -46,7 +46,8 @@
                         <Font name="System Italic" size="15.0" />
                     </font>
                 </Label>
-                <Label layoutX="233.0" layoutY="166.0" text="Enter delivery point ID:">
+            <Button layoutX="480.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleButtonLocationCleaningCentral" prefHeight="45.0" prefWidth="321.0" text="Cleaning Central" />
+                <Label layoutX="233.0" layoutY="166.0" text="Choose location:">
                     <font>
                         <Font size="24.0" />
                     </font>
@@ -60,12 +61,12 @@
                         <Font size="17.0" />
                     </font>
                 </Button>
-                <Label layoutX="899.0" layoutY="166.0" text="Delivery Point:">
+                <Label layoutX="899.0" layoutY="166.0" text="Location:">
                     <font>
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <Label fx:id="labelShowDPInfo" layoutX="1070.0" layoutY="175.0" text="show delivery point ID">
+                <Label fx:id="labelShowLocationInfo" layoutX="1020.0" layoutY="175.0" text="show current location">
                     <font>
                         <Font name="System Italic" size="15.0" />
                     </font>

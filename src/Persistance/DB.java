@@ -564,7 +564,7 @@ public class DB {
                 e.printStackTrace();
             }
         }
-        // call create Event function TODO: find a better way to get eventType and system userID
+        // call create Event function
         insertNewEvent(newOrderID, 15, 24); // the creation of a new order has the eventType 15,
                                                                 // the shop assistant has the systemUserID 24
 

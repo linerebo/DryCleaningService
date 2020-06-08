@@ -52,22 +52,16 @@ public class ControllerDriverLogin {
             Parent menuScreen = loader.load();
             ControllerDriverMenu controller = (ControllerDriverMenu) loader.getController();
             controller.su = Adapter.cleaningCentralInstance().getSystemUserFromID(inputDriverIDInt);
-            controller.ordersOnTruck = Adapter.cleaningCentralInstance().getOrderObjectsOnTruck(inputDriverIDInt);
-
-            //make an arraylist of orderIDs
-            ArrayList<Integer> orderIDsToDisplay = new ArrayList<>();
-            for(int i = controller.ordersOnTruck.size() - 1; i >= 0; i--) {
-                Order j = controller.ordersOnTruck.get(i);
-                orderIDsToDisplay.add(j.orderID);
-            }
-            //make an observable list to be inserted to the listview below
-            ObservableList observableOderIDs = FXCollections.observableArrayList(orderIDsToDisplay);
+            controller.ordersOnTruck = Adapter.cleaningCentralInstance().getOrderObjectsOnTruck(controller.su.systemUserID); // TODO is this still needed?
+            controller.observableOrderIDsOnTruck = Adapter.cleaningCentralInstance().getOrderIDsOnTruck(controller.su.systemUserID);
 
             // check if it is a driver acting as system user
             if (controller.su.departmentID != 12) { // 12 is the departmentID of the driver department.
                 txtFldInputDriverID.setText("This user is not a driver.");
             } else {
-                controller.listViewOrdersCurrentlyLoaded.setItems(observableOderIDs);
+                // go to next page with these parameters:
+
+                controller.listViewOrdersCurrentlyLoaded.setItems(controller.observableOrderIDsOnTruck);
                 controller.LabelCurrentLoadedOrders.setText("Hello " + controller.su.systemUserFirstName + ", you have currently loaded these orders:");
                 controller.labelTotalOrdersLoaded.setText("Total: " + controller.ordersOnTruck.size());
                 Scene scene = new Scene(menuScreen);
