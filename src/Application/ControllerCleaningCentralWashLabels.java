@@ -45,7 +45,10 @@ public class ControllerCleaningCentralWashLabels {
     }
 
     public void handleButtonMenu(ActionEvent event) throws IOException{
-        Parent menuScreen = FXMLLoader.load(getClass().getResource("/Presentation/CleaningCentralMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/CleaningCentralMenu.fxml"));
+        Parent menuScreen = loader.load();
+        ControllerCleaningCentralMenu controller = loader.getController();
+        controller.su = su;
         Scene Scene = new Scene(menuScreen);
         Stage window = (Stage) menuButton1.getScene().getWindow();
         window.setScene(Scene);
