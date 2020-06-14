@@ -32,7 +32,7 @@ public class ControllerDeliveryPointFindCustomer implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
-        listViewShowCustomers.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Customer>() {
+        ChangeListener<Customer> listenerCustomer = new ChangeListener<Customer>() {
             @Override
             public void changed(ObservableValue<? extends Customer> observable, Customer oldValue, Customer newValue) {
                 Customer selectedCustomer = (Customer) listViewShowCustomers.getSelectionModel().getSelectedItem();
@@ -41,7 +41,8 @@ public class ControllerDeliveryPointFindCustomer implements Initializable {
                 labelCustomerEmail.setText(selectedCustomer.customerEmail);
                 listViewCustomerOrders.setItems(selectedCustomer.getOrders());
             }
-        });
+        };
+        listViewShowCustomers.getSelectionModel().selectedItemProperty().addListener(listenerCustomer);
     }
 
     public void handleButtonHome(ActionEvent event) throws IOException {
@@ -100,10 +101,6 @@ public class ControllerDeliveryPointFindCustomer implements Initializable {
     public void handleButtonGo(ActionEvent event){
         String text = txtFieldInputCustomerName.getText();
         listViewShowCustomers.setItems(Adapter.cleaningCentralInstance().getCustomersFromName(text));
-        Customer selectedCustomer = (Customer) listViewShowCustomers.getSelectionModel().getSelectedItem();
-        labelCustomerName.setText(selectedCustomer.customerFirstName + " " + selectedCustomer.customerLastName);
-        labelCustomerPhone.setText(selectedCustomer.customerPhoneNumber);
-        labelCustomerEmail.setText(selectedCustomer.customerEmail);
     }
 
     public void handleButtonEditCustomer(ActionEvent event)throws IOException {

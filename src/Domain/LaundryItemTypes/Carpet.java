@@ -15,6 +15,15 @@ public class Carpet extends LaundryItem {
     }
 
     @Override
+    public int price(){
+        return squareMeterPrice*squareMeters;
+    }
+
+    public String toString(){
+        return "Carpet  " + itemColor + "    Price:  " + price() + " Kroner\n";
+    }
+
+    @Override
     public int getLaundryTypeID(){
         return Carpet.laundryTypeID;
     }
@@ -22,15 +31,6 @@ public class Carpet extends LaundryItem {
     @Override
     public int timeToClean() {
         return itemTimeToClean;
-    }
-
-    @Override
-    public int price(){
-        return squareMeterPrice*squareMeters;
-    }
-
-    public String toString(){
-        return "Carpet  " + itemColor + "    Price:  " + price() + " Kroner\n";
     }
 
     @Override

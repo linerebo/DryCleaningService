@@ -13,12 +13,9 @@ public abstract class LaundryItem {
         itemStatus = itemStat;
     }
 
-    public abstract int getLaundryTypeID();
-
-    public abstract int timeToClean();
-
     public abstract int price();
-
+    public abstract int getLaundryTypeID();
+    public abstract int timeToClean();
     public abstract String toWashableLabel();
 
     /**

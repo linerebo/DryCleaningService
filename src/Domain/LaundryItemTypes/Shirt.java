@@ -12,6 +12,15 @@ public class Shirt extends LaundryItem {
     }
 
     @Override
+    public int price(){
+        return itemPrice;
+    }
+
+    public String toString(){
+        return "Shirt  " + itemColor + "    Price:  " + itemPrice + " Kroner\n";
+    }
+
+    @Override
     public int getLaundryTypeID(){
         return Shirt.laundryTypeID;
     }
@@ -19,15 +28,6 @@ public class Shirt extends LaundryItem {
     @Override
     public int timeToClean() {
         return itemTimeToClean;
-    }
-
-    @Override
-    public int price(){
-        return itemPrice;
-    }
-
-    public String toString(){
-        return "Shirt  " + itemColor + "    Price:  " + itemPrice + " Kroner\n";
     }
 
     @Override
