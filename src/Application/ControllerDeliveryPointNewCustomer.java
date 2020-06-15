@@ -15,13 +15,12 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 
 public class ControllerDeliveryPointNewCustomer {
-    DeliveryPoint dp;
 
+    DeliveryPoint dp;
     @FXML MenuButton menuButton1;
     @FXML MenuItem menuItem3;
     @FXML TextField txtFieldinputFirstName,txtFieldinputLastName,txtFieldinputPhoneNo, txtFieldinputEmail;

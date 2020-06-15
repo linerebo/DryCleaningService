@@ -23,14 +23,12 @@ public class ControllerDriverUnloadOrders {
     public ObservableList<Order> ordersOnTruck;
     public ObservableList observableOrderIDsOnTruck;
     ArrayList<Integer> ordersUnload = new ArrayList<>();
-
     @FXML MenuButton menuButton1;
     @FXML Button buttonUnloadingCompleted, buttonUnloadFromTruck, buttonGo;
     @FXML ListView listViewOrdersOnTruck, listViewCompletedUnloading;
     @FXML TextField textFieldInputDpID;
     @FXML TextArea textAreaOrderToUnload;
     @FXML Label labelShowLocationInfo, labelShowDriverNameAndID;
-
     String currentLocation;
 
     public void handleButtonHome(ActionEvent actionEvent) throws IOException {
@@ -84,7 +82,7 @@ public class ControllerDriverUnloadOrders {
         currentLocation = "Cleaning Central";
         labelShowLocationInfo.setText("Cleaning Central");
         listViewOrdersOnTruck.setItems(observableOrderIDsOnTruck);
-        System.out.println("observable Orders IDs On Truck: " + observableOrderIDsOnTruck);
+        //System.out.println("observable Orders IDs On Truck: " + observableOrderIDsOnTruck); // test print to console
     }
 
     /**

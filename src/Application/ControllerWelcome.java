@@ -11,7 +11,6 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 
 
-
 public class ControllerWelcome {
 
     @FXML MenuButton menuButton1;

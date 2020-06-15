@@ -12,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -74,10 +73,10 @@ public class ControllerDeliveryPointHandOut {
         listViewOrderHistory.setItems(Adapter.cleaningCentralInstance().getEventHistoryFromOrderID(orderToBeHandedOutID));
         // check if the order is at the right delivery point and enable/disable print invoice button accordingly
         if(orderToBeHandedOut.orderDeliveryPoint.deliveryPointID == dp.deliveryPointID) {
-            System.out.println("Delivery points are matching");
+            //System.out.println("Delivery points are matching"); // test print to console
             buttonPrintInvoice.setVisible(true);
         } else {
-            System.out.println("Delivery points are not matching");
+            //System.out.println("Delivery points are not matching"); // test print to console
             buttonPrintInvoice.setVisible(false);
             labelWrongDP.setText("The order does not belong to this delivery point. Print invoice is not possible.");
         }

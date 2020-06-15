@@ -2,11 +2,8 @@ package Domain;
 
 import Domain.LaundryItemTypes.LaundryItem;
 import Domain.SystemUser.SystemUser;
-import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-
 import java.util.*;
 
 public class CleaningCentral {
@@ -16,13 +13,9 @@ public class CleaningCentral {
     public ArrayList<Department> departments;
     public ArrayList<EventHistory> eventHistories;
     public ArrayList<EventType> eventTypes;
-    //laundry_Order // not sure if we need this.
     public ArrayList<LaundryItem> laundryItems;
-    //public ArrayList<LaundryType> laundryTypes; // No need for this.
-    //public ArrayList<NotAssignableLaundryItem> notAssignableLaundryItems; // no need. directly from DB for statistics.
     public ArrayList<Order> orders;
     public ArrayList<Payment> payments;
-    //public ArrayList<PostalCode> postalCodes; // no need for this
     public ArrayList<SystemUser> systemUsers; //  all user information excluding the passwords
 
     public CleaningCentral() {
@@ -31,21 +24,15 @@ public class CleaningCentral {
     public void getDataFromDB() {
 
         customers = Adapter.DBInstance().getCustomersFromDB();
-        System.out.println("amount of customers: " + customers.size()); // test print
+        //System.out.println("amount of customers: " + customers.size()); // test print to console
         deliveryPoints = Adapter.DBInstance().getDeliveryPointsFromDB();
-        System.out.println("amount of deliveryPoints: " + deliveryPoints.size()); // test print
         orders = Adapter.DBInstance().getOrdersFromDB();
         departments = Adapter.DBInstance().getDepartmentsFromDB();
         eventHistories = Adapter.DBInstance().getEventHistoriesFromDB();
-        System.out.println("amount of eventHistories: " + eventHistories.size()); // test print
         eventTypes = Adapter.DBInstance().getEventTypesFromDB();
-        // laundry_orders
         Adapter.DBInstance().getLaundryTypesFromDB();
         Adapter.DBInstance().getLaundryItemsFromDB();
-
-        //NotAssignableLaundryItems
         payments = Adapter.DBInstance().getPaymentsFromDB();
-        //postalCode
         systemUsers = Adapter.DBInstance().getSystemUsersFromDB();
     }
 
@@ -133,7 +120,6 @@ public class CleaningCentral {
      */
     public SystemUser getSystemUserFromID(int id) {
         SystemUser su = new SystemUser(0, "", "", 0);
-
         for (int i = 0; i < systemUsers.size(); i++) {
             if (id == systemUsers.get(i).systemUserID) {
                 su = systemUsers.get(i);
@@ -149,20 +135,18 @@ public class CleaningCentral {
      */
     public boolean doesUserExist(int id) {
         boolean existence = false;
-
         for (SystemUser u : systemUsers) {
             if (u.systemUserID == id) {
                 existence = true;
             }
         }
-
         return existence;
     }
 
     /**
      * The method finds all order IDs from the event history which are currently loaded on the truk of the given user.
      * @param userID the ID of the systemuser /driver.
-     * @return an observablelist of orderIDs
+     * @return an observable list of orderIDs
      */
     public ObservableList getOrderIDsOnTruck(int userID) {
         ObservableList ordersOnTruckID = FXCollections.observableArrayList();
@@ -174,7 +158,7 @@ public class CleaningCentral {
                 ordersOnTruckID.add(eveOrderID);
             }
         }
-        System.out.println("observable list of orderIDs on truck: " + ordersOnTruckID);
+        //System.out.println("observable list of orderIDs on truck: " + ordersOnTruckID); // test print to console
         return ordersOnTruckID;
     }
 
@@ -186,7 +170,6 @@ public class CleaningCentral {
      */
     public ObservableList getOrderObjectsOnTruck(int userID) {
         ObservableList ordersOnTruckID = getOrderIDsOnTruck(userID); // an observable list of orderIDs int
-
         //find the corresponding order objects in the orders list.
         ArrayList<Order> onTruckOrders = new ArrayList<>();
         for (int x = orders.size() - 1; x >= 0; x--) {
@@ -199,12 +182,17 @@ public class CleaningCentral {
             }
         }
         ObservableList ordersOnTruck = FXCollections.observableArrayList(onTruckOrders);
-        System.out.println("order objects on truck: " + ordersOnTruck);
+        //System.out.println("order objects on truck: " + ordersOnTruck); // test print to console
         return ordersOnTruck;
     }
 
+    /**
+     * The method finds the orders, that are newly created at a deliverypoint and are waiting for the driver
+     * to be transported to the cleaning central.
+     * @param deliveryPointID the ID of the given delivery point
+     * @return an obsesrvablelist of orderIDs
+     */
     public ObservableList getWaitingOrdersFromDeliveryPoint(int deliveryPointID) {
-
         ArrayList<Order> orderObjectsCreatedOnDeliveryPoint = new ArrayList();
         // get orders with matching delivery point ID from tblOrder
         for (int i = orders.size() - 1; i >= 0; i--) {
@@ -225,7 +213,7 @@ public class CleaningCentral {
             }
         }
         ObservableList waitingOrderIds = FXCollections.observableArrayList(orderIdsOnDeliveryPoint);
-        System.out.println("order IDs waiting for pick up: " + waitingOrderIds);
+        //System.out.println("order IDs waiting for pick up: " + waitingOrderIds); // test print to console
         return waitingOrderIds;
     }
 
@@ -246,7 +234,7 @@ public class CleaningCentral {
 
     /**
      * The method creates a list over all the events for one order.
-     * @param orderID
+     * @param orderID the ID of the given order
      * @return an observable list of Strings
      */
     public ObservableList<String> getEventHistoryFromOrderID(int orderID) {

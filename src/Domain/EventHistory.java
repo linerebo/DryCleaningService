@@ -8,7 +8,7 @@ public class EventHistory {
     public Timestamp eventDateTimeStamp;
 
     public int eventTypeID;
-    public int systemUserID; // better system user object?
+    public int systemUserID;
     public boolean eventCurrentStatus;
 
     public EventHistory(int eventId, int orderId, Timestamp eventDateTimeStmp, int eventTypeId, int systemUserId, boolean eventCurrentStat) {

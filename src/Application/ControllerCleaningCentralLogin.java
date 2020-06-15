@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.fxml.*;
-
 import java.io.IOException;
 
 public class ControllerCleaningCentralLogin {
@@ -35,12 +34,12 @@ public class ControllerCleaningCentralLogin {
 
         // getText from text field txtFieldInputCanteenPassword
         String inPassword = txtFieldCleaningCentralPassword.getText();
-        System.out.println("input: " + inPassword); // test -gets the right input? yes
+        //System.out.println("input: " + inPassword); // test -gets the right input? yes
 
         // get Password from DB (string)
         //String properPassword = "ab";    //.getPasswordDeliveryPoint();
         String properPassword = Adapter.DBInstance().getPasswordSystemUser(inputUserIDInt); // takes in systemUserID as variable from the textfield, see above.
-        System.out.println("password from DB: " + properPassword); // test - gets the right password from DB? yes
+        //System.out.println("password from DB: " + properPassword); // test - gets the right password from DB? yes
 
         // compare password, change scene if true
         if (properPassword.equals(inPassword)) {

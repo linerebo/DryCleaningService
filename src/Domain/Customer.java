@@ -3,14 +3,12 @@ package Domain;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
 public class Customer {
     public int customerID;
     public String customerFirstName;
     public String customerLastName;
     public String customerPhoneNumber;
     public String customerEmail;
-
 
     public Customer(int custID, String firstName, String lastName, String phoneNo, String email){
         customerID = custID;
@@ -41,5 +39,4 @@ public class Customer {
         }
         return ordersFromCustomer;
     }
-
 }

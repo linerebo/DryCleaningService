@@ -36,7 +36,7 @@ public class ControllerDriverLogin {
 
         // getText from text field txtFieldInputCanteenPassword
         String inPassword = txtFldInputDriverPassword.getText();
-        System.out.println("input: " + inPassword); // test -gets the right input? yes
+        //System.out.println("input: " + inPassword); // test -gets the right input? yes
 
         // get password from DB (string)
         String properPassword = Adapter.DBInstance().getPasswordSystemUser(inputDriverIDInt); // takes in systemUserID as variable from the textfield, see above.

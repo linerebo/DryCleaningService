@@ -13,7 +13,6 @@ public class Order {
     public Customer orderCustomer;
     public DeliveryPoint orderDeliveryPoint;
 
-
     public Order(int id, Customer orderCust, DeliveryPoint dp){
         orderID = id;
         orderCustomer = orderCust;
@@ -110,7 +109,6 @@ public class Order {
         return true;
     }
 
-
    /* public void sendEmail(){
         String to = "abcd@gmail.com";
         String from = "cleaningcentral@fraemohs.de";
@@ -132,5 +130,4 @@ public class Order {
             mex.printStackTrace();
         }
     }*/
-
 }

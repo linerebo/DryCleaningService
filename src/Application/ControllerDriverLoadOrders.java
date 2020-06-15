@@ -13,7 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -24,13 +23,11 @@ public class ControllerDriverLoadOrders {
     ObservableList cleanOrderIDsWaiting;
     ArrayList<Integer> ordersLoad = new ArrayList<>();
     public ObservableList observableOrderIDsOnTruck;
-
     @FXML Label labelShowDriverNameAndID, labelShowLocationInfo;
     @FXML MenuButton menuButton1;
     @FXML TextField textFieldInputDpID;
     @FXML ListView listViewWaitingOrders, listViewCompletedLoading;
     @FXML TextArea textAreaSelectedOrder;
-
     String currentLocation;
 
     public void handleButtonHome(ActionEvent actionEvent) throws IOException {
@@ -84,7 +81,6 @@ public class ControllerDriverLoadOrders {
     public void handleButtonLocationCleaningCentral() {
         currentLocation = "Cleaning Central";
         labelShowLocationInfo.setText("Cleaning Central");
-
         cleanOrderIDsWaiting = Adapter.cleaningCentralInstance().getWaitingOrdersAtCleaningCentral();
         listViewWaitingOrders.setItems(cleanOrderIDsWaiting);
     }

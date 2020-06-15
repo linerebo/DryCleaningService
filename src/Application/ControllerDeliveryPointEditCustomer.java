@@ -15,7 +15,6 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class ControllerDeliveryPointEditCustomer {

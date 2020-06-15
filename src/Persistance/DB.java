@@ -18,7 +18,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -38,12 +37,10 @@ public class DB {
      * @return an object of connection
      */
     public Connection establishConnection() {
-
         //get access information for the DB from a separate file called DB_Properties
         Properties prop = new Properties();
         String file = "src/Persistance/DB_Properties";
         InputStream input;
-
         try {
             //read information from file
             input = new FileInputStream(file);
@@ -52,16 +49,12 @@ public class DB {
             String databaseName = prop.getProperty("databaseName");
             String userName = prop.getProperty("userName");
             String password = prop.getProperty("password");
-
             // load the driver
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
             //establish connection
             connection = DriverManager.getConnection("jdbc:sqlserver://localhost:" + port + ";databaseName=" + databaseName, userName, password);
-            System.out.println("The connection to the database is established."); // test connection, works
-
+            //System.out.println("The connection to the database is established."); // test connection, works
             return connection;
-
         } catch (SQLException | FileNotFoundException e) {
             System.out.println("Connection not established: " + e);
             e.printStackTrace();
@@ -78,13 +71,14 @@ public class DB {
     public void closeConnection() {
         try {
             connection.close();
-            System.out.println("The connection to the database is now closed.");
+            //System.out.println("The connection to the database is now closed."); // test print to console
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    // a method for each table to get the data from the database
+    // following: a method for each needed table in the database to get the data loaded.
+
     public ArrayList<Customer> getCustomersFromDB() {
         ArrayList<Customer> customers = new ArrayList<>();
         Statement st;
@@ -98,10 +92,8 @@ public class DB {
             }
             st.close();
             closeConnection();
-
         } catch (SQLException e) {
         }
-
         return customers;
     }
 
@@ -123,7 +115,6 @@ public class DB {
             }
             st.close();
             closeConnection();
-
         } catch (SQLException e) {
         }
         return orders;
@@ -190,10 +181,8 @@ public class DB {
             }
             st.close();
             closeConnection();
-
         } catch (SQLException e) {
         }
-
         return deliveryPoints;
     }
 
@@ -210,10 +199,8 @@ public class DB {
             }
             st.close();
             closeConnection();
-
         } catch (SQLException e) {
         }
-
         return departments;
     }
 
@@ -230,10 +217,8 @@ public class DB {
             }
             st.close();
             closeConnection();
-
         } catch (SQLException e) {
         }
-
         return eventHistories;
     }
 
@@ -250,10 +235,8 @@ public class DB {
             }
             st.close();
             closeConnection();
-
         } catch (SQLException e) {
         }
-
         return eventTypes;
     }
 
@@ -290,7 +273,6 @@ public class DB {
             }
             st.close();
             closeConnection();
-
         } catch (SQLException e) {
         }
     }
@@ -308,10 +290,8 @@ public class DB {
             }
             st.close();
             closeConnection();
-
         } catch (SQLException e) {
         }
-
         return payments;
     }
 
@@ -333,10 +313,8 @@ public class DB {
             }
             st.close();
             closeConnection();
-
         } catch (SQLException e) {
         }
-
         return systemUsers;
     }
 
@@ -355,21 +333,17 @@ public class DB {
             PreparedStatement ps = connection.prepareStatement("SELECT fldSystemUserPassword FROM tblSystemUser WHERE fldSystemUserID = (?)");
             ps.setInt(1, inputUserID);
             ResultSet resultSet = ps.executeQuery();
-
             while (resultSet.next()) {
                 passwordString = resultSet.getString(1);
             }
-
             ps.close();
             closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return passwordString;
     }
 
-    // TODO decide if it can be deleted, since there is a list for system users now
     /**
      * The method checks if the user exists in the database.
      *
@@ -383,52 +357,43 @@ public class DB {
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM tblSystemUser WHERE fldSystemUserID = (?)");
             ps.setInt(1, inputUserID);
             ResultSet resultSet = ps.executeQuery();
-
             while (resultSet.next()) {
                 exists = true;
             }
-
             ps.close();
             closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
         return exists;
     }
 
-    // TODO decide if it can be deleted, since there is a list for system users now?
     public int checkUserDepartment(int inputUserID) {
         int userDep = 0;
-
         try {
             establishConnection();
             PreparedStatement ps = connection.prepareStatement("SELECT fldDepartmentID FROM tblSystemUser WHERE fldSystemUserID = (?)");
             ps.setInt(1, inputUserID);
             ResultSet resultSet = ps.executeQuery();
-
             while (resultSet.next()) {
                 userDep = resultSet.getInt(1);
                 System.out.println("found user department in the DB: " + userDep);
             }
-
             ps.close();
             closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return userDep;
     }
 
     /**
      * The method will return a new value from the sequence in the database, which will be used as ID for a new record
      * in any of the tables.
+     *
      * @return an integer
      */
     public int generateNewID() {
-
         int newID = 0;
         try {
             establishConnection();
@@ -436,82 +401,76 @@ public class DB {
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
                 newID = resultSet.getInt(1);
-                System.out.println("new value from DB: " + newID);
+                //System.out.println("new value from DB: " + newID); // test print to console
             }
             ps.close();
             closeConnection();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return newID;
     }
 
     /**
      * The method inserts a new item to the database
-     * @param itemToInsert
-     * @return
+     *
+     * @param itemToInsert the given item to insert
+     * @return the ID of the new inserted item
      */
     public int insertNewLaundryItem(LaundryItem itemToInsert) {
-
         int newItemID = generateNewID();
         try {
             establishConnection();
-
             PreparedStatement ps = connection.prepareStatement("INSERT INTO tblLaundryItem VALUES (?, ?, ?, ?)");
             ps.setInt(1, newItemID);
             ps.setInt(2, itemToInsert.getLaundryTypeID());
             ps.setString(3, itemToInsert.itemColor);
             ps.setBoolean(4, itemToInsert.itemStatus);
-
             ps.addBatch();
             ps.executeBatch();
-
             ps.close();
             closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return newItemID;
     }
 
-    public void updataLaundryItem(LaundryItem laundryItemToUpdate){
-
+    /**
+     * The method changes the status (a boolean) whether the item is cleaned or not.
+     *
+     * @param laundryItemToUpdate the given laundry item to update
+     */
+    public void updataLaundryItem(LaundryItem laundryItemToUpdate) {
         try {
             establishConnection();
             PreparedStatement ps = connection.prepareStatement("UPDATE tblLaundryItem SET fldLaundryItemStatus = (?) WHERE fldLaundryItemID = (?)");
             ps.setBoolean(1, true);
             ps.setInt(2, laundryItemToUpdate.itemID);
-
             ps.executeUpdate();
             ps.close();
             closeConnection();
         } catch (SQLException e) {
-        e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
     /**
      * The method inserts a new record for an item size.
+     *
      * @param laundryItemID the ID of the item which got entered with a size
      * @param size the size entered
      */
     public void insertNewSize(int laundryItemID, int size) {
-
         int newLaundrySizeID = generateNewID();
-
         try {
             establishConnection();
-
             PreparedStatement ps = connection.prepareStatement("INSERT INTO tblLaundrySize VALUES (?, ?, ?)");
             ps.setInt(1, newLaundrySizeID);
             ps.setInt(2, laundryItemID);
             ps.setInt(3, size);
-
             ps.addBatch();
             ps.executeBatch();
-
             ps.close();
             closeConnection();
         } catch (SQLException e) {
@@ -522,46 +481,38 @@ public class DB {
     /**
      * The method inserts the new order in to the database.
      * Also it inserts a new record in to the combination table tblLaundry_Order.
+     *
      * @param newOrder the newly created order
      * @return the new ID of this order
      */
     public int insertNewOrder(Order newOrder) {
-
         int newOrderID = generateNewID();
-
         try {
             establishConnection();
-
             PreparedStatement ps = connection.prepareStatement("INSERT INTO tblOrder VALUES (?, ?, ?, ?)");
             ps.setInt(1, newOrderID);
             ps.setInt(2, newOrder.orderCustomer.customerID);
             ps.setInt(3, newOrder.items.size());
             ps.setInt(4, newOrder.orderDeliveryPoint.deliveryPointID);
-
             ps.addBatch();
             ps.executeBatch();
-
             ps.close();
             closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         // add record to tblLaundry_Order for every item on the new order (order - item pair)
-        for (int i = newOrder.items.size() -1; i >= 0; i--) {
+        for (int i = newOrder.items.size() - 1; i >= 0; i--) {
             LaundryItem itemToUse = newOrder.items.get(i);
             int itemToInsert = itemToUse.itemID;
             try {
                 establishConnection();
-
                 PreparedStatement ps = connection.prepareStatement("INSERT INTO tblLaundry_Order VALUES (?, ?, ?)");
                 ps.setInt(1, generateNewID());
                 ps.setInt(2, itemToInsert);
                 ps.setInt(3, newOrderID);
-
                 ps.addBatch();
                 ps.executeBatch();
-
                 ps.close();
                 closeConnection();
             } catch (SQLException e) {
@@ -570,24 +521,22 @@ public class DB {
         }
         // call create Event function
         insertNewEvent(newOrderID, 15, 25); // the creation of a new order has the eventType 15,
-                                                                // the shop assistant has the systemUserID 25
-
+        // the shop assistant has the systemUserID 25
         return newOrderID;       //return newOrderID
     }
 
     /**
      * The method creates a new event and updates previous events for the same orderID
-     * @param orderID
-     * @param eventType
-     * @param systemUser
-     * @return
+     *
+     * @param orderID    the ID of the given order
+     * @param eventType  the event type of the current event happening
+     * @param systemUser the system user, executing the event
+     * @return the ID of the new event
      */
     public int insertNewEvent(int orderID, int eventType, int systemUser) {
         int newEventID = generateNewID();
-
         try {
             establishConnection();
-
             PreparedStatement ps = connection.prepareStatement("INSERT INTO tblEventHistory VALUES (?, ?, ?, ?, ?, ?)");
             ps.setInt(1, newEventID);
             ps.setInt(2, orderID);
@@ -595,33 +544,24 @@ public class DB {
             ps.setInt(4, eventType);
             ps.setInt(5, systemUser);
             ps.setBoolean(6, true);
-
             ps.addBatch();
             ps.executeBatch();
-
             ps.close();
             closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         //if it is not an event for creating a new order, update all the other events with same orderID to set current status to false.
         if (eventType != 15) {
-
             try {
                 establishConnection();
-
                 for (int i = Adapter.cleaningCentralInstance().eventHistories.size() - 1; i >= 0; i--) {
-
                     EventHistory eventHistoryToCheck = Adapter.cleaningCentralInstance().eventHistories.get(i);
-
                     if (eventHistoryToCheck.orderID == orderID) {
-
                         PreparedStatement ps = connection.prepareStatement("UPDATE tblEventHistory SET fldEventHistoryCurrentStatus = (?) WHERE fldOrderID = (?) AND NOT fldEventTypeID = (?)");
                         ps.setBoolean(1, false);
                         ps.setInt(2, orderID);
                         ps.setInt(3, eventType);
-
                         ps.executeUpdate();
                         ps.close();
                     }
@@ -639,42 +579,37 @@ public class DB {
      * The method inserts a new customer objects into the database. First it gets a new value from the sequence,
      * by calling the method generateNewID. Afterwards this value and the other parameters of the new customer objects
      * will be inserted by the help of a SQL statement.
+     *
      * @param newCustomer a new customer object
      * @return returns new Customer ID of datatype int
      */
     public int insertNewCustomer(Customer newCustomer) {
-
         int newCustomerID = generateNewID();
-
         try {
             establishConnection();
-
             PreparedStatement ps = connection.prepareStatement("INSERT INTO tblCustomer VALUES (?, ?, ?, ?, ?)");
             ps.setInt(1, newCustomerID);
             ps.setString(2, newCustomer.customerFirstName);
             ps.setString(3, newCustomer.customerLastName);
             ps.setString(4, newCustomer.customerPhoneNumber);
             ps.setString(5, newCustomer.customerEmail);
-
             ps.addBatch();
             ps.executeBatch();
-
             ps.close();
             closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return newCustomerID;  //return newCustomer ID
     }
 
     /**
      * The method gets the amount of each group of laundy type handed in, directly from the database.
+     *
      * @return an observable list of Piechart data objects
      */
     public ObservableList<PieChart.Data> getPopularItems() {
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-
         try {
             establishConnection();
             PreparedStatement ps = connection.prepareStatement("EXECUTE sp_getAmountOfShirts");
@@ -769,25 +704,25 @@ public class DB {
         return pieChartData;
     }
 
+    /**
+     * The method gets the amount of incoming orders, sorted after the corresponding routes.
+     * @return an array list of chartdata
+     */
     public ArrayList<XYChart.Data> getIncomingOrders() {
         ArrayList<XYChart.Data> incomingOrdersPerRoute = new ArrayList<>();
         try {
             establishConnection();
             PreparedStatement ps = connection.prepareStatement("EXECUTE sp_getIncomingOrdersPerRoute");
             ResultSet resultSet = ps.executeQuery();
-
             while (resultSet.next()) {
                 XYChart.Data cd = new XYChart.Data(resultSet.getString(1), resultSet.getInt(2));
                 incomingOrdersPerRoute.add(cd);
             }
-
             ps.close();
             closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return incomingOrdersPerRoute;
     }
-
 }

@@ -3,7 +3,6 @@ package Application;
 import Domain.Adapter;
 import Domain.Order;
 import Domain.SystemUser.SystemUser;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,8 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
-
-
 import java.io.IOException;
 
 public class ControllerCleaningCentralWashLabels {

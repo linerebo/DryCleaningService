@@ -11,7 +11,6 @@ import javafx.scene.chart.*;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class ControllerCleaningCentralStatistics {

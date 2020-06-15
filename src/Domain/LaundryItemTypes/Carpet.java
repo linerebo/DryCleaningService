@@ -8,7 +8,6 @@ public class Carpet extends LaundryItem {
     public static int laundryTypeID = 6;
     private int squareMeters;
 
-
     public Carpet(String itemCol, boolean itemStat, int sizeCarpet) {
         super(itemCol, itemStat);
         squareMeters = sizeCarpet;

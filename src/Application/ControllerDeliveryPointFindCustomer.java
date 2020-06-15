@@ -22,7 +22,6 @@ import java.util.ResourceBundle;
 public class ControllerDeliveryPointFindCustomer implements Initializable {
 
     public DeliveryPoint dp;
-
     @FXML MenuButton menuButton1;
     @FXML MenuItem menuItem3;
     @FXML TextField txtFieldInputCustomerName;

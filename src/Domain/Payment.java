@@ -16,5 +16,4 @@ public class Payment {
         paymentStatus = paymentStat;
         paymentInvoiceTotal = paymentInvTotal;
     }
-
 }

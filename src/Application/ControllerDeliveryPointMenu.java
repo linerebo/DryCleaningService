@@ -3,7 +3,6 @@ package Application;
 import Domain.Adapter;
 import Domain.Customer;
 import Domain.DeliveryPoint;
-
 import Domain.SystemUser.SystemUser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +16,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class ControllerDeliveryPointMenu {

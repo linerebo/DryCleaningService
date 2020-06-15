@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.fxml.*;
-
 import java.io.IOException;
 
 public class ControllerDeliveryPointLogin {
@@ -38,11 +37,11 @@ public class ControllerDeliveryPointLogin {
 
         // getText from text field txtFieldInputDeliveryPointPassword
         String inPassword = txtFieldInputDeliveryPointPassword.getText();
-        System.out.println("input: " + inPassword); // test -gets the right input? yes
+        //System.out.println("input: " + inPassword); // test -gets the right input? yes
 
         // get Password from DB (string)
         String properPassword = Adapter.DBInstance().getPasswordSystemUser(inputUserIDInt); // takes in systemUserID as variable from the textfield, see above.
-        System.out.println("password from DB: " + properPassword); // test - gets the right password from DB? yes
+        //System.out.println("password from DB: " + properPassword); // test - gets the right password from DB? yes
 
         // compare password, change scene if true
         if (properPassword.equals(inPassword)) {
