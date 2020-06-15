@@ -57,8 +57,11 @@ public class ControllerCleaningCentralWashLabels {
 
     public void handleButtonGo(){
         ObservableList itemsInOrder = FXCollections.observableArrayList();
+        //get Order ID from textFieldEnterOrderNo
         selectedOrderID = Integer.parseInt(txtFieldEnterOrderNo.getText());
+        //get the Order object from OrderID
         selectedOrder = Adapter.cleaningCentralInstance().getOrderFromID(selectedOrderID);
+        //add all Items from Order to ObservableList in order to show in ListView
         itemsInOrder.setAll(selectedOrder.items);
         listViewOrderDetails.setItems(itemsInOrder);
     }

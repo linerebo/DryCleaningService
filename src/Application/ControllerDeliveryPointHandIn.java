@@ -40,10 +40,11 @@ public class ControllerDeliveryPointHandIn implements Initializable {
     ComboBox carpetSize = new ComboBox(carpetSizes);
 
 
-
+    //A Listener is added to the Laundry Item Toggle Group. When an Item type is selected the listener is notified and
+    //dynamically adds additional GUI element if needed.
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        comboBoxColors.getItems().setAll(Colors.values());
+        comboBoxColors.getItems().setAll(Colors.values());  //set colors from enum Colors in comboBox
         listViewLaundryItem.setItems(basket);
 
         groupItems.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
@@ -61,7 +62,7 @@ public class ControllerDeliveryPointHandIn implements Initializable {
             }
         });
     }
-
+    //GUI element ComboBox carpetSizes to select carpet size from drop-down menu
     public void addCarpetGUIElements() {
         carpetSizes.addAll(5,10,15,20,25,30,35,40,45,50);
         carpetSize.setLayoutX(229);
@@ -103,12 +104,15 @@ public class ControllerDeliveryPointHandIn implements Initializable {
         window.show();
     }
 
+    //when the add Item button is pressed, a new Item is added to the basket
     public void handleButtonAddItem(ActionEvent event){
         labelInputValidation.setText("");
         if(groupItems.getSelectedToggle() == null){
+            //if no item type is selected
             labelInputValidation.setText("Please select laundry type");
         }
         else if (comboBoxColors.getSelectionModel().isEmpty()) {
+            //if no color is selected
             labelInputValidation.setText("Please select color");
         }
         else {
@@ -125,6 +129,7 @@ public class ControllerDeliveryPointHandIn implements Initializable {
                     break;
                 case "radiobuttonCarpet":
                     if (carpetSize.getSelectionModel().isEmpty()) {
+                        //if no carpet size is selected
                         labelInputValidation.setText("Please select carpet size");
                         break;
                     }
@@ -136,7 +141,6 @@ public class ControllerDeliveryPointHandIn implements Initializable {
                 case "radiobuttonCoat":
                     Coat newCoat = new Coat(selectedColor, false);
                     basket.add(newCoat);
-                    System.out.println("We have a coat");
                     break;
                 case "radiobuttonDress":
                     Dress newDress = new Dress(selectedColor, false);
@@ -163,7 +167,7 @@ public class ControllerDeliveryPointHandIn implements Initializable {
     }
 
     /**
-     *
+     *After save and print, Items and new Order are stored, Order slip is printed, and email to customer.
      */
     public void handleButtonSaveAndPrint(ActionEvent event) throws IOException{
         for(int i=0; i<basket.size(); i++) {

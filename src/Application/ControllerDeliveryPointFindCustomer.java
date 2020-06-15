@@ -29,7 +29,8 @@ public class ControllerDeliveryPointFindCustomer implements Initializable {
     @FXML ListView listViewShowCustomers, listViewCustomerOrders;
     @FXML Label labelCustomerName, labelCustomerPhone, labelCustomerEmail;
 
-
+    //A Listener is added to the Customer ListView. When a Customer is selected the listener is notified and
+    // set the labels for Customer name, phone, email, as well as the Orders ListView.
     @Override
     public void initialize(URL location, ResourceBundle resources){
         ChangeListener<Customer> listenerCustomer = new ChangeListener<Customer>() {
@@ -61,6 +62,8 @@ public class ControllerDeliveryPointFindCustomer implements Initializable {
         window.show();
     }
 
+    //Delievery Point Menu screen is loaded from the fxml file. In the corresponding controller
+    // the Delivery Point attribute is set to the current Delivery Point.
     public void handleButtonMenu(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Presentation/DeliveryPointMenu.fxml"));
         Parent menuScreen = loader.load();
@@ -99,6 +102,7 @@ public class ControllerDeliveryPointFindCustomer implements Initializable {
     }
 
     public void handleButtonGo(ActionEvent event){
+        //get String from textFieldInputCustomerName
         String text = txtFieldInputCustomerName.getText();
         listViewShowCustomers.setItems(Adapter.cleaningCentralInstance().getCustomersFromName(text));
     }

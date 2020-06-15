@@ -129,6 +129,10 @@ public class DB {
         return orders;
     }
 
+    /**
+     * This method retrieves all Laundry Items from the database, generates the corresponding LaundryItem objects,
+     * and inserts them into their respective Orders.
+     */
     public void getLaundryItemsFromDB() {
         Statement st;
         ResultSet resultSet;
